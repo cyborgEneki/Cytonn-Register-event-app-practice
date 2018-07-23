@@ -21,3 +21,18 @@ $factory->define(App\User::class, function (Faker $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(App\Event::class, function ($faker) {
+    return [
+        'user_id' => function () {
+            return factory('App\Admin')->create()->id;
+        },
+        'category_id' => function () {
+            return factory('App\Category')->create()->id;
+        },
+        'team_id' => function () {
+            return factory('App\Team')->create()->id;
+        },
+        'body' => $faker->paragraph,
+    ];
+});
