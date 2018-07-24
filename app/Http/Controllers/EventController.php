@@ -16,7 +16,7 @@ class EventController extends Controller
 //    Returns all post data
     public function home()
     {
-        return view (vueApp);
+        return view ('vueApp');
     }
 
 //    Shows data in json format

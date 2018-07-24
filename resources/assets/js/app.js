@@ -6,13 +6,46 @@ window.VueAxios=require('vue-axios').default;
 
 window.Axios=require('axios').default;
 
-Vue.use(VueRouter,VueAxios,axios);
+let AppLayout = require('./components/App');
 
-Vue.component('example-component', require('./components/App'));
+// Registering modules
+Vue.use(VueRouter,VueAxios,Axios);
 
-// const app = new Vue({
-//     el: '#app'
-// });
+
+//list all the templates
+const AddEvent = Vue.component('AddEvent', require('./components/AddEvent'));
+const DeleteEvent = Vue.component('DeleteEvent', require('./components/DeleteEvent'));
+const EditEvent = Vue.component('EditEvent', require('./components/EditEvent'));
+const ListEvents = Vue.component('ListEvents', require('./components/ListEvents'));
+const ViewEvents = Vue.component('ViewEvents', require('./components/ViewEvents'));
+
+const routes = [
+    {
+        path: '/',
+        name: 'ListEvents',
+        component: ListEvents,
+    },
+    {
+        path: '/add-event',
+        name: 'AddEvent',
+        component: AddEvent,
+    },
+    {
+        path: '/deleteevent',
+        name: 'delete-event',
+        component: DeleteEvent,
+    },
+    {
+        path: '/editevent/:id',
+        name: 'edit-event',
+        component: EditEvent,
+    },
+    {
+        path: '/viewevent/:id',
+        name: 'view-events',
+        component: ViewEvents,
+    }
+]
 
 const router = new VueRouter ({
     mode: "history",
@@ -21,6 +54,10 @@ const router = new VueRouter ({
 
 new Vue(
     Vue.util.extend(
-        {router},
+        { router },
         AppLayout)
-    ).$mount(#app);
+    ).$mount('#app');
+
+// const app = new Vue({
+//     el: '#app'
+// });

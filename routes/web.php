@@ -24,9 +24,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'EventController@home');
+Route::resource('/events', 'EventController');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-Route::resource('/events', 'EventController');
 
