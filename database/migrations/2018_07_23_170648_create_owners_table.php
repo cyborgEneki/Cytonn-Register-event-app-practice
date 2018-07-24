@@ -13,7 +13,7 @@ class CreateAdminsTable extends Migration
      */
     public function up()
     {
-        Schema::create('admins', function (Blueprint $table) {
+        Schema::create('owners', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('team_id');
             $table->string('name');

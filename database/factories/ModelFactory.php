@@ -24,8 +24,8 @@ $factory->define(App\User::class, function (Faker $faker) {
 
 $factory->define(App\Event::class, function ($faker) {
     return [
-        'user_id' => function () {
-            return factory('App\Admin')->create()->id;
+        'admin_id' => function () {
+            return factory('App\Owner')->create()->id;
         },
         'category_id' => function () {
             return factory('App\Category')->create()->id;
@@ -33,6 +33,35 @@ $factory->define(App\Event::class, function ($faker) {
         'team_id' => function () {
             return factory('App\Team')->create()->id;
         },
-        'body' => $faker->paragraph,
+        'name' => $faker->sentence,
+        'frequency' => $faker->sentence,
+        'start_date_and_time'=>$faker->dateTime,
+        'lead_start_date'=>$faker->date,
+        'lead_duration'=>$faker->sentence,
+    ];
+});
+
+$factory->define(App\Owner::class, function ($faker) {
+    return [
+        'team_id' => function () {
+            return factory('App\Team')->create()->id;
+        },
+        'name' => $faker->name,
+        'email' => $faker->unique()->safeEmail,
+        'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
+        'remember_token' => str_random(10),
+    ];
+});
+
+$factory->define(App\Team::class, function ($faker) {
+    return [
+        'name' => $faker->name,
+    ];
+});
+
+$factory->define(App\Category::class, function ($faker) {
+    return [
+        'name' => $faker->name,
+        'description' => $faker->paragraph,
     ];
 });

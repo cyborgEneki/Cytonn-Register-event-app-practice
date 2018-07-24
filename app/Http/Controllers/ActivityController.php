@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Admin;
+use App\Activity;
 use Illuminate\Http\Request;
 
-class AdminController extends Controller
+class ActivityController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class AdminController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Admin  $admin
+     * @param  \App\Activity  $activity
      * @return \Illuminate\Http\Response
      */
-    public function show(Admin $admin)
+    public function show(Activity $activity)
     {
         //
     }
@@ -52,10 +52,10 @@ class AdminController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Admin  $admin
+     * @param  \App\Activity  $activity
      * @return \Illuminate\Http\Response
      */
-    public function edit(Admin $admin)
+    public function edit(Activity $activity)
     {
         //
     }
@@ -64,10 +64,10 @@ class AdminController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Admin  $admin
+     * @param  \App\Activity  $activity
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Admin $admin)
+    public function update(Request $request, Activity $activity)
     {
         //
     }
@@ -75,10 +75,10 @@ class AdminController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Admin  $admin
+     * @param  \App\Activity  $activity
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Admin $admin)
+    public function destroy(Activity $activity)
     {
         //
     }

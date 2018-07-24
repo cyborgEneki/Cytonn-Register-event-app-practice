@@ -2,27 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Event;
+use App\Owner;
 use Illuminate\Http\Request;
 
-class EventController extends Controller
+class OwnerController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-//    Returns all post data
-    public function home()
-    {
-        return view (vueApp);
-    }
-
-//    Shows data in json format
     public function index()
     {
-       return Event::orderBy('id','desc')->get();
+        //
     }
 
     /**
@@ -49,10 +41,10 @@ class EventController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Event  $event
+     * @param  \App\Owner  $admin
      * @return \Illuminate\Http\Response
      */
-    public function show(Event $event)
+    public function show(Owner $admin)
     {
         //
     }
@@ -60,10 +52,10 @@ class EventController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Event  $event
+     * @param  \App\Owner  $admin
      * @return \Illuminate\Http\Response
      */
-    public function edit(Event $event)
+    public function edit(Owner $admin)
     {
         //
     }
@@ -72,10 +64,10 @@ class EventController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Event  $event
+     * @param  \App\Owner  $admin
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Event $event)
+    public function update(Request $request, Owner $admin)
     {
         //
     }
@@ -83,10 +75,10 @@ class EventController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Event  $event
+     * @param  \App\Owner  $admin
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Event $event)
+    public function destroy(Owner $admin)
     {
         //
     }
