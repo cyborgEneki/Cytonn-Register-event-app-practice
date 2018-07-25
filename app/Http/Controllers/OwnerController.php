@@ -41,10 +41,10 @@ class OwnerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Owner  $admin
-     * @return \Illuminate\Http\Response
+     * @param Owner $owner
+     * @return void
      */
-    public function show(Owner $admin)
+    public function show(Owner $owner)
     {
         //
     }
@@ -52,10 +52,10 @@ class OwnerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Owner  $admin
-     * @return \Illuminate\Http\Response
+     * @param Owner $owner
+     * @return void
      */
-    public function edit(Owner $admin)
+    public function edit(Owner $owner)
     {
         //
     }
@@ -63,11 +63,11 @@ class OwnerController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Owner  $admin
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request $request
+     * @param Owner $owner
+     * @return void
      */
-    public function update(Request $request, Owner $admin)
+    public function update(Request $request, Owner $owner)
     {
         //
     }
@@ -75,10 +75,10 @@ class OwnerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Owner  $admin
-     * @return \Illuminate\Http\Response
+     * @param Owner $owner
+     * @return void
      */
-    public function destroy(Owner $admin)
+    public function destroy(Owner $owner)
     {
         //
     }

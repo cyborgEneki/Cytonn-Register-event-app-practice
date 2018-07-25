@@ -23,7 +23,7 @@
                 <input id="edit-lead-duration" v-model="event.lead_duration" class="form" required />
             </div>
 
-            <button type="submit" class="button">Create Event</button>
+            <button type="submit" class="button">Update Event</button>
             <router-link class="button warning" v-bind:to="'/'">Cancel</router-link>
         </form>
     </div>
@@ -40,14 +40,14 @@
 
         created: function()
         {
-            let uri = 'http://enekifinalproject.test/events' + this.$route.params.id + '/edit';
+            let uri = 'http://enekifinalproject.test/events' + '/' + this.$route.params.id + '/edit';
             Axios.get(uri).then((response) => {
                 this.event = response.data;
             });
         },
 
         methods: {
-            createEvent: function()
+            updateEvent: function()
             {
                 let uri = 'http://enekifinalproject.test/events'+ this.$route.params.id;
                 Axios.patch(uri, this.event).then((response) => {

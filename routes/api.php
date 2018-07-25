@@ -19,4 +19,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::resource('users', 'API\UserController');
 
-Route::resource('events', 'EventController');
+Route::resource('/events', 'API\EventController');

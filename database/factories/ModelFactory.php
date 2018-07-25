@@ -24,7 +24,7 @@ $factory->define(App\User::class, function (Faker $faker) {
 
 $factory->define(App\Event::class, function ($faker) {
     return [
-        'admin_id' => function () {
+        'owner_id' => function () {
             return factory('App\Owner')->create()->id;
         },
         'category_id' => function () {
