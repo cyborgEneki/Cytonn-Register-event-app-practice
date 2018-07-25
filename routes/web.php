@@ -19,8 +19,10 @@ Route::get('/', 'AppController@getApp')
 
 Route::get('events', 'EventController@getEvents');
 
-Route::get('events/{id}', 'EventsController@getEvent');
+Route::get('events/{id}', 'EventController@getEvent');
 
 Route::post('events', 'EventController@postNewEvent');
+
+Route::get('/activities', 'ActivityController@getActivity');
 
 

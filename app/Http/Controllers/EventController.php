@@ -16,7 +16,11 @@ class EventController extends Controller
     }
 
     public function getEvent( $id ){
-        $event = Event::all()->where('id', '=', $id)->first();
+        $event = Event::where('id', '=', $id)
+            ->with('activities')
+            ->first();
+
+//        $event = Event::all()->where('id', '=', $id)->first();
 
         return response()->json( $event );
     }
