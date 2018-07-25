@@ -17,7 +17,7 @@ const AddEvent = Vue.component('AddEvent', require('./components/AddEvent'));
 const DeleteEvent = Vue.component('DeleteEvent', require('./components/DeleteEvent'));
 const EditEvent = Vue.component('EditEvent', require('./components/EditEvent'));
 const ListEvents = Vue.component('ListEvents', require('./components/ListEvents'));
-const ViewEvents = Vue.component('ViewEvents', require('./components/ViewEvents'));
+const ViewEvent = Vue.component('ViewEvent', require('./components/ViewEvent'));
 
 const routes = [
     {
@@ -31,19 +31,19 @@ const routes = [
         component: AddEvent,
     },
     {
-        path: '/deleteevent',
-        name: 'delete-event',
+        path: '/delete-event',
+        name: 'DeleteEvent',
         component: DeleteEvent,
     },
     {
-        path: '/editevent/:id',
-        name: 'edit-event',
+        path: '/edit/:id',
+        name: 'EditEvent',
         component: EditEvent,
     },
     {
-        path: '/viewevent/:id',
-        name: 'view-events',
-        component: ViewEvents,
+        path: '/view/:id',
+        name: 'ViewEvent',
+        component: ViewEvent,
     }
 ]
 

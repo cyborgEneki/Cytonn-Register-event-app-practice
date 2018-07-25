@@ -1076,7 +1076,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(11);
-module.exports = __webpack_require__(48);
+module.exports = __webpack_require__(50);
 
 
 /***/ }),
@@ -1120,8 +1120,8 @@ var routes = [{
     name: 'edit-event',
     component: EditEvent
 }, {
-    path: '/viewevent/:id',
-    name: 'view-events',
+    path: '/view/:id',
+    name: 'ViewEvents',
     component: ViewEvents
 }];
 
@@ -16216,7 +16216,7 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "form" }, [
           _c("label", { attrs: { for: "add-lead-duration" } }, [
-            _vm._v("Lead Date")
+            _vm._v("Lead Duration")
           ]),
           _vm._v(" "),
           _c("input", {
@@ -16567,11 +16567,12 @@ if (false) {
 /* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
+var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = null
+var __vue_script__ = __webpack_require__(48)
 /* template */
-var __vue_template__ = null
+var __vue_template__ = __webpack_require__(49)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -16588,13 +16589,102 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/ViewEvents.vue"
+Component.options.__file = "resources/assets/js/components/ViewEvent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-85d672d6", Component.options)
+  } else {
+    hotAPI.reload("data-v-85d672d6", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
 
 module.exports = Component.exports
 
 
 /***/ }),
 /* 48 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: 'ViewEvent',
+
+    data: function data() {
+        return { event: { name: '', frequency: '', start_date_and_time: '', lead_start_date: '', lead_duration: '' } };
+    },
+
+    created: function created() {
+        var _this = this;
+
+        var uri = 'http://enekifinalproject.test/events' + this.$route.params.id;
+        Axios.get(uri).then(function (response) {
+            _this.events = response.data;
+        });
+    }
+});
+
+/***/ }),
+/* 49 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { attrs: { id: "view-event" } },
+    [
+      _c("h3", [_vm._v(_vm._s(_vm.event.name))]),
+      _vm._v(" "),
+      _c("strong", [_vm._v("Frequency: ")]),
+      _vm._v(" "),
+      _c("div", [
+        _vm._v("\n        " + _vm._s(_vm.event.frequency) + "\n    ")
+      ]),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _c("router-link", { attrs: { to: "/" } }, [_vm._v("All events")])
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-85d672d6", module.exports)
+  }
+}
+
+/***/ }),
+/* 50 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

@@ -19,7 +19,7 @@
                 <input id="add-lead-start" v-model="event.lead_start_date" class="form" required />
             </div>
             <div class="form">
-                <label for="add-lead-duration">Lead Date</label>
+                <label for="add-lead-duration">Lead Duration</label>
                 <input id="add-lead-duration" v-model="event.lead_duration" class="form" required />
             </div>
 

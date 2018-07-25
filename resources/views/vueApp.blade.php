@@ -88,7 +88,7 @@
     <body>
 
         <div class="flex-center position-ref full-height">
-            <h3>Rita</h3>
+            <h3>Cytonn Register</h3>
             <div class="content" id="app">
 
                 <router-view name="ListEvents"></router-view>
