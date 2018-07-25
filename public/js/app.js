@@ -55953,7 +55953,6 @@ var Component = normalizeComponent(
 )
 Component.options.__file = "resources/assets/js/components/ListEvents.vue"
 
-
 /* hot reload */
 if (false) {(function () {
   var hotAPI = require("vue-hot-reload-api")
@@ -55992,6 +55991,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     created: function created() {
@@ -56005,6 +56030,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         events: function events() {
             return this.$store.getters.getEvents;
+        },
+
+        filteredEvents: function filteredEvents() {
+            if (this.events.length) {
+                return this.events;
+            }
         }
     }
 });
@@ -56017,9 +56048,137 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c("div", { attrs: { id: "list-events" } }, [
+    _c(
+      "span",
+      {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.eventsLoadStatus == 1,
+            expression: "eventsLoadStatus == 1"
+          }
+        ]
+      },
+      [_vm._v("Loading")]
+    ),
+    _vm._v(" "),
+    _c(
+      "span",
+      {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.eventsLoadStatus == 2,
+            expression: "eventsLoadStatus == 2"
+          }
+        ]
+      },
+      [_vm._v("Events loaded successfully!")]
+    ),
+    _vm._v(" "),
+    _c(
+      "span",
+      {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.eventsLoadStatus == 3,
+            expression: "eventsLoadStatus == 3"
+          }
+        ]
+      },
+      [_vm._v("Events loaded unsuccessfully!")]
+    ),
+    _vm._v(" "),
+    _c("table", { staticClass: "hover unstriped" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "tbody",
+        _vm._l(_vm.filteredEvents, function(event, index) {
+          return _c("tr", [
+            _c("td", [_vm._v(_vm._s(index + 1))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(event.name))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(event.frequency))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(event.start_date_and_time))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(event.lead_start_date))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(event.lead_duration))]),
+            _vm._v(" "),
+            _c(
+              "td",
+              [
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "button primary",
+                    attrs: {
+                      to: { name: "ViewEvent", params: { id: event.id } }
+                    }
+                  },
+                  [_vm._v("Show\n                ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "button warning",
+                    attrs: {
+                      to: { name: "EditEvent", params: { id: event.id } }
+                    }
+                  },
+                  [_vm._v("Edit\n                ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "button alert",
+                    attrs: {
+                      to: { name: "DeleteEvent", params: { id: event.id } }
+                    }
+                  },
+                  [_vm._v("Delete\n                ")]
+                )
+              ],
+              1
+            )
+          ])
+        })
+      )
+    ])
+  ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("#")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Event Name")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Frequency")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Start Date and Time")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Lead Date")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Lead Duration")])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -56034,6 +56193,10 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(79)
+}
 var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = __webpack_require__(59)
@@ -56042,7 +56205,7 @@ var __vue_template__ = __webpack_require__(60)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = null
+var __vue_styles__ = injectStyle
 /* scopeId */
 var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
@@ -56121,6 +56284,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -56145,7 +56309,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         }
     }
-
 });
 
 /***/ }),
@@ -56224,7 +56387,7 @@ var render = function() {
                     expression: "start_date_and_time"
                   }
                 ],
-                attrs: { type: "text", placeholder: "Start Date and Time" },
+                attrs: { type: "date", placeholder: "Start Date and Time" },
                 domProps: { value: _vm.start_date_and_time },
                 on: {
                   input: function($event) {
@@ -56250,7 +56413,7 @@ var render = function() {
                     expression: "lead_start_date"
                   }
                 ],
-                attrs: { type: "text", placeholder: "Lead Date" },
+                attrs: { type: "date", placeholder: "Lead Date" },
                 domProps: { value: _vm.lead_start_date },
                 on: {
                   input: function($event) {
@@ -58033,6 +58196,49 @@ var REGISTER_CONFIG = {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 76 */,
+/* 77 */,
+/* 78 */,
+/* 79 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(80);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(14)("1da0d381", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-39a849a0\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./AddEvent.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-39a849a0\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./AddEvent.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 80 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(13)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\nspan.validation {\n  color: red;\n  display: block;\n}\n", ""]);
+
+// exports
+
 
 /***/ })
 /******/ ]);

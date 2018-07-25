@@ -1,5 +1,6 @@
 <template>
     <div class="page">
+
         <form>
             <div class="grid-container">
                 <div class="grid-x grid-padding-x">
@@ -15,12 +16,12 @@
                     </div>
                     <div class="large-12 medium-12 small-12 cell">
                         <label>Start Date and Time
-                            <input type="text" placeholder="Start Date and Time" v-model="start_date_and_time">
+                            <input type="date" placeholder="Start Date and Time" v-model="start_date_and_time">
                         </label>
                     </div>
                     <div class="large-12 medium-12 small-12 cell">
                         <label>Lead Date
-                            <input type="text" placeholder="Lead Date" v-model="lead_start_date">
+                            <input type="date" placeholder="Lead Date" v-model="lead_start_date">
                         </label>
                     </div>
                     <div class="large-12 medium-12 small-12 cell">
@@ -45,13 +46,13 @@
                 frequency: '',
                 start_date_and_time: '',
                 lead_start_date: '',
-                lead_duration: ''
+                lead_duration: '',
             }
         },
 
         methods: {
             submitNewEvent(){
-                this.$store.dispatch( 'addEvent', {
+                this.$store.dispatch('addEvent', {
                     name: this.name,
                     frequency: this.frequency,
                     start_date_and_time: this.start_date_and_time,
@@ -59,14 +60,16 @@
                     lead_duration: this.lead_duration
                 });
             }
-        },
-
-
+        }
     }
 
 
 </script>
 
+<style lang="scss">
+    @import '../../sass/components/validations';
+
+</style>
 
 <!--<template>-->
 <!--<div class="container" id="add-event">-->

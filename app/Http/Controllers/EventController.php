@@ -10,11 +10,13 @@ class EventController extends Controller
     public function getEvents(){
         $events = Event::all();
 
+//        $events = Event::with('activities')->get();
+
         return response()->json( $events );
     }
 
     public function getEvent( $id ){
-        $event = Event::where('id', '=', $id)->first();
+        $event = Event::all()->where('id', '=', $id)->first();
 
         return response()->json( $event );
     }
@@ -22,11 +24,11 @@ class EventController extends Controller
     public function postNewEvent(){
         $event = new Event();
 
-        $event->name = Request::get('name');
-        $event->frequency  = Request::get('frequency');
-        $event->start_date_and_time = Request::get('start_date_and_time');
-        $event->lead_start_date = Request::get('lead_start_date');
-        $event->lead_duration =Request::get('lead_duration');
+        $event->name = request('name');
+        $event->frequency  = request('frequency');
+        $event->start_date_and_time = request('start_date_and_time');
+        $event->lead_start_date = request('lead_start_date');
+        $event->lead_duration =request('lead_duration');
         $event->owner_id = auth()->id();
         $event->category_id = 7;
         $event->team_id = 7;

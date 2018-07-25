@@ -14,9 +14,10 @@ class CreateActivityEventTable extends Migration
     public function up()
     {
         Schema::create('activity_event', function (Blueprint $table) {
-            $table->increments('id');
             $table->unsignedInteger('activity_id');
+            $table->foreign('activity_id')->references('id')->on('activities');
             $table->unsignedInteger('event_id');
+            $table->foreign('event_id')->references('id')->on('events');
             $table->timestamps();
         });
     }
