@@ -89,10 +89,11 @@
 
         <div class="flex-center position-ref full-height">
             <h3>Cytonn Register</h3>
-            <div class="content" id="app">
 
-                <router-view name="ListEvents"></router-view>
-                <router-view></router-view>
+            <div class="content" id="app">
+                {{--<router-view name="ListEvents"></router-view>--}}
+                {{--<router-view></router-view>--}}
+
 
             </div>
         </div>

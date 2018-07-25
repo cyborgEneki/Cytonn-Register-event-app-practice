@@ -5,8 +5,20 @@
         <div>
             {{ event.frequency }}
         </div>
+        <strong>Start Date and Time: </strong>
+        <div>
+            {{ event.start_date_and_time }}
+        </div>
+        <strong>Lead Date: </strong>
+        <div>
+            {{ event.lead_start_date }}
+        </div>
+        <strong>Lead Duration: </strong>
+        <div>
+            {{ event.lead_duration }}
+        </div>
         <br/>
-        <router-link v-bind:to="'/'">All events</router-link>
+        <router-link v-bind:to="'/'">Back to events</router-link>
     </div>
 </template>
 

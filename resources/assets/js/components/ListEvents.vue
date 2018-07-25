@@ -3,7 +3,6 @@
         <div class="clearfix">
             <div class="float-right">
                 <router-link class="button" v-bind:to="{path:'/add-event'}">Add New Event</router-link>
-                <br/>
             </div>
             <table class="hover unstriped">
                 <thead>

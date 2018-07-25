@@ -1,10 +1,13 @@
-window.Vue = require('vue');
-
-window.VueRouter=require('vue-router').default;
-
+// window.Vue = require('vue');
+//
+// window.VueRouter=require('vue-router').default;
+//
 window.VueAxios=require('vue-axios').default;
 
 window.Axios=require('axios').default;
+
+import Vue from 'vue'
+import VueRouter from 'vue-router'
 
 let AppLayout = require('./components/App');
 

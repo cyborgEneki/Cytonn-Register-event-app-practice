@@ -11,6 +11,8 @@
 
 <script>
     export default {
+        name:"DeleteEvent",
+
         data: function()
         {
             return { event: {name: '', frequency: '', start_date_and_time: '', lead_start_date: '', lead_duration: ''} };
@@ -27,7 +29,7 @@
         methods:{
             deleteEvent: function () {
                 let uri = 'http://enekifinalproject.test/events' + this.$route.params.id;
-                Axios.delete(uri, this.post).then((response) => {
+                Axios.delete(uri, this.event).then((response) => {
                     this.$router.push({name: 'ListEvents'})
                 });
             }

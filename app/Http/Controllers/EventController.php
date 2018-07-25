@@ -22,7 +22,7 @@ class EventController extends Controller
 //    Shows data in json format
     public function index()
     {
-       return Event::orderBy('id','desc')->get();
+       return Event::orderBy('id','DESC')->get();
     }
 
     /**
@@ -52,7 +52,7 @@ class EventController extends Controller
         ]);
 
         $create = Event::create($request->all());
-        return response()->json(['status' => 'success', 'msg' => 'Event created successfully']);
+        return response()->json(['status' => 'success', 'msg'=>'Event created successfully']);
     }
 
     /**
@@ -119,7 +119,7 @@ class EventController extends Controller
             return response()->json(['status'=>'success','msg'=>'Event deleted successfully']);
         }
         else {
-            return response()->json(['status'=>'error','msg'=>'Error in deleted event']);
+            return response()->json(['status'=>'error','msg'=>'Error in deleting event']);
         }
     }
 }
