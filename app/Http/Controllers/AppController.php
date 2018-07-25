@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class SpaController extends Controller
+class AppController extends Controller
 {
-    public function index()
-    {
+    public function getApp(){
         return view('vueApp');
     }
+
 }

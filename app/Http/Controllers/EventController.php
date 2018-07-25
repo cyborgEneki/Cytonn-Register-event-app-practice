@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Event;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
 {
@@ -14,15 +15,15 @@ class EventController extends Controller
      */
 
 //    Returns all post data
-    public function home()
-    {
-        return view ('vueApp');
-    }
 
 //    Shows data in json format
     public function index()
     {
-       return Event::orderBy('id','DESC')->get();
+//       return Event::orderBy('id','DESC')->get();
+
+        $events = Event::all();
+
+        return response()->json( $events );
     }
 
     /**
@@ -43,16 +44,24 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'frequency' => 'required',
-            'start_date_and_time' => 'required',
-            'lead_start_date' => 'required',
-            'lead_duration' => 'required',
-        ]);
+//        $this->validate($request, [
+//            'name' => 'required',
+//            'frequency' => 'required',
+//            'start_date_and_time' => 'required',
+//            'lead_start_date' => 'required',
+//            'lead_duration' => 'required',
+//        ]);
+//
+//        $create = Event::create($request->all());
+//        return response()->json(['status' => 'success', 'msg'=>'Event created successfully']);
 
-        $create = Event::create($request->all());
-        return response()->json(['status' => 'success', 'msg'=>'Event created successfully']);
+
+
+        $event = (new  Event())->fill($request->all());
+        $event->owner_id=Auth::user()->id;
+        $event->save();
+
+        return response()->json($event, 201);
     }
 
     /**
@@ -63,7 +72,9 @@ class EventController extends Controller
      */
     public function show($id)
     {
-        return Event::find($id);
+        $event = Event::where('id', '=', $id)->first();
+
+            return response()->json( $event );
     }
 
     /**
