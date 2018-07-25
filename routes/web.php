@@ -11,25 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-//Route::get('/mailable', function () {
-//    $invoice = App\Invoice::find(1);
-//
-//    return new App\Mail\InvoicePaid($invoice);
-//});
-
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/', 'AppController@getApp');
+Route::get('/', 'AppController@getApp')
+    ->middleware('auth');
 
-Route::resource('events', 'EventController');
+Route::get('events', 'EventController@getEvents');
+
+Route::get('events/{id}', 'EventsController@getEvent');
+
+Route::post('events', 'EventController@postNewEvent');
 
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

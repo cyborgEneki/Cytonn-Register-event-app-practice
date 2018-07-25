@@ -2,11 +2,11 @@ import { REGISTER_CONFIG } from '../config';
 
 export default {
     getEvents: function(){
-        return axios.get( REGISTER_CONFIG.API_URL + '/events' );
+        return axios.get( REGISTER_CONFIG.API_URL );
     },
 
     getEvent: function( eventID ){
-        return axios.get( REGISTER_CONFIG.API_URL + '/events/' + eventID );
+        return axios.get( REGISTER_CONFIG.API_URL + eventID );
     },
 
     postAddNewEvent: function( name, frequency, start_date_and_time, lead_start_date, lead_duration ){

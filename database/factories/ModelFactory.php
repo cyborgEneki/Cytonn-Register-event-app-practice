@@ -56,6 +56,9 @@ $factory->define(App\Owner::class, function ($faker) {
 $factory->define(App\Team::class, function ($faker) {
     return [
         'name' => $faker->name,
+        'user_id' => function () {
+            return factory('App\User')->create()->id;
+        },
     ];
 });
 

@@ -55564,7 +55564,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_
         name: 'layout',
         component: __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('Layout', __webpack_require__(44)),
         children: [{
-            path: '/home',
+            path: '/list-events',
             name: 'ListEvents',
             component: __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('ListEvents', __webpack_require__(55))
         }, {
@@ -55826,7 +55826,7 @@ exports = module.exports = __webpack_require__(13)(false);
 
 
 // module
-exports.push([module.i, "\nnav.top-navigation {\n  background-color: #FFFFFF;\n  height: 50px;\n  border-bottom: 2px solid #7F5F2A;\n}\nul.links {\n  display: block;\n  float: left;\n}\nul.links li {\n    display: inline-block;\n    list-style-type: none;\n    line-height: 50px;\n}\nul.links li a {\n      font-family: 'Lato', sans-serif;\n      font-weight: bold;\n      color: #111111;\n}\nul.links li a :hover {\n        color: #7F5F2A;\n}\n", ""]);
+exports.push([module.i, "\nnav.top-navigation {\n  background-color: #FFFFFF;\n  height: 50px;\n  border: 2px solid #7F5F2A;\n}\nul.links {\n  display: block;\n  float: left;\n}\nul.links li {\n    display: inline-block;\n    list-style-type: none;\n    line-height: 50px;\n}\nul.links li a {\n      font-family: 'Lato', sans-serif;\n      font-weight: bold;\n      color: #111111;\n}\nul.links li a :hover {\n        color: #7F5F2A;\n}\n", ""]);
 
 // exports
 
@@ -57988,11 +57988,11 @@ var events = {
 
 /* harmony default export */ __webpack_exports__["a"] = ({
     getEvents: function getEvents() {
-        return axios.get(__WEBPACK_IMPORTED_MODULE_0__config__["a" /* REGISTER_CONFIG */].API_URL + '/events');
+        return axios.get(__WEBPACK_IMPORTED_MODULE_0__config__["a" /* REGISTER_CONFIG */].API_URL);
     },
 
     getEvent: function getEvent(eventID) {
-        return axios.get(__WEBPACK_IMPORTED_MODULE_0__config__["a" /* REGISTER_CONFIG */].API_URL + '/events/' + eventID);
+        return axios.get(__WEBPACK_IMPORTED_MODULE_0__config__["a" /* REGISTER_CONFIG */].API_URL + eventID);
     },
 
     postAddNewEvent: function postAddNewEvent(name, frequency, start_date_and_time, lead_start_date, lead_duration) {

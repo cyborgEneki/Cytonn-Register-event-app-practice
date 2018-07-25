@@ -11,7 +11,7 @@ export default new VueRouter({
             component: Vue.component( 'Layout', require( './components/Layout' ) ),
             children: [
                 {
-                    path: '/home',
+                    path: '/list-events',
                     name: 'ListEvents',
                     component: Vue.component( 'ListEvents', require( './components/ListEvents' ) )
                 },

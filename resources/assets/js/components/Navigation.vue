@@ -28,7 +28,7 @@
     nav.top-navigation {
         background-color: $white;
         height: 50px;
-        border-bottom: 2px solid $dark-color;
+        border: 2px solid $dark-color;
     }
 
     ul.links {
