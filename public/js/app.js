@@ -55673,7 +55673,7 @@ exports = module.exports = __webpack_require__(13)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -55737,6 +55737,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     created: function created() {
         this.$store.dispatch('loadEvents');
+        this.$store.dispatch('loadActivities');
     }
 });
 
@@ -57084,15 +57085,18 @@ if (false) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(71);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_events__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_activities__ = __webpack_require__(83);
 
 
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */]);
 
 
+
 /* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
     modules: {
-        events: __WEBPACK_IMPORTED_MODULE_2__modules_events__["a" /* events */]
+        events: __WEBPACK_IMPORTED_MODULE_2__modules_events__["a" /* events */],
+        activities: __WEBPACK_IMPORTED_MODULE_3__modules_activities__["a" /* activities */]
     }
 }));
 
@@ -58094,7 +58098,7 @@ var events = {
                 dispatch = _ref3.dispatch;
 
             commit('setEventAddedStatus', 1);
-            __WEBPACK_IMPORTED_MODULE_0__api_event__["a" /* default */].postAddNewEvent(data.name, data.frequency, data.start_date_and_time, data.lead_start_date, data.lead_duration).then(function (response) {
+            __WEBPACK_IMPORTED_MODULE_0__api_event__["a" /* default */].postNewEvent(data.name, data.frequency, data.start_date_and_time, data.lead_start_date, data.lead_duration).then(function (response) {
                 commit('setEventAddedStatus', 2);
                 dispatch('loadEvents');
             }).catch(function () {
@@ -58158,7 +58162,7 @@ var events = {
         return axios.get(__WEBPACK_IMPORTED_MODULE_0__config__["a" /* REGISTER_CONFIG */].API_URL + eventID);
     },
 
-    postAddNewEvent: function postAddNewEvent(name, frequency, start_date_and_time, lead_start_date, lead_duration) {
+    postNewEvent: function postNewEvent(name, frequency, start_date_and_time, lead_start_date, lead_duration) {
         return axios.post(__WEBPACK_IMPORTED_MODULE_0__config__["a" /* REGISTER_CONFIG */].API_URL, {
             name: name,
             frequency: frequency,
@@ -58239,6 +58243,112 @@ exports.push([module.i, "\nspan.validation {\n  color: red;\n  display: block;\n
 
 // exports
 
+
+/***/ }),
+/* 81 */,
+/* 82 */,
+/* 83 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return activities; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api_activity__ = __webpack_require__(84);
+
+
+var activities = {
+    state: {
+        activities: [],
+        activitiesLoadStatus: 0,
+
+        activity: {},
+        activityLoadStatus: 0
+    },
+
+    actions: {
+        loadActivities: function loadActivities(_ref) {
+            var commit = _ref.commit;
+
+            commit('setActivitiesLoadStatus', 1);
+
+            __WEBPACK_IMPORTED_MODULE_0__api_activity__["a" /* default */].getActivities().then(function (response) {
+                commit('setActivities', response.data);
+                commit('setActivitesLoadStatus', 2);
+            }).catch(function () {
+                commit('setActivities', []);
+                commit('setActivitiesLoadStatus', 3);
+            });
+        },
+        loadActivity: function loadActivity(_ref2, data) {
+            var commit = _ref2.commit;
+
+            commit('setActivityLoadStatus', 1);
+
+            __WEBPACK_IMPORTED_MODULE_0__api_activity__["a" /* default */].getActivity(data.id).then(function (response) {
+                commit('setActivity', response.data);
+                commit('setActivity', 2);
+            }).catch(function () {
+                commit('setActivity', []);
+                commit('setActivity', 3);
+            });
+        }
+    },
+
+    mutations: {
+        setActivities: function setActivities(state, activities) {
+            state.activities = activities;
+        },
+        setActivitesLoadStatus: function setActivitesLoadStatus(state, status) {
+            state.activitiesLoadStatus = status;
+        },
+        setActivity: function setActivity(state, activity) {
+            state.activity = activity;
+        },
+        setActivityLoadStatus: function setActivityLoadStatus(state, status) {
+            state.activityLoadStatus = status;
+        }
+    },
+
+    getters: {
+        getActivities: function getActivities(state) {
+            return state.activities;
+        },
+        getActivityLoadStatus: function getActivityLoadStatus(state) {
+            return state.activityLoadStatus;
+        },
+        getActivity: function getActivity(state) {
+            return state.activity;
+        },
+        getActivitiesLoadStatus: function getActivitiesLoadStatus(state) {
+            return state.activitiesLoadStatus;
+        }
+    }
+};
+
+/***/ }),
+/* 84 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__config__ = __webpack_require__(74);
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+    getActivities: function getActivities() {
+        return axios.get(__WEBPACK_IMPORTED_MODULE_0__config__["a" /* REGISTER_CONFIG */].API_URL);
+    },
+
+    getActivity: function getActivity(activityID) {
+        return axios.get(__WEBPACK_IMPORTED_MODULE_0__config__["a" /* REGISTER_CONFIG */].API_URL + 'activityID');
+    },
+
+    postNewActivity: function postNewActivity(name, description) {
+        return axios.post(__WEBPACK_IMPORTED_MODULE_0__config__["a" /* REGISTER_CONFIG */].API_URL, {
+            name: name,
+            descripion: description
+        });
+    }
+
+});
 
 /***/ })
 /******/ ]);

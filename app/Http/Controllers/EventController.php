@@ -8,9 +8,9 @@ use Illuminate\Http\Request;
 class EventController extends Controller
 {
     public function getEvents(){
-        $events = Event::all();
+//        $events = Event::all();
 
-//        $events = Event::with('activities')->get();
+        $events = Event::with('activities')->get();
 
         return response()->json( $events );
     }
@@ -38,6 +38,11 @@ class EventController extends Controller
         $event->team_id = 7;
 
         $event->save();
+
+        /** @var TYPE_NAME $request */
+        $activities = $request->get('activities');
+
+        $event->activities()->sync($activities);
 
         return response()->json($event, 201);
     }

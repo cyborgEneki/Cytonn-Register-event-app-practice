@@ -43,7 +43,7 @@ export const events =
                 },
                 addEvent({commit, state, dispatch}, data) {
                     commit('setEventAddedStatus', 1);
-                    EventAPI.postAddNewEvent(data.name, data.frequency, data.start_date_and_time, data.lead_start_date, data.lead_duration)
+                    EventAPI.postNewEvent(data.name, data.frequency, data.start_date_and_time, data.lead_start_date, data.lead_duration)
                         .then(function (response) {
                             commit('setEventAddedStatus', 2);
                             dispatch('loadEvents');

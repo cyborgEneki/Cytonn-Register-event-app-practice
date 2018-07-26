@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class ActivityController extends Controller
 {
+
     public function getActivities(){
         $activities = Activity::all();
 

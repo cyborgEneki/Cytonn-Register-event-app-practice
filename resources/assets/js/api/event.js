@@ -9,7 +9,7 @@ export default {
         return axios.get( REGISTER_CONFIG.API_URL + eventID );
     },
 
-    postAddNewEvent: function( name, frequency, start_date_and_time, lead_start_date, lead_duration ){
+    postNewEvent: function( name, frequency, start_date_and_time, lead_start_date, lead_duration ){
         return axios.post( REGISTER_CONFIG.API_URL,
             {
                 name: name,
