@@ -55583,6 +55583,10 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_
             path: '/view/:id',
             name: 'ViewEvent',
             component: __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('ViewEvent', __webpack_require__(67))
+        }, {
+            path: '/activities',
+            name: 'ViewActivity',
+            component: __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('ViewEvent', __webpack_require__(67))
         }]
     }]
 }));
@@ -55868,7 +55872,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("nav", { staticClass: "top-navigation" }, [
-    _c("ul", { staticClass: "links" }, [
+    _c("ul", { staticClass: "menu" }, [
       _c(
         "li",
         [
@@ -55931,6 +55935,10 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(81)
+}
 var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = __webpack_require__(56)
@@ -55939,7 +55947,7 @@ var __vue_template__ = __webpack_require__(57)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = null
+var __vue_styles__ = injectStyle
 /* scopeId */
 var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
@@ -56018,6 +56026,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     created: function created() {
@@ -56037,6 +56047,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             if (this.events.length) {
                 return this.events;
             }
+        }
+    },
+
+    methods: {
+        removeEvent: function removeEvent(index) {
+            this.events.splice(index, 1);
         }
     }
 });
@@ -56108,11 +56124,13 @@ var render = function() {
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(event.frequency))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(event.start_date_and_time))]),
+            _c("td", [_vm._v(_vm._s(event.start_date))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(event.start_time))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(event.location))]),
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(event.lead_start_date))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(event.lead_duration))]),
             _vm._v(" "),
             _c(
               "td",
@@ -56139,16 +56157,11 @@ var render = function() {
                   [_vm._v("Edit\n                ")]
                 ),
                 _vm._v(" "),
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "button alert",
-                    attrs: {
-                      to: { name: "DeleteEvent", params: { id: event.id } }
-                    }
-                  },
-                  [_vm._v("Delete\n                ")]
-                )
+                _c("button", { staticClass: "button alert delete" }, [
+                  _c("a", { on: { click: _vm.removeEvent } }, [
+                    _vm._v("Delete")
+                  ])
+                ])
               ],
               1
             )
@@ -56171,7 +56184,11 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Frequency")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Start Date and Time")]),
+        _c("th", [_vm._v("Start Date")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Start Time")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Location")]),
         _vm._v(" "),
         _c("th", [_vm._v("Lead Date")]),
         _vm._v(" "),
@@ -56286,15 +56303,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             name: '',
             frequency: '',
-            start_date_and_time: '',
+            start_date: '',
+            start_time: '',
             lead_start_date: '',
-            lead_duration: ''
+            location: ''
         };
     },
 
@@ -56304,9 +56328,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.$store.dispatch('addEvent', {
                 name: this.name,
                 frequency: this.frequency,
-                start_date_and_time: this.start_date_and_time,
+                start_date: this.start_date,
+                start_time: this.start_time,
                 lead_start_date: this.lead_start_date,
-                lead_duration: this.lead_duration
+                location: this.location
             });
         }
     }
@@ -56378,24 +56403,50 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "large-12 medium-12 small-12 cell" }, [
             _c("label", [
-              _vm._v("Start Date and Time\n                        "),
+              _vm._v("Start Date\n                        "),
               _c("input", {
                 directives: [
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.start_date_and_time,
-                    expression: "start_date_and_time"
+                    value: _vm.start_date,
+                    expression: "start_date"
                   }
                 ],
-                attrs: { type: "date", placeholder: "Start Date and Time" },
-                domProps: { value: _vm.start_date_and_time },
+                attrs: { type: "date", placeholder: "Start Date" },
+                domProps: { value: _vm.start_date },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.start_date_and_time = $event.target.value
+                    _vm.start_date = $event.target.value
+                  }
+                }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "large-12 medium-12 small-12 cell" }, [
+            _c("label", [
+              _vm._v("Start Time\n                        "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.start_time,
+                    expression: "start_time"
+                  }
+                ],
+                attrs: { type: "time", placeholder: "Start Time" },
+                domProps: { value: _vm.start_time },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.start_time = $event.target.value
                   }
                 }
               })
@@ -56430,24 +56481,24 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "large-12 medium-12 small-12 cell" }, [
             _c("label", [
-              _vm._v("Lead Duration\n                        "),
+              _vm._v("Location\n                        "),
               _c("input", {
                 directives: [
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.lead_duration,
-                    expression: "lead_duration"
+                    value: _vm.location,
+                    expression: "location"
                   }
                 ],
-                attrs: { type: "text", placeholder: "Lead Duration" },
-                domProps: { value: _vm.lead_duration },
+                attrs: { type: "text", placeholder: "Location" },
+                domProps: { value: _vm.location },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.lead_duration = $event.target.value
+                    _vm.location = $event.target.value
                   }
                 }
               })
@@ -56457,14 +56508,7 @@ var render = function() {
           _c("div", { staticClass: "large-12 medium-12 small-12 cell" }, [
             _c(
               "a",
-              {
-                staticClass: "button",
-                on: {
-                  click: function($event) {
-                    _vm.submitNewEvent()
-                  }
-                }
-              },
+              { staticClass: "button", on: { click: _vm.submitNewEvent } },
               [_vm._v("Add Event")]
             )
           ])
@@ -56547,12 +56591,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "DeleteEvent",
 
     data: function data() {
-        return { event: { name: '', frequency: '', start_date_and_time: '', lead_start_date: '', lead_duration: '' } };
+        return { event: { name: '', frequency: '', start_date: '', start_time: '', location: '', lead_start_date: '' } };
     },
 
     created: function created() {
@@ -56565,13 +56611,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     methods: {
-        deleteEvent: function deleteEvent() {
-            var _this2 = this;
-
-            var uri = 'http://enekifinalproject.test/events' + this.$route.params.id;
-            Axios.delete(uri, this.event).then(function (response) {
-                _this2.$router.push({ name: 'ListEvents' });
-            });
+        removeEvent: function removeEvent(index) {
+            this.events.splice(index, 1);
         }
     }
 });
@@ -56601,17 +56642,14 @@ var render = function() {
         _c("p", [_vm._v("The action cannot be undone")]),
         _vm._v(" "),
         _c(
-          "button",
-          {
-            staticClass: "button alert",
-            attrs: { type: "submit", name: "button" }
-          },
+          "a",
+          { staticClass: "button alert", on: { click: _vm.removeEvent } },
           [_vm._v("Delete Event")]
         ),
         _vm._v(" "),
         _c(
           "router-link",
-          { staticClass: "button primary", attrs: { to: "/" } },
+          { staticClass: "button primary", attrs: { to: "list-events" } },
           [_vm._v("Back to Events")]
         )
       ],
@@ -56713,12 +56751,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "EditEvent",
 
     data: function data() {
-        return { event: { name: '', frequency: '', start_date_and_time: '', lead_start_date: '', lead_duration: '' } };
+        return { event: { name: '', frequency: '', start_date: '', start_time: '', location: '', lead_start_date: '' } };
     },
 
     created: function created() {
@@ -56819,28 +56861,52 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "form" }, [
-          _c("label", { attrs: { for: "edit-event-start" } }, [
-            _vm._v("Start Date and Time")
-          ]),
+          _c("label", [_vm._v("Start Date")]),
           _vm._v(" "),
           _c("input", {
             directives: [
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.event.start_date_and_time,
-                expression: "event.start_date_and_time"
+                value: _vm.event.start_date,
+                expression: "event.start_date"
               }
             ],
             staticClass: "form",
-            attrs: { id: "edit-event-start", required: "" },
-            domProps: { value: _vm.event.start_date_and_time },
+            attrs: { required: "" },
+            domProps: { value: _vm.event.start_date },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(_vm.event, "start_date_and_time", $event.target.value)
+                _vm.$set(_vm.event, "start_date", $event.target.value)
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form" }, [
+          _c("label", [_vm._v("Start Time")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.event.start_time,
+                expression: "event.start_time"
+              }
+            ],
+            staticClass: "form",
+            attrs: { required: "" },
+            domProps: { value: _vm.event.start_time },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.event, "start_time", $event.target.value)
               }
             }
           })
@@ -56875,28 +56941,26 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "form" }, [
-          _c("label", { attrs: { for: "edit-lead-duration" } }, [
-            _vm._v("Lead Duration")
-          ]),
+          _c("label", [_vm._v("Location")]),
           _vm._v(" "),
           _c("input", {
             directives: [
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.event.lead_duration,
-                expression: "event.lead_duration"
+                value: _vm.event.location,
+                expression: "event.location"
               }
             ],
             staticClass: "form",
-            attrs: { id: "edit-lead-duration", required: "" },
-            domProps: { value: _vm.event.lead_duration },
+            attrs: { required: "" },
+            domProps: { value: _vm.event.location },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(_vm.event, "lead_duration", $event.target.value)
+                _vm.$set(_vm.event, "location", $event.target.value)
               }
             }
           })
@@ -56999,16 +57063,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'ViewEvent',
 
     data: function data() {
-        return { event: { name: '', frequency: '', start_date_and_time: '', lead_start_date: '', lead_duration: '' } };
+        return { event: { name: '', frequency: '', start_date_and_time: '', lead_start_date: '' } };
     },
 
     created: function created() {
@@ -57051,12 +57111,6 @@ var render = function() {
       _vm._v(" "),
       _c("div", [
         _vm._v("\n        " + _vm._s(_vm.event.lead_start_date) + "\n    ")
-      ]),
-      _vm._v(" "),
-      _c("strong", [_vm._v("Lead Duration: ")]),
-      _vm._v(" "),
-      _c("div", [
-        _vm._v("\n        " + _vm._s(_vm.event.lead_duration) + "\n    ")
       ]),
       _vm._v(" "),
       _c("br"),
@@ -58092,13 +58146,27 @@ var events = {
                 commit('setEventLoadStatus', 3);
             });
         },
+
+        // addEvent({commit, state, dispatch}, data) {
+        //     commit('setEventAddedStatus', 1);
+        //     EventAPI.postNewEvent(data.name, data.frequency, data.start_date, data.start_time, data.lead_start_date, data.location)
+        //         .then(function (response) {
+        //             commit('setEventAddedStatus', 2);
+        //             dispatch('loadEvents');
+        //         })
+        //         .catch(function () {
+        //             commit('setEventAddedStatus', 3);
+        //         });
+        // }
+
+
         addEvent: function addEvent(_ref3, data) {
             var commit = _ref3.commit,
                 state = _ref3.state,
                 dispatch = _ref3.dispatch;
 
             commit('setEventAddedStatus', 1);
-            __WEBPACK_IMPORTED_MODULE_0__api_event__["a" /* default */].postNewEvent(data.name, data.frequency, data.start_date_and_time, data.lead_start_date, data.lead_duration).then(function (response) {
+            __WEBPACK_IMPORTED_MODULE_0__api_event__["a" /* default */].postNewEvent(data).then(function (response) {
                 commit('setEventAddedStatus', 2);
                 dispatch('loadEvents');
             }).catch(function () {
@@ -58162,16 +58230,23 @@ var events = {
         return axios.get(__WEBPACK_IMPORTED_MODULE_0__config__["a" /* REGISTER_CONFIG */].API_URL + eventID);
     },
 
-    postNewEvent: function postNewEvent(name, frequency, start_date_and_time, lead_start_date, lead_duration) {
-        return axios.post(__WEBPACK_IMPORTED_MODULE_0__config__["a" /* REGISTER_CONFIG */].API_URL, {
-            name: name,
-            frequency: frequency,
-            start_date_and_time: start_date_and_time,
-            lead_start_date: lead_start_date,
-            lead_duration: lead_duration
-        });
-    }
+    // postNewEvent: function( name, frequency, start_date, start_time, lead_start_date, location ){
+    //     return axios.post( REGISTER_CONFIG.API_URL,
+    //         // {
+    //         //     name: name,
+    //         //     frequency: frequency,
+    //         //     start_date: start_date,
+    //         //     start_time: start_time,
+    //         //     lead_start_date: lead_start_date,
+    //         //     location: location
+    //         // }
+    //     );
+    // }
 
+
+    postNewEvent: function postNewEvent(newEvent) {
+        return axios.post(__WEBPACK_IMPORTED_MODULE_0__config__["a" /* REGISTER_CONFIG */].API_URL, newEvent);
+    }
 });
 
 /***/ }),
@@ -58245,8 +58320,46 @@ exports.push([module.i, "\nspan.validation {\n  color: red;\n  display: block;\n
 
 
 /***/ }),
-/* 81 */,
-/* 82 */,
+/* 81 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(82);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(14)("3da00146", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-d1184d64\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ListEvents.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-d1184d64\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ListEvents.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 82 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(13)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.delete {\n    color: #000;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
 /* 83 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 

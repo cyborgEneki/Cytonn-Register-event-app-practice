@@ -1,5 +1,5 @@
 <?php
-
+use App\Mail\eventNotif;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,4 +29,10 @@ Route::get('activities/{id}', 'ActivityController@getActivity');
 
 Route::post('activities', 'ActivityController@postNewActivity');
 
+Route::get('/mail', function () {
 
+    \App\Console\Commands\EventNotification::to('joanreneki@gmail.com')->send(new eventNotif);
+
+    return view('emails.eventNotif');
+
+});

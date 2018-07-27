@@ -9,16 +9,21 @@ export default {
         return axios.get( REGISTER_CONFIG.API_URL + eventID );
     },
 
-    postNewEvent: function( name, frequency, start_date_and_time, lead_start_date, lead_duration ){
-        return axios.post( REGISTER_CONFIG.API_URL,
-            {
-                name: name,
-                frequency: frequency,
-                start_date_and_time: start_date_and_time,
-                lead_start_date: lead_start_date,
-                lead_duration: lead_duration
-            }
-        );
-    }
+    // postNewEvent: function( name, frequency, start_date, start_time, lead_start_date, location ){
+    //     return axios.post( REGISTER_CONFIG.API_URL,
+    //         // {
+    //         //     name: name,
+    //         //     frequency: frequency,
+    //         //     start_date: start_date,
+    //         //     start_time: start_time,
+    //         //     lead_start_date: lead_start_date,
+    //         //     location: location
+    //         // }
+    //     );
+    // }
 
+
+    postNewEvent:function (newEvent) {
+        return axios.post(REGISTER_CONFIG.API_URL,newEvent)
+    }
 }

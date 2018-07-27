@@ -34,6 +34,11 @@ export default new VueRouter({
                     path: '/view/:id',
                     name: 'ViewEvent',
                     component: Vue.component( 'ViewEvent', require( './components/ViewEvent' ) )
+                },
+                {
+                    path: '/activities',
+                    name: 'ViewActivity',
+                    component: Vue.component( 'ViewEvent', require( './components/ViewEvent' ) )
                 }
             ]
         }

@@ -15,8 +15,13 @@
                         </label>
                     </div>
                     <div class="large-12 medium-12 small-12 cell">
-                        <label>Start Date and Time
-                            <input type="date" placeholder="Start Date and Time" v-model="start_date_and_time">
+                        <label>Start Date
+                            <input type="date" placeholder="Start Date" v-model="start_date">
+                        </label>
+                    </div>
+                    <div class="large-12 medium-12 small-12 cell">
+                        <label>Start Time
+                            <input type="time" placeholder="Start Time" v-model="start_time">
                         </label>
                     </div>
                     <div class="large-12 medium-12 small-12 cell">
@@ -25,16 +30,17 @@
                         </label>
                     </div>
                     <div class="large-12 medium-12 small-12 cell">
-                        <label>Lead Duration
-                            <input type="text" placeholder="Lead Duration" v-model="lead_duration">
+                        <label>Location
+                            <input type="text" placeholder="Location" v-model="location">
                         </label>
                     </div>
                     <div class="large-12 medium-12 small-12 cell">
-                        <a class="button" v-on:click="submitNewEvent()">Add Event</a>
+                        <a class="button" v-on:click="submitNewEvent">Add Event</a>
                     </div>
                 </div>
             </div>
         </form>
+
     </div>
 </template>
 
@@ -44,20 +50,22 @@
             return {
                 name: '',
                 frequency: '',
-                start_date_and_time: '',
+                start_date: '',
+                start_time: '',
                 lead_start_date: '',
-                lead_duration: '',
+                location: ''
             }
         },
 
         methods: {
-            submitNewEvent(){
+            submitNewEvent: function () {
                 this.$store.dispatch('addEvent', {
                     name: this.name,
                     frequency: this.frequency,
-                    start_date_and_time: this.start_date_and_time,
+                    start_date: this.start_date,
+                    start_time: this.start_time,
                     lead_start_date: this.lead_start_date,
-                    lead_duration: this.lead_duration
+                    location: this.location
                 });
             }
         }

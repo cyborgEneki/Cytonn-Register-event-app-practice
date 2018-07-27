@@ -1,7 +1,7 @@
 <template>
     <nav class="top-navigation">
 
-        <ul class="links">
+        <ul class="menu">
             <li>
                 <router-link :to="{ name: 'ListEvents' }">
                     Events

@@ -10,7 +10,9 @@
                 <th>#</th>
                 <th>Event Name</th>
                 <th>Frequency</th>
-                <th>Start Date and Time</th>
+                <th>Start Date</th>
+                <th>Start Time</th>
+                <th>Location</th>
                 <th>Lead Date</th>
                 <th>Lead Duration</th>
             </tr>
@@ -20,16 +22,16 @@
                 <td>{{ index + 1 }}</td>
                 <td>{{ event.name }}</td>
                 <td>{{ event.frequency }}</td>
-                <td>{{ event.start_date_and_time }}</td>
+                <td>{{ event.start_date }}</td>
+                <td>{{ event.start_time }}</td>
+                <td>{{ event.location }}</td>
                 <td>{{ event.lead_start_date }}</td>
-                <td>{{ event.lead_duration }}</td>
                 <td>
                     <router-link class="button primary" v-bind:to="{name: 'ViewEvent', params: {id: event.id}}">Show
                     </router-link>
                     <router-link class="button warning" v-bind:to="{name: 'EditEvent', params: {id: event.id}}">Edit
                     </router-link>
-                    <router-link class="button alert" v-bind:to="{name: 'DeleteEvent', params: {id: event.id}}">Delete
-                    </router-link>
+                    <button class="button alert delete"><a v-on:click="removeEvent">Delete</a></button>
                 </td>
             </tr>
             </tbody>
@@ -57,6 +59,18 @@
                     return this.events;
                 }
             }
+        },
+
+        methods: {
+            removeEvent: function (index) {
+                this.events.splice(index, 1);
+            }
         }
     }
 </script>
+
+<style>
+    .delete {
+        color: #000;
+    }
+</style>

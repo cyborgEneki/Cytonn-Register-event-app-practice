@@ -13,7 +13,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        Commands\EventNotification::class
     ];
 
     /**
@@ -24,8 +24,13 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        $schedule->command('event:update')->daily()->at('00:00')->when(function () use ($dateInDatabase) {
+            return (
+                $dateInDatabase == Carbon::today() ||
+                $dateInDatabase == Carbon::yesterday() ||
+                $dateInDatabase == Carbon::subDays(2)
+            );
+        });
     }
 
     /**

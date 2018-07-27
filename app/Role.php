@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Owner extends Model
+class Role extends Model
 {
     //
 }

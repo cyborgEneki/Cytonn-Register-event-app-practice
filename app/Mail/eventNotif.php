@@ -7,7 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class OrdersShipped extends Mailable
+class eventNotif extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -28,18 +28,16 @@ class OrdersShipped extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.orders.shipped');
-    }
+        $address = 'joanreneki@gmail.com';
 
-    public function ship(Request $request, $orderId)
-    {
-        $order = Order::findOrFail($orderId);
+        $name = 'Joan Eneki';
 
-        // Ship order...
+        $subject = 'Event Prep';
 
-        Mail::to($request->user())
-            ->cc($moreUsers)
-            ->bcc($evenMoreUsers)
-            ->send(new OrderShipped($order));
+        return $this->view('emails.eventNotif')
+
+            ->from($address, $name)
+
+            ->subject($subject);
     }
 }

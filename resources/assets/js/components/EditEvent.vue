@@ -11,16 +11,20 @@
                 <input id="edit-frequency" v-model="event.frequency" class="form" required />
             </div>
             <div class="form">
-                <label for="edit-event-start">Start Date and Time</label>
-                <input id="edit-event-start" v-model="event.start_date_and_time" class="form" required />
+                <label>Start Date</label>
+                <input v-model="event.start_date" class="form" required />
+            </div>
+            <div class="form">
+                <label>Start Time</label>
+                <input v-model="event.start_time" class="form" required />
             </div>
             <div class="form">
                 <label for="edit-lead-start">Lead Date</label>
                 <input id="edit-lead-start" v-model="event.lead_start_date" class="form" required />
             </div>
             <div class="form">
-                <label for="edit-lead-duration">Lead Duration</label>
-                <input id="edit-lead-duration" v-model="event.lead_duration" class="form" required />
+                <label>Location</label>
+                <input v-model="event.location" class="form" required />
             </div>
 
             <button type="submit" class="button">Update Event</button>
@@ -35,7 +39,7 @@
 
         data: function()
         {
-            return { event: {name: '', frequency: '', start_date_and_time: '', lead_start_date: '', lead_duration: ''} };
+            return { event: {name: '', frequency: '', start_date: '', start_time: '',location: '', lead_start_date: ''} };
         },
 
         created: function()

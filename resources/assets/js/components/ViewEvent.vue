@@ -13,10 +13,6 @@
         <div>
             {{ event.lead_start_date }}
         </div>
-        <strong>Lead Duration: </strong>
-        <div>
-            {{ event.lead_duration }}
-        </div>
         <br/>
         <router-link v-bind:to="'/'">Back to events</router-link>
     </div>
@@ -28,7 +24,7 @@
 
         data: function()
         {
-            return { event: {name: '', frequency: '', start_date_and_time: '', lead_start_date: '', lead_duration: ''} };
+            return { event: {name: '', frequency: '', start_date_and_time: '', lead_start_date: ''} };
         },
 
         created: function()

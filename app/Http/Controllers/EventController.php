@@ -30,21 +30,22 @@ class EventController extends Controller
 
         $event->name = request('name');
         $event->frequency  = request('frequency');
-        $event->start_date_and_time = request('start_date_and_time');
+        $event->start_date = request('start_date');
+        $event->start_time = request('start_time');
         $event->lead_start_date = request('lead_start_date');
-        $event->lead_duration =request('lead_duration');
-        $event->owner_id = auth()->id();
-        $event->category_id = 7;
+        $event->location =request('location');
         $event->team_id = 7;
+        $event->category_id = 1;
+        $event->activity_id = 2;
 
         $event->save();
 
         /** @var TYPE_NAME $request */
-        $activities = $request->get('activities');
-
-        $event->activities()->sync($activities);
-
-        return response()->json($event, 201);
+//        $activities = $request->get('activities');
+//
+//        $event->activities()->sync($activities);
+//
+//        return response()->json($event, 201);
     }
 
 

@@ -25,7 +25,7 @@ $factory->define(App\User::class, function (Faker $faker) {
 $factory->define(App\Event::class, function ($faker) {
     return [
         'owner_id' => function () {
-            return factory('App\Owner')->create()->id;
+            return factory('App\Role')->create()->id;
         },
         'category_id' => function () {
             return factory('App\Category')->create()->id;
@@ -41,7 +41,7 @@ $factory->define(App\Event::class, function ($faker) {
     ];
 });
 
-$factory->define(App\Owner::class, function ($faker) {
+$factory->define(App\Role::class, function ($faker) {
     return [
         'team_id' => function () {
             return factory('App\Team')->create()->id;

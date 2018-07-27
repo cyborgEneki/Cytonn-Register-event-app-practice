@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Owner;
+use App\Role;
 use Illuminate\Http\Request;
 
-class OwnerController extends Controller
+class RoleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class OwnerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param Owner $owner
+     * @param Role $role
      * @return void
      */
-    public function show(Owner $owner)
+    public function show(Role $role)
     {
         //
     }
@@ -52,10 +52,10 @@ class OwnerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param Owner $owner
+     * @param Role $role
      * @return void
      */
-    public function edit(Owner $owner)
+    public function edit(Role $role)
     {
         //
     }
@@ -64,10 +64,10 @@ class OwnerController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param Owner $owner
+     * @param Role $role
      * @return void
      */
-    public function update(Request $request, Owner $owner)
+    public function update(Request $request, Role $role)
     {
         //
     }
@@ -75,10 +75,10 @@ class OwnerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param Owner $owner
+     * @param Role $role
      * @return void
      */
-    public function destroy(Owner $owner)
+    public function destroy(Role $role)
     {
         //
     }
