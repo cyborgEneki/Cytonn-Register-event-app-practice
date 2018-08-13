@@ -1,5 +1,6 @@
 <template>
     <div id="list-events">
+
         <span v-show="eventsLoadStatus == 1">Loading</span>
         <span v-show="eventsLoadStatus == 2">Events loaded successfully!</span>
         <span v-show="eventsLoadStatus == 3">Events loaded unsuccessfully!</span>
@@ -27,8 +28,6 @@
                 <td>{{ event.location }}</td>
                 <td>{{ event.lead_start_date }}</td>
                 <td>
-                    <!--<router-link class="button primary" v-bind:to="{name: 'ViewEvent', params: {id: event.id}}">Show-->
-                    <!--</router-link>-->
 
                     <button @click="goToView(event)" class="button primary">
                         Show
@@ -49,6 +48,12 @@
 
 <script>
     export default {
+
+        data(){
+            return{
+
+            }
+        },
         created() {
             this.$store.dispatch('loadEvents');
         },

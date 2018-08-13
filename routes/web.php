@@ -14,23 +14,24 @@ use App\Mail\eventNotif;
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
+//Route::get('/', 'AppController@getApp')
+//    ->middleware('auth');
+
 Route::get('/', 'AppController@getApp')
-    ->middleware('auth');
+    ->middleware('auth','admin');
+
+Route::get('/regular', function(){
+    echo "Hello Regular";
+})->middleware('auth','regular');
 
 Route::get('events', 'EventController@getEvents');
-
 Route::get('events/{id}', 'EventController@getEvent');
-
 Route::post('events', 'EventController@postNewEvent');
-
 Route::delete('events/{id}', 'EventController@destroy');
-
 Route::put('events/{id}', 'EventController@update');
 
 Route::get('activities', 'ActivityController@getActivity');
-
 Route::get('activities/{id}', 'ActivityController@getActivity');
-
 Route::post('activities', 'ActivityController@postNewActivity');
 
 Route::get('/mail', function () {
@@ -42,3 +43,6 @@ Route::get('/mail', function () {
 });
 
 Route::get('/{any}','AppController@getApp')->where('any', '.*');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

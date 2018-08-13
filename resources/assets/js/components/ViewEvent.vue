@@ -25,7 +25,7 @@
             </tbody>
 
             <br/>
-            <router-link v-bind:to="'/list-events'">Back to events</router-link>
+            <router-link class="button" v-bind:to="'/list-events'">Back to events</router-link>
         </table>
     </div>
 </template>

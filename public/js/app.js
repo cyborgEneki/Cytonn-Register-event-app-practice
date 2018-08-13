@@ -56070,9 +56070,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {};
+    },
     created: function created() {
         this.$store.dispatch('loadEvents');
     },
@@ -57222,9 +57224,11 @@ var render = function() {
         _vm._v(" "),
         _c("br"),
         _vm._v(" "),
-        _c("router-link", { attrs: { to: "/list-events" } }, [
-          _vm._v("Back to events")
-        ])
+        _c(
+          "router-link",
+          { staticClass: "button", attrs: { to: "/list-events" } },
+          [_vm._v("Back to events")]
+        )
       ],
       1
     )

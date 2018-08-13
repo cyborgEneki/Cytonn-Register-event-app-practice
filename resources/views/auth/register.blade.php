@@ -40,6 +40,16 @@
                     @endif
                 </div>
 
+                <div class="role">
+                    <label for="role">Role</label>
+                    <div>
+                        <select name="role">
+                            <option value="admin">Admin</option>
+                            <option value="regular">Regular</option>
+                        </select>
+                    </div>
+                </div>
+
                 <div class="password">
                     <label for="password">Password</label>
 

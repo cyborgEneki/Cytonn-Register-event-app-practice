@@ -30,11 +30,10 @@
                         @endif
                     </div>
                 @endif
-
-            <div class="content" id="app">
-                <router-view name="layout"></router-view>
-                <router-view></router-view>
-            </div>
+                    <div class="content" id="app">
+                    <router-view name="layout"></router-view>
+                    <router-view></router-view>
+                    </div>
         </div>
 
         <script src="{{ asset('js/app.js') }}"></script>
