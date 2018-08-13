@@ -55733,7 +55733,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     created: function created() {
         this.$store.dispatch('loadEvents');
-        this.$store.dispatch('loadActivities');
+        // this.$store.dispatch( 'loadActivities' );
     }
 });
 
@@ -56070,6 +56070,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -56086,6 +56088,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         goToView: function goToView(event) {
             this.$router.push({ name: "ViewEvent", query: { id: event.id } });
+        },
+        goToDelete: function goToDelete(event) {
+            this.$router.push({ name: "DeleteEvent", query: { id: event.id } });
         }
     },
 
@@ -56180,48 +56185,46 @@ var render = function() {
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(event.lead_start_date))]),
             _vm._v(" "),
-            _c(
-              "td",
-              [
-                _c(
-                  "button",
-                  {
-                    staticClass: "button primary",
-                    on: {
-                      click: function($event) {
-                        _vm.goToView(event)
-                      }
+            _c("td", [
+              _c(
+                "button",
+                {
+                  staticClass: "button primary",
+                  on: {
+                    click: function($event) {
+                      _vm.goToView(event)
                     }
-                  },
-                  [_vm._v("\n                    Show\n                ")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "button warning",
-                    on: {
-                      click: function($event) {
-                        _vm.goToEdit(event)
-                      }
+                  }
+                },
+                [_vm._v("\n                    Show\n                ")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "button warning",
+                  on: {
+                    click: function($event) {
+                      _vm.goToEdit(event)
                     }
-                  },
-                  [_vm._v("\n                    Edit\n                ")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "button alert",
-                    attrs: {
-                      to: { name: "DeleteEvent", params: { id: event.id } }
+                  }
+                },
+                [_vm._v("\n                    Edit\n                ")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "button alert",
+                  on: {
+                    click: function($event) {
+                      _vm.goToDelete(event)
                     }
-                  },
-                  [_vm._v("Delete\n                ")]
-                )
-              ],
-              1
-            )
+                  }
+                },
+                [_vm._v("\n                    Delete\n                ")]
+              )
+            ])
           ])
         })
       )
@@ -56706,12 +56709,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
 
+    created: function created() {
+        var m = this;
+        var id = this.$route.query.id;
+
+        // console.log('id delete event',id);
+        var uri = 'http://enekifinalproject.test/events/' + id;
+        axios.get(uri).then(function (response) {
+            m.event = response.data;
+        });
+    },
+
     methods: {
         removeEvent: function removeEvent() {
             var _this = this;
 
-            var uri = 'http://enekifinalproject.test/events/' + this.$route.params.id;
-            Axios.delete(uri, this.event).then(function (response) {
+            var uri = 'http://enekifinalproject.test/events/' + this.$route.query.id;
+            axios.delete(uri, this.event).then(function (response) {
                 _this.$router.push({ name: 'ListEvents' });
             });
         }
@@ -56731,14 +56745,6 @@ var render = function() {
     _vm._v(" "),
     _c(
       "form",
-      {
-        on: {
-          submit: function($event) {
-            $event.preventDefault()
-            return _vm.deleteEvent($event)
-          }
-        }
-      },
       [
         _c("p", [_vm._v("The action cannot be undone")]),
         _vm._v(" "),
@@ -56747,7 +56753,12 @@ var render = function() {
           {
             staticClass: "button alert",
             attrs: { type: "submit", name: "button" },
-            on: { click: _vm.removeEvent }
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                return _vm.removeEvent($event)
+              }
+            }
           },
           [_vm._v("Delete Event")]
         ),

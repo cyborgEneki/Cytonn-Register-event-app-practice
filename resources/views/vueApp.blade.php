@@ -31,7 +31,7 @@
                     </div>
                 @endif
                     <div class="content" id="app">
-                    <router-view name="layout"></router-view>
+                    {{--<router-view name="layout"></router-view>--}}
                     <router-view></router-view>
                     </div>
         </div>

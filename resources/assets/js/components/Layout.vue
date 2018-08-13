@@ -17,7 +17,7 @@
 
         created(){
             this.$store.dispatch( 'loadEvents' );
-            this.$store.dispatch( 'loadActivities' );
+            // this.$store.dispatch( 'loadActivities' );
         }
     }
 </script>

@@ -72,8 +72,6 @@
             axios.get(uri).then((response) => {
                 m.event= response.data;
             })
-
-
         },
 
         methods: {

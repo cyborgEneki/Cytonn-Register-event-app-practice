@@ -14,19 +14,25 @@ use App\Mail\eventNotif;
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
-//Route::get('/', 'AppController@getApp')
-//    ->middleware('auth');
-
 Route::get('/', 'AppController@getApp')
-    ->middleware('auth','admin');
+    ->middleware('auth');
 
-Route::get('/regular', function(){
-    echo "Hello Regular";
-})->middleware('auth','regular');
+Route::group(['middleware' => 'admin'],function () {
+    Route::get('events', 'EventController@index');
+    Route::get('events/{id}', 'EventController@show');
+    Route::post('events', 'EventController@create');
+    Route::delete('events/{id}', 'EventController@destroy');
+    Route::put('events/{id}', 'EventController@update');
+});
 
-Route::get('events', 'EventController@getEvents');
-Route::get('events/{id}', 'EventController@getEvent');
-Route::post('events', 'EventController@postNewEvent');
+Route::group(['regular'], function () {
+    Route::get('events', 'EventController@index');
+    Route::get('events/{id}', 'EventController@show');
+});
+
+Route::get('events', 'EventController@index');
+Route::get('events/{id}', 'EventController@show');
+Route::post('events', 'EventController@create');
 Route::delete('events/{id}', 'EventController@destroy');
 Route::put('events/{id}', 'EventController@update');
 
@@ -43,6 +49,3 @@ Route::get('/mail', function () {
 });
 
 Route::get('/{any}','AppController@getApp')->where('any', '.*');
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

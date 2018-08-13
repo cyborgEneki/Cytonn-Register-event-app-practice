@@ -3,64 +3,36 @@
 namespace App\Http\Controllers;
 
 use App\Event;
+use App\Repositories\EventsRepository;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
 {
-    public function getEvents(){
-        $events = Event::all();
+    protected $repo;
 
-//        $events = Event::with('activities')->get();
-
-        return response()->json( $events );
+    public function __construct(EventsRepository $eventsRepository)
+    {
+        $this->repo = $eventsRepository;
     }
 
-    public function getEvent( $id ){
-//        $event = Event::where('id', '=', $id)
-//            ->with('activities')
-//            ->first();
-
-        $event = Event::all()->where('id', '=', $id)->first();
-
-        return response()->json( $event );
+    public function index()
+    {
+        $events = $this->repo->getEvents();
+        return response()->json($events);
     }
 
-    public function postNewEvent(){
-        $event = new Event();
-
-        $event->name = request('name');
-        $event->frequency  = request('frequency');
-        $event->start_date = request('start_date');
-        $event->start_time = request('start_time');
-        $event->lead_start_date = request('lead_start_date');
-        $event->location =request('location');
-        $event->team_id = 7;
-        $event->category_id = 1;
-        $event->activity_id = 2;
-
-        $event->save();
-
-        /** @var TYPE_NAME $request */
-//        $activities = $request->get('activities');
-//
-//        $event->activities()->sync($activities);
-//
-//        return response()->json($event, 201);
+    public function show($id)
+    {
+        $event = $this->repo->getEvent($id);
+        return response()->json($event);
     }
 
-//    public function destroy($id){
-//        $event = Event::find($id);
-//
-//        $event->delete();
-//
-//        return response()->json('Event deleted');
-//    }
+    public function create()
+    {
+        $event = $this->repo->postNewEvent();
+        return response()->json($event, 201);
+    }
 
-//    public function edit($id)
-//    {
-//        return Event::find($id);
-//    }
-//
     public function update(Request $request, Event $event, $id)
     {
         $this->validate($request, [
@@ -72,25 +44,21 @@ class EventController extends Controller
             'location' => 'required',
         ]);
 
-        $event = Event::find($id);
-        if ($event->count()){
-            $event->update($request->all());
-            return response()->json(['status'=>'success','msg'=>'Event updated successfully']);
-        }
-            else {
-                return response()->json(['status'=>'error','msg'=>'Error in updating event']);
-            }
+//        if(\Gate::denies('admin')) {
+//            flash('error');
+//            return redirect()->back();
+//        }
+
+        $result = $this->repo->editEvent($request, $event, $id);
+        return $result ? response()->json(['status' => 'success', 'msg' => 'Event updated successfully']) :
+            response()->json(['status' => 'error', 'msg' => 'Error in updating event']);
     }
 
     public function destroy(Event $event, $id)
     {
-        $event = Event::find($id);
-        if ($event->count()){
-            $event->delete();
-            return response()->json(['status'=>'success','msg'=>'Event deleted successfully']);
-        }
-        else {
-            return response()->json(['status'=>'error','msg'=>'Error in deleting event']);
-        }
+        $result = $this->repo->deleteEvent($event, $id);
+        return $result ? response()->json(['status' => 'success', 'msg' => 'Event deleted successfully']) :
+            response()->json(['status' => 'error', 'msg' => 'Error in deleting event']);
+
     }
 }

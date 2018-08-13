@@ -37,8 +37,10 @@
                         Edit
                     </button>
 
-                    <router-link class="button alert" v-bind:to="{name: 'DeleteEvent', params: {id: event.id}}">Delete
-                    </router-link>
+                    <button @click="goToDelete(event)" class="button alert">
+                        Delete
+                    </button>
+
                 </td>
             </tr>
             </tbody>
@@ -64,6 +66,9 @@
             },
             goToView:function (event) {
                 this.$router.push({name:"ViewEvent", query: {id: event.id}})
+            },
+            goToDelete:function (event) {
+                this.$router.push({name:"DeleteEvent", query: {id: event.id}})
             }
         },
 

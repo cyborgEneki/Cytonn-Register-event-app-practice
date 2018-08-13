@@ -1,9 +1,9 @@
 <template>
     <div id="delete-event">
         <h3>{{ event.name }}</h3>
-        <form v-on:submit.prevent='deleteEvent'>
+        <form>
             <p>The action cannot be undone</p>
-            <button class="button alert" type="submit" name="button" v-on:click="removeEvent">Delete Event</button>
+            <button class="button alert" type="submit" name="button" v-on:click.prevent="removeEvent">Delete Event</button>
             <router-link class="button primary" v-bind:to="'/list-events'">Back to Events</router-link>
 
         </form>
@@ -27,10 +27,22 @@
             };
         },
 
+
+        created: function () {
+            let m = this;
+            let id = this.$route.query.id;
+
+            // console.log('id delete event',id);
+            let uri = 'http://enekifinalproject.test/events/' + id;
+            axios.get(uri).then((response) => {
+                m.event = response.data;
+            })
+        },
+
         methods: {
             removeEvent: function() {
-                let uri = 'http://enekifinalproject.test/events/' + this.$route.params.id;
-                Axios.delete(uri, this.event).then((response) => {
+                let uri = 'http://enekifinalproject.test/events/' + this.$route.query.id;
+                axios.delete(uri, this.event).then((response) => {
                     this.$router.push({name: 'ListEvents'});
                 });
             }
