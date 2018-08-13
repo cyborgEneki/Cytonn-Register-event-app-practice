@@ -1,38 +1,63 @@
 <template>
     <div id="view-event">
-        <h3>{{ event.name }}</h3>
-        <strong>Frequency: </strong>
-        <div>
-            {{ event.frequency }}
-        </div>
-        <strong>Start Date and Time: </strong>
-        <div>
-            {{ event.start_date_and_time }}
-        </div>
-        <strong>Lead Date: </strong>
-        <div>
-            {{ event.lead_start_date }}
-        </div>
-        <br/>
-        <router-link v-bind:to="'/'">Back to events</router-link>
+
+        <table class="hover unstriped">
+            <thead>
+            <tr>
+                <th>Event Name</th>
+                <th>Frequency</th>
+                <th>Start Date</th>
+                <th>Start Time</th>
+                <th>Location</th>
+                <th>Lead Start Date</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr>
+                <td>{{ event.name }}</td>
+                <td>{{ event.frequency }}</td>
+                <td>{{ event.start_date }}</td>
+                <td>{{ event.start_time }}</td>
+                <td>{{ event.location }}</td>
+                <td>{{ event.lead_start_date }}</td>
+            </tr>
+            </tbody>
+
+            <br/>
+            <router-link v-bind:to="'/list-events'">Back to events</router-link>
+        </table>
     </div>
 </template>
 
 <script>
     export default {
-        name:'ViewEvent',
+        name: 'ViewEvent',
 
-        data: function()
-        {
-            return { event: {name: '', frequency: '', start_date_and_time: '', lead_start_date: ''} };
+        data: function () {
+            return {
+                event: {
+                    name: '',
+                    frequency: '',
+                    start_date: '',
+                    start_time: '',
+                    location: '',
+                    lead_start_date: ''
+                }
+            };
         },
 
-        created: function()
-        {
-            let uri = 'http://enekifinalproject.test/events'+this.$route.params.id;
-            Axios.get(uri).then((response) => {
-                this.event = response.data;
-            });
+        created: function () {
+            let m = this;
+            let id = this.$route.query.id;
+
+            // console.log('id view event',id);
+            let uri = 'http://enekifinalproject.test/events/' + id;
+            axios.get(uri).then((response) => {
+                m.event = response.data;
+            })
+
+
         }
     }
 </script>

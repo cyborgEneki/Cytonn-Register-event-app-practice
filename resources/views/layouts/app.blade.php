@@ -12,16 +12,17 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
 </head>
 <body>
     <div id="app">
 
         {{-- top bar  --}}
-        <div class="top-bar">
+        <div class="top-bar home-bar-out">
 
           <div class="top-bar-left">
-            <ul class="dropdown menu" data-dropdown-menu>
-              <li class="menu-text">{{ config('app.name', 'Cytonn_Register') }} </li>
+            <ul class="dropdown menu home-bar-in" data-dropdown-menu>
+              {{--<li class="menu-text">{{ config('app.name', 'Cytonn_Register') }} </li>--}}
               <li class="menu-text"><a href="/">Home</a></li>
             </ul>
           </div>
@@ -63,5 +64,6 @@
     <script>
         $(document).foundation();
     </script>
+
 </body>
 </html>

@@ -13,8 +13,8 @@
                 <th>Start Date</th>
                 <th>Start Time</th>
                 <th>Location</th>
-                <th>Lead Date</th>
-                <th>Lead Duration</th>
+                <th>Lead Start Date</th>
+                <th>Actions</th>
             </tr>
             </thead>
             <tbody>
@@ -27,11 +27,19 @@
                 <td>{{ event.location }}</td>
                 <td>{{ event.lead_start_date }}</td>
                 <td>
-                    <router-link class="button primary" v-bind:to="{name: 'ViewEvent', params: {id: event.id}}">Show
+                    <!--<router-link class="button primary" v-bind:to="{name: 'ViewEvent', params: {id: event.id}}">Show-->
+                    <!--</router-link>-->
+
+                    <button @click="goToView(event)" class="button primary">
+                        Show
+                    </button>
+
+                    <button @click="goToEdit(event)" class="button warning">
+                        Edit
+                    </button>
+
+                    <router-link class="button alert" v-bind:to="{name: 'DeleteEvent', params: {id: event.id}}">Delete
                     </router-link>
-                    <router-link class="button warning" v-bind:to="{name: 'EditEvent', params: {id: event.id}}">Edit
-                    </router-link>
-                    <button class="button alert delete"><a v-on:click="removeEvent">Delete</a></button>
                 </td>
             </tr>
             </tbody>
@@ -41,9 +49,17 @@
 
 <script>
     export default {
-
         created() {
             this.$store.dispatch('loadEvents');
+        },
+
+        methods:{
+            goToEdit:function(event) {
+                this.$router.push({name:"EditEvent",query: {id: event.id}})
+            },
+            goToView:function (event) {
+                this.$router.push({name:"ViewEvent", query: {id: event.id}})
+            }
         },
 
         computed: {
@@ -59,18 +75,6 @@
                     return this.events;
                 }
             }
-        },
-
-        methods: {
-            removeEvent: function (index) {
-                this.events.splice(index, 1);
-            }
         }
     }
 </script>
-
-<style>
-    .delete {
-        color: #000;
-    }
-</style>

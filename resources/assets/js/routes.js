@@ -3,7 +3,13 @@ import VueRouter from 'vue-router'
 
 Vue.use( VueRouter )
 
+setTimeout(()=>{
+
+},0);
 export default new VueRouter({
+
+    mode:'history',
+    // history: true,
     routes: [
         {
             path: '/',
@@ -21,7 +27,7 @@ export default new VueRouter({
                     component: Vue.component( 'AddEvent', require( './components/AddEvent' ) )
                 },
                 {
-                    path: '/delete-event',
+                    path: '/delete-event/:id',
                     name: 'DeleteEvent',
                     component: Vue.component( 'DeleteEvent', require( './components/DeleteEvent' ) )
                 },

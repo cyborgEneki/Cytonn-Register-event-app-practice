@@ -9,7 +9,8 @@
     import Navigation from '../components/Navigation';
 
     export default {
-        name:"Layout",
+        name:"layout",
+
         components: {
             Navigation
         },
@@ -20,7 +21,3 @@
         }
     }
 </script>
-
-<style>
-
-</style>

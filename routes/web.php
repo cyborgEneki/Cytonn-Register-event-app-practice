@@ -23,6 +23,10 @@ Route::get('events/{id}', 'EventController@getEvent');
 
 Route::post('events', 'EventController@postNewEvent');
 
+Route::delete('events/{id}', 'EventController@destroy');
+
+Route::put('events/{id}', 'EventController@update');
+
 Route::get('activities', 'ActivityController@getActivity');
 
 Route::get('activities/{id}', 'ActivityController@getActivity');
@@ -36,3 +40,5 @@ Route::get('/mail', function () {
     return view('emails.eventNotif');
 
 });
+
+Route::get('/{any}','AppController@getApp')->where('any', '.*');

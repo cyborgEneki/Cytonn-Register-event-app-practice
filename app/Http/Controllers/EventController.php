@@ -8,19 +8,19 @@ use Illuminate\Http\Request;
 class EventController extends Controller
 {
     public function getEvents(){
-//        $events = Event::all();
+        $events = Event::all();
 
-        $events = Event::with('activities')->get();
+//        $events = Event::with('activities')->get();
 
         return response()->json( $events );
     }
 
     public function getEvent( $id ){
-        $event = Event::where('id', '=', $id)
-            ->with('activities')
-            ->first();
+//        $event = Event::where('id', '=', $id)
+//            ->with('activities')
+//            ->first();
 
-//        $event = Event::all()->where('id', '=', $id)->first();
+        $event = Event::all()->where('id', '=', $id)->first();
 
         return response()->json( $event );
     }
@@ -48,42 +48,49 @@ class EventController extends Controller
 //        return response()->json($event, 201);
     }
 
-
+//    public function destroy($id){
+//        $event = Event::find($id);
+//
+//        $event->delete();
+//
+//        return response()->json('Event deleted');
+//    }
 
 //    public function edit($id)
 //    {
 //        return Event::find($id);
 //    }
 //
-//    public function update(Request $request, Event $event, $id)
-//    {
-//        $this->validate($request, [
-//            'name' => 'required',
-//            'frequency' => 'required',
-//            'start_date_and_time' => 'required',
-//            'lead_start_date' => 'required',
-//            'lead_duration' => 'required',
-//        ]);
-//
-//        $event = Event::find($id);
-//        if ($event->count()){
-//            $event->update($request->all());
-//            return response()->json(['status'=>'success','msg'=>'Event updated successfully']);
-//        }
-//            else {
-//                return response()->json(['status'=>'error','msg'=>'Error in updating event']);
-//            }
-//    }
-//
-//    public function destroy(Event $event, $id)
-//    {
-//        $event = Event::find($id);
-//        if ($event->count()){
-//            $event->delete();
-//            return response()->json(['status'=>'success','msg'=>'Event deleted successfully']);
-//        }
-//        else {
-//            return response()->json(['status'=>'error','msg'=>'Error in deleting event']);
-//        }
-//    }
+    public function update(Request $request, Event $event, $id)
+    {
+        $this->validate($request, [
+            'name' => 'required',
+            'frequency' => 'required',
+            'start_date' => 'required',
+            'start_time' => 'required',
+            'lead_start_date' => 'required',
+            'location' => 'required',
+        ]);
+
+        $event = Event::find($id);
+        if ($event->count()){
+            $event->update($request->all());
+            return response()->json(['status'=>'success','msg'=>'Event updated successfully']);
+        }
+            else {
+                return response()->json(['status'=>'error','msg'=>'Error in updating event']);
+            }
+    }
+
+    public function destroy(Event $event, $id)
+    {
+        $event = Event::find($id);
+        if ($event->count()){
+            $event->delete();
+            return response()->json(['status'=>'success','msg'=>'Event deleted successfully']);
+        }
+        else {
+            return response()->json(['status'=>'error','msg'=>'Error in deleting event']);
+        }
+    }
 }

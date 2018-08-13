@@ -1,34 +1,45 @@
 <template>
     <div class="container" id="edit-event">
         <h3>Edit Event</h3>
-        <form v-on:submit.prevent = 'updateEvent'>
-            <div class="form">
-                <label for="edit-name">Event Name</label>
-                <input id="edit-name" v-model="event.name" class="form" required />
+        <form>
+            <div class="grid-container">
+                <div class="grid-x grid-padding-x">
+                    <div class="large-12 medium-12 small-12 cell">
+                        <label>Event Name
+                            <input type="text" placeholder="Event name" v-model="event.name">
+                        </label>
+                    </div>
+                    <div class="large-12 medium-12 small-12 cell">
+                        <label>Frequency
+                            <input type="text" placeholder="Frequency" v-model="event.frequency">
+                        </label>
+                    </div>
+                    <div class="large-12 medium-12 small-12 cell">
+                        <label>Start Date
+                            <input type="date" placeholder="Start Date" v-model="event.start_date">
+                        </label>
+                    </div>
+                    <div class="large-12 medium-12 small-12 cell">
+                        <label>Start Time
+                            <input type="time" placeholder="Start Time" v-model="event.start_time">
+                        </label>
+                    </div>
+                    <div class="large-12 medium-12 small-12 cell">
+                        <label>Lead Date
+                            <input type="date" placeholder="Lead Date" v-model="event.lead_start_date">
+                        </label>
+                    </div>
+                    <div class="large-12 medium-12 small-12 cell">
+                        <label>Location
+                            <input type="text" placeholder="Location" v-model="event.location">
+                        </label>
+                    </div>
+                    <div class="large-12 medium-12 small-12 cell">
+                        <button type="submit" class="button warning" v-on:click.prevent="updateEvent">Update Event</button>
+                        <router-link class="button" v-bind:to="'/list-events'">Cancel</router-link>
+                    </div>
+                </div>
             </div>
-            <div class="form">
-                <label for="edit-frequency">Frequency</label>
-                <input id="edit-frequency" v-model="event.frequency" class="form" required />
-            </div>
-            <div class="form">
-                <label>Start Date</label>
-                <input v-model="event.start_date" class="form" required />
-            </div>
-            <div class="form">
-                <label>Start Time</label>
-                <input v-model="event.start_time" class="form" required />
-            </div>
-            <div class="form">
-                <label for="edit-lead-start">Lead Date</label>
-                <input id="edit-lead-start" v-model="event.lead_start_date" class="form" required />
-            </div>
-            <div class="form">
-                <label>Location</label>
-                <input v-model="event.location" class="form" required />
-            </div>
-
-            <button type="submit" class="button">Update Event</button>
-            <router-link class="button warning" v-bind:to="'/'">Cancel</router-link>
         </form>
     </div>
 </template>
@@ -37,24 +48,39 @@
     export default{
         name: "EditEvent",
 
-        data: function()
-        {
-            return { event: {name: '', frequency: '', start_date: '', start_time: '',location: '', lead_start_date: ''} };
+        data: function() {
+            return {
+                event:{
+                    name: '',
+                    frequency: '',
+                    start_date: '',
+                    start_time: '',
+                    location: '',
+                    lead_start_date: ''
+                }
+
+            };
         },
 
         created: function()
         {
-            let uri = 'http://enekifinalproject.test/events' + '/' + this.$route.params.id + '/edit';
-            Axios.get(uri).then((response) => {
-                this.event = response.data;
-            });
+            let m = this;
+            let id = this.$route.query.id;
+
+            // console.log('id edit event',id);
+            let uri = 'http://enekifinalproject.test/events/'+ id;
+            axios.get(uri).then((response) => {
+                m.event= response.data;
+            })
+
+
         },
 
         methods: {
             updateEvent: function()
             {
-                let uri = 'http://enekifinalproject.test/events'+ this.$route.params.id;
-                Axios.patch(uri, this.event).then((response) => {
+                let uri = 'http://enekifinalproject.test/events/'+ this.$route.query.id;
+                axios.put(uri, this.event,).then((response) => {
                     this.$router.push({name: 'ListEvents'})
                 })
             },

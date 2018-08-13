@@ -1,25 +1,27 @@
 <template>
-    <nav class="top-navigation">
 
-        <ul class="menu">
-            <li>
-                <router-link :to="{ name: 'ListEvents' }">
-                    Events
-                </router-link>
-            </li>
-            <li>
-                <router-link :to="{ name: 'AddEvent' }">
-                    Add Event
-                </router-link>
-            </li>
-        </ul>
+    <div class="top-bar">
+        <div class="top-bar-left">
+            <ul class="dropdown menu" data-dropdown-menu>
+                <li class="menu-text">Cytonn Register</li>
+                <li>
+                    <router-link :to="{ name: 'ListEvents' }">
+                        Events
+                    </router-link>
+                </li>
+                <li>
+                    <router-link :to="{ name: 'AddEvent' }">
+                        Add Event
+                    </router-link>
+                </li>
+            </ul>
+        </div>
+    </div>
 
-    </nav>
 </template>
-<script>
-    export default {
 
-    }
+<script>
+    export default {}
 </script>
 
 <style lang="scss">

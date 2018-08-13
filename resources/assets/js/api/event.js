@@ -9,6 +9,14 @@ export default {
         return axios.get( REGISTER_CONFIG.API_URL + eventID );
     },
 
+    deleteEvent: function (eventID){
+        return axios.delete( REGISTER_CONFIG.API_URL + eventID );
+    },
+
+    updateEvent: function ( eventID ){
+        return axios.put( REGISTER_CONFIG.API_URL + eventID );
+    },
+
     // postNewEvent: function( name, frequency, start_date, start_time, lead_start_date, location ){
     //     return axios.post( REGISTER_CONFIG.API_URL,
     //         // {

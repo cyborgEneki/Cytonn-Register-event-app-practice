@@ -21,7 +21,7 @@
 
             <div class="flex-center position-ref full-height">
                 @if (Route::has('login'))
-                    <div class="top-right links">
+                    <div class="top-right links log-out">
                         @if (Auth::check())
                             <a href="{{ url('/home') }}">Logout screen</a>
                         @else
@@ -30,8 +30,6 @@
                         @endif
                     </div>
                 @endif
-
-            <h3>Cytonn Register</h3>
 
             <div class="content" id="app">
                 <router-view name="layout"></router-view>
