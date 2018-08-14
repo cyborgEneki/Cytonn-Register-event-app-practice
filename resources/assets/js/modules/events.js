@@ -41,19 +41,6 @@ export const events =
                             commit('setEventLoadStatus', 3);
                         });
                 },
-                // addEvent({commit, state, dispatch}, data) {
-                //     commit('setEventAddedStatus', 1);
-                //     EventAPI.postNewEvent(data.name, data.frequency, data.start_date, data.start_time, data.lead_start_date, data.location)
-                //         .then(function (response) {
-                //             commit('setEventAddedStatus', 2);
-                //             dispatch('loadEvents');
-                //         })
-                //         .catch(function () {
-                //             commit('setEventAddedStatus', 3);
-                //         });
-                // }
-
-
                 addEvent({commit, state, dispatch}, data) {
                     commit('setEventAddedStatus', 1);
                     EventAPI.postNewEvent(data)

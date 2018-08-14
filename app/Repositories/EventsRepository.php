@@ -18,15 +18,19 @@ class EventsRepository
 
     public function getEvents()
     {
-        return Event::all();
+//        return Event::all();
+        return Event::with('activitiesEvents')->get();
     }
 
     public function getEvent($id)
     {
-        return Event::all()->where('id', '=', $id)->first();
+//        return Event::all()->where('id', '=', $id)->first();
+        return Event::where('id', '=', $id)
+            ->with('activitiesEvents')
+            ->first();
     }
 
-    public function postNewEvent()
+    public function postNewEvent($request)
     {
         $event = new Event();
 
@@ -41,6 +45,7 @@ class EventsRepository
         $event->activity_id = 2;
 
         return $event->save();
+
     }
 
     public function editEvent($request, $event, $id)

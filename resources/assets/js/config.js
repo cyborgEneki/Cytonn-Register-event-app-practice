@@ -2,7 +2,16 @@ var api_url = '';
 
 switch( process.env.NODE_ENV ){
     case 'development':
-        api_url = 'http://enekifinalproject.test/events';
+        api_url = 'http://enekifinalproject.test';
+        break;
+    case 'production':
+        api_url = '#';
+        break;
+}
+
+switch( process.env.NODE_ENV ){
+    case 'development':
+        api_url = 'http://enekifinalproject.test';
         break;
     case 'production':
         api_url = '#';

@@ -29,23 +29,21 @@ Route::group(['regular'], function () {
     Route::get('events', 'EventController@index');
     Route::get('events/{id}', 'EventController@show');
 });
+//
+//Route::get('events', 'EventController@index');
+//Route::get('events/{id}', 'EventController@show');
+//Route::post('events', 'EventController@create');
+//Route::delete('events/{id}', 'EventController@destroy');
+//Route::put('events/{id}', 'EventController@update');
+//
+//Route::get('activities', 'ActivityController@getActivities');
 
-Route::get('events', 'EventController@index');
-Route::get('events/{id}', 'EventController@show');
-Route::post('events', 'EventController@create');
-Route::delete('events/{id}', 'EventController@destroy');
-Route::put('events/{id}', 'EventController@update');
-
-Route::get('activities', 'ActivityController@getActivity');
-Route::get('activities/{id}', 'ActivityController@getActivity');
-Route::post('activities', 'ActivityController@postNewActivity');
-
-Route::get('/mail', function () {
-
-    \App\Console\Commands\EventNotification::to('joanreneki@gmail.com')->send(new eventNotif);
-
-    return view('emails.eventNotif');
-
-});
+//Route::get('/mail', function () {
+//
+//    \App\Console\Commands\EventNotification::to('joanreneki@gmail.com')->send(new eventNotif);
+//
+//    return view('emails.eventNotif');
+//
+//});
 
 Route::get('/{any}','AppController@getApp')->where('any', '.*');

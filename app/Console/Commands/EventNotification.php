@@ -2,8 +2,12 @@
 
 namespace App\Console\Commands;
 
+use App\Event;
+use App\Mail\eventNotif;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 use App\User;
+use Illuminate\Support\Facades\Mail;
 
 class EventNotification extends Command
 {
@@ -38,20 +42,28 @@ class EventNotification extends Command
      */
     public function handle()
     {
-        $user = User::all();
+        //Check if there are events we need to send notifications for
+        $today = Carbon::today();
 
-        foreach ($user as $a)
+        $events = Event::where('lead_start_date', $today)->get();
 
-        {
-            EventNotification::raw("This is automatically generated when the lead date arrives.", function($message) use ($a)
 
-            {
-                $message->from('joanreneki@gmail.com');
-
-                $message->to($a->email)->subject('Event Notification');
-            });
+        foreach($events as $event) {
+            $this->sendNotification($event);
         }
 
-        $this->info('The event notification has been sent successfully');
+
+    }
+
+    public function sendNotification ($event) {
+        $users = User::where('role', 'admin')->get();
+
+        foreach ($users as $user) {
+
+            Mail::to($user->email)
+                ->send(new \App\Mail\EventNotification($event));
+
+            $this->info('The event notification has been sent successfully');
+        }
     }
 }

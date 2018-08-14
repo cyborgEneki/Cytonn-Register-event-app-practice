@@ -27,9 +27,9 @@ class EventController extends Controller
         return response()->json($event);
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        $event = $this->repo->postNewEvent();
+        $event = $this->repo->postNewEvent($request);
         return response()->json($event, 201);
     }
 

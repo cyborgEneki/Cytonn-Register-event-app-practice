@@ -7,18 +7,21 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class eventNotif extends Mailable
+class EventNotification extends Mailable
 {
     use Queueable, SerializesModels;
+
+    public $event;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($event)
     {
         //
+        $this->event = $event;
     }
 
     /**
@@ -28,15 +31,10 @@ class eventNotif extends Mailable
      */
     public function build()
     {
-        $address = 'joanreneki@gmail.com';
 
-        $name = 'Joan Eneki';
+        $subject = $this->event->name;
 
-        $subject = 'Event Prep';
-
-        return $this->view('emails.eventNotif')
-
-            ->from($address, $name)
+        return $this->view('emails.event-notification')
 
             ->subject($subject);
     }
