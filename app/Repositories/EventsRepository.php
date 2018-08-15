@@ -61,6 +61,8 @@ class EventsRepository
 
     public function deleteEvent(Event $event, $id)
     {
+
+
         $event = Event::find($id);
 
         if ($event->count()) {

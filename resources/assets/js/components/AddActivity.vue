@@ -16,11 +16,8 @@
 </template>
 
 <script>
-    // import vSelect from './Select'
 
     export default {
-
-        // components:{vSelect},
         name: "AddActivity",
 
         data() {

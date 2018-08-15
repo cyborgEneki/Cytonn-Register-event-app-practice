@@ -21,7 +21,9 @@
 </template>
 
 <script>
+
     export default {
+
         name: "EditActivity",
 
         data: function () {
@@ -29,12 +31,13 @@
                 activity: {
                     name: '',
 
+
                 }
 
             };
         },
 
-        created: function () {
+        created(){
             let m = this;
             let id = this.$route.query.id;
             let uri = 'http://enekifinalproject.test/activities/' + id;

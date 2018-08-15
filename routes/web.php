@@ -1,5 +1,7 @@
 <?php
+
 use App\Mail\eventNotif;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,7 +19,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'AppController@getApp')
     ->middleware('auth');
 
-Route::group(['middleware' => 'admin'],function () {
+Route::group(['middleware' => 'admin'], function () {
     Route::get('events', 'EventController@index');
     Route::get('events/{id}', 'EventController@show');
     Route::post('events', 'EventController@create');
@@ -25,6 +27,7 @@ Route::group(['middleware' => 'admin'],function () {
     Route::put('events/{id}', 'EventController@update');
 
     Route::get('activities', 'ActivityController@index');
+    Route::get('activities/{id}', 'ActivityController@show');
     Route::post('activities', 'ActivityController@create');
     Route::delete('activities/{id}', 'ActivityController@destroy');
     Route::put('activities/{id}', 'ActivityController@update');
@@ -37,14 +40,4 @@ Route::group(['regular'], function () {
     Route::get('activities', 'ActivityController@index');
 });
 
-
-
-//Route::get('/mail', function () {
-//
-//    \App\Console\Commands\EventNotification::to('joanreneki@gmail.com')->send(new eventNotif);
-//
-//    return view('emails.eventNotif');
-//
-//});
-
-Route::get('/{any}','AppController@getApp')->where('any', '.*');
+Route::get('/{any}', 'AppController@getApp')->where('any', '.*');

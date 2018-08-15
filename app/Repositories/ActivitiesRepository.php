@@ -24,7 +24,7 @@ class ActivitiesRepository
 
     public function getActivity($id)
     {
-        return Activity::where('id', '=', $id)->first();
+        return Activity::findOrFail($id);
     }
 
     public function postNewActivity($request)
@@ -50,7 +50,7 @@ class ActivitiesRepository
         $activity = Activity::find($id);
 
         if ($activity->count()) {
-            $activity->update($request->all());
+            $activity->update($request->except('pivot'));
             return true;
         } else {
             return false;
@@ -59,13 +59,11 @@ class ActivitiesRepository
 
     public function deleteActivity(Activity $activity, $id)
     {
-        $activity = Activity::find($id);
 
-        if ($activity->count()) {
-            $activity->delete();
+        $activity = Activity::findOrFail($id);
+        $activity->delete();
+
             return true;
-        } else {
-            return false;
-        }
+
     }
 }

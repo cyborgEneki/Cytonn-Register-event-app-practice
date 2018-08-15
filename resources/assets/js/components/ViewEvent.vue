@@ -1,6 +1,5 @@
 <template>
     <div id="view-event">
-        <button class="primary">New</button>
         <table class="hover unstriped">
             <thead>
             <tr>
@@ -28,31 +27,35 @@
             <router-link class="button" v-bind:to="'/list-events'">Back to events</router-link>
         </table>
 
-
         <table class="hover unstriped">
             <thead>
             <tr>
                 <th>Activity Name</th>
+                <th>Status</th>
                 <th></th>
             </tr>
             </thead>
 
             <tbody>
+
             <tr v-for="activity in event.activities">
                 <td>{{ activity.name }}</td>
                 <td>
-                    <button @click="goToEdit(event)" class="button warning">
+                    <checkActivity :activity="activity"></checkActivity>
+                </td>
+
+                <td>
+                    <button @click="goToEdit(activity.id)" class="button warning">
                         Edit
                     </button>
 
-                    <button @click="deleteActivity(event)" class="button alert">
+                    <button @click="deleteActivity(activity.id)" class="button alert">
                         Delete
                     </button>
                 </td>
             </tr>
             </tbody>
         </table>
-
         <div class="large-12 medium-12 small-12 cell">
             <router-link class="button" :to="{name:'AddActivity',query:{eventId:event.id}}">Add a new activity
             </router-link>
@@ -63,11 +66,15 @@
 </template>
 
 <script>
+    import checkActivity from './CheckActivity'
+
     export default {
+        components: {checkActivity},
         name: 'ViewEvent',
 
         data: function () {
             return {
+                check: false,
                 event: {
                     name: '',
                     frequency: '',
@@ -75,7 +82,7 @@
                     start_time: '',
                     location: '',
                     lead_start_date: '',
-                    activities: []
+                    activities: [],
                 }
             };
         },
@@ -85,29 +92,32 @@
             let id = this.$route.query.id;
             let uri = 'http://enekifinalproject.test/events/' + id;
             axios.get(uri).then((response) => {
-                m.event = response.data;
 
-            })
+                m.event = response.data;
+                this.getChecked(m.event);
+            });
+
+
         },
 
         methods: {
             goToEdit: function (activity) {
-                this.$router.push({name: "EditActivity", query: {id: activity.id}})
+                this.$router.push({name: "EditActivity", query: {id: activity}})
             },
             deleteActivity: function (activity) {
-
-
-
-
-
-
-                let uri = 'http://enekifinalproject.test/activities/' + activity.activity_id;
+                let vm = this;
+                let uri = 'http://enekifinalproject.test/activities/' + activity;
                 axios.delete(uri, this.event).then((response) => {
-                    this.$router.push({name: 'ViewEvent'});
+                    vm.$router.go()
                 }).catch((e) => {
-                    // this.errorShow();
                 });
-                // this.$router.push({name: "DeleteActivity", query: {id: activity.id}})
+            },
+            getChecked: function (event) {
+                if (event.activities[0].checked === 1) {
+                    this.check = true;
+                } else if (event.activities[0].checked === 0) {
+                    this.check = false;
+                }
             }
         }
     }

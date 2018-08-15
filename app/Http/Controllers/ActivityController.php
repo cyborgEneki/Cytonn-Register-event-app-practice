@@ -22,6 +22,14 @@ class ActivityController extends Controller
         return response()->json($activities);
     }
 
+
+    public function show($id)
+    {
+        $activity = $this->repo->getActivity($id);
+
+        return response()->json($activity);
+    }
+
     public function create(Request $request)
     {
         $activity = $this->repo->postNewActivity($request);
