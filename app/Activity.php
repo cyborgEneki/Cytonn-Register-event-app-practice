@@ -3,15 +3,18 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Activity extends Model
 {
+    use SoftDeletes;
 
-//    public function events () {
-////        return $this->belongsToMany( 'App\Event', 'activity_event', 'activity_id', 'event_id' );
-////    }
+    protected $table='activities';
 
-    public function activitiesEvents () {
-        return $this->hasMany( ActivityEvent::class );
+    protected $guarded=[];
+
+    public function events ()
+    {
+        return $this->belongsToMany( 'App\Event', 'activity_event', 'activity_id', 'event_id' );
     }
 }

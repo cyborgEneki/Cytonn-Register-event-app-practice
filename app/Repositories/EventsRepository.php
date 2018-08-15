@@ -8,6 +8,7 @@
 
 namespace App\Repositories;
 
+use App\Activity;
 use App\Event;
 
 class EventsRepository
@@ -18,15 +19,13 @@ class EventsRepository
 
     public function getEvents()
     {
-//        return Event::all();
-        return Event::with('activitiesEvents')->get();
+        return Event::with('activities')->get();
     }
 
     public function getEvent($id)
     {
-//        return Event::all()->where('id', '=', $id)->first();
         return Event::where('id', '=', $id)
-            ->with('activitiesEvents')
+            ->with('activities')
             ->first();
     }
 
@@ -51,6 +50,7 @@ class EventsRepository
     public function editEvent($request, $event, $id)
     {
         $event = Event::find($id);
+
         if ($event->count()) {
             $event->update($request->all());
             return true;
@@ -62,6 +62,7 @@ class EventsRepository
     public function deleteEvent(Event $event, $id)
     {
         $event = Event::find($id);
+
         if ($event->count()) {
             $event->delete();
             return true;

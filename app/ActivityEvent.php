@@ -12,13 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ActivityEvent extends Model
 {
-    protected $table = 'activity_event';
+    protected $table='activity_event';
 
-    public function event () {
-        return $this->belongsTo( Event::class );
-    }
-
-    public function activity () {
-        return $this->belongsTo( Activity::class );
-    }
+    protected $fillable = ['activity_id', 'event_id'];
 }

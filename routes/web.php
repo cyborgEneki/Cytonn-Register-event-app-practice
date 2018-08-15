@@ -23,20 +23,21 @@ Route::group(['middleware' => 'admin'],function () {
     Route::post('events', 'EventController@create');
     Route::delete('events/{id}', 'EventController@destroy');
     Route::put('events/{id}', 'EventController@update');
+
+    Route::get('activities', 'ActivityController@index');
+    Route::post('activities', 'ActivityController@create');
+    Route::delete('activities/{id}', 'ActivityController@destroy');
+    Route::put('activities/{id}', 'ActivityController@update');
 });
 
 Route::group(['regular'], function () {
     Route::get('events', 'EventController@index');
     Route::get('events/{id}', 'EventController@show');
+
+    Route::get('activities', 'ActivityController@index');
 });
-//
-//Route::get('events', 'EventController@index');
-//Route::get('events/{id}', 'EventController@show');
-//Route::post('events', 'EventController@create');
-//Route::delete('events/{id}', 'EventController@destroy');
-//Route::put('events/{id}', 'EventController@update');
-//
-//Route::get('activities', 'ActivityController@getActivities');
+
+
 
 //Route::get('/mail', function () {
 //

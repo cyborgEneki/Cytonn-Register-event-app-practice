@@ -3,41 +3,33 @@ import ActivityAPI from '../api/activity';
 export const activities = {
     state: {
         activities: [],
-        activitiesLoadStatus: 0,
+
+        activity: {}
     },
 
     actions: {
         loadActivities ( { commit } ){
-            commit ('setActivitiesLoadStatus', 1 );
-
-            ActivityAPI.getActivities().
-                then (function (response)
-            {
+            ActivityAPI.getActivities().then (function (response) {
                 commit('setActivities', response.data);
-                commit('setActivitiesLoadStatus', 2);
-            }).
-                catch (function (){
-                    commit('setActivities', [] );
-                    commit('setActivitiesLoadStatus', 3 );
             });
+        },
+
+        addActivity({commit, state, dispatch}, data) {
+            ActivityAPI.postNewActivity(data).then(function (response) {
+                    dispatch('loadActivities');
+                });
         }
     },
 
     mutations: {
-        setActivities(state, activities){
-            state.activities = activities;
-        },
-        setActivitiesLoadStatus(state, status){
-            state.activitiesLoadStatus = status;
-        }
+        setActivities(state, activities){state.activities = activities;},
+
+        setActivity(state, activity) {state.activity = activity;}
     },
 
     getters: {
-        getActivities (state) {
-            return state.activities;
-        },
-        getActivitiesLoadStatus (state) {
-            return state.activitiesLoadStatus;
-        }
+        getActivities (state) {return state.activities;},
+
+        getActivity(state) {return state.activity;}
     }
 };

@@ -18,18 +18,21 @@ class EventController extends Controller
     public function index()
     {
         $events = $this->repo->getEvents();
+
         return response()->json($events);
     }
 
     public function show($id)
     {
         $event = $this->repo->getEvent($id);
+
         return response()->json($event);
     }
 
     public function create(Request $request)
     {
         $event = $this->repo->postNewEvent($request);
+
         return response()->json($event, 201);
     }
 
@@ -44,12 +47,8 @@ class EventController extends Controller
             'location' => 'required',
         ]);
 
-//        if(\Gate::denies('admin')) {
-//            flash('error');
-//            return redirect()->back();
-//        }
-
         $result = $this->repo->editEvent($request, $event, $id);
+
         return $result ? response()->json(['status' => 'success', 'msg' => 'Event updated successfully']) :
             response()->json(['status' => 'error', 'msg' => 'Error in updating event']);
     }
@@ -57,8 +56,8 @@ class EventController extends Controller
     public function destroy(Event $event, $id)
     {
         $result = $this->repo->deleteEvent($event, $id);
+
         return $result ? response()->json(['status' => 'success', 'msg' => 'Event deleted successfully']) :
             response()->json(['status' => 'error', 'msg' => 'Error in deleting event']);
-
     }
 }

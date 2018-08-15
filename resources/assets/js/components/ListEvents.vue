@@ -64,9 +64,11 @@
             goToEdit:function(event) {
                 this.$router.push({name:"EditEvent",query: {id: event.id}})
             },
+
             goToView:function (event) {
                 this.$router.push({name:"ViewEvent", query: {id: event.id}})
             },
+
             goToDelete:function (event) {
                 this.$router.push({name:"DeleteEvent", query: {id: event.id}})
             }

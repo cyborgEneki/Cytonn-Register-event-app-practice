@@ -3,10 +3,7 @@ import VueRouter from 'vue-router'
 
 Vue.use( VueRouter )
 
-setTimeout(()=>{
-
-},0);
-export default new VueRouter({
+let routers= new VueRouter({
 
     mode:'history',
     // history: true,
@@ -37,16 +34,30 @@ export default new VueRouter({
                     component: Vue.component( 'EditEvent', require( './components/EditEvent' ) )
                 },
                 {
-                    path: '/view/:id',
+                    path: '/view',
                     name: 'ViewEvent',
                     component: Vue.component( 'ViewEvent', require( './components/ViewEvent' ) )
                 },
                 {
-                    path: '/activities',
-                    name: 'ViewActivity',
-                    component: Vue.component( 'ViewEvent', require( './components/ViewEvent' ) )
+                    path: '/add-activity',
+                    name: 'AddActivity',
+                    component: Vue.component( 'AddActivity', require( './components/AddActivity' ) )
+                },
+                {
+                    path: '/edit-activity',
+                    name: 'EditActivity',
+                    component: Vue.component( 'EditActivity', require( './components/EditActivity' ) )
+                },
+                {
+                    path: '/delete-activity/:id',
+                    name: 'DeleteActivity',
+                    component: Vue.component( 'DeleteActivity', require( './components/DeleteActivity' ) )
                 }
             ]
         }
     ]
 });
+setTimeout(() => {
+    console.log(routers.currentRoute.path);
+}, 0);
+export default routers;

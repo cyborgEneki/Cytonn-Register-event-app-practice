@@ -1,6 +1,7 @@
 <template>
     <div id="app-layout">
         <navigation></navigation>
+
         <router-view></router-view>
     </div>
 </template>
@@ -17,6 +18,7 @@
 
         created(){
             this.$store.dispatch( 'loadEvents' );
+
             this.$store.dispatch( 'loadActivities' );
         }
     }

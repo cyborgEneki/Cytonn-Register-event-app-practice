@@ -41,6 +41,8 @@ export const events =
                             commit('setEventLoadStatus', 3);
                         });
                 },
+
+
                 addEvent({commit, state, dispatch}, data) {
                     commit('setEventAddedStatus', 1);
                     EventAPI.postNewEvent(data)

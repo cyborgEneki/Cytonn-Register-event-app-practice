@@ -35,7 +35,8 @@
                         </label>
                     </div>
                     <div class="large-12 medium-12 small-12 cell">
-                        <button type="submit" class="button warning" v-on:click.prevent="updateEvent">Update Event</button>
+                        <button type="submit" class="button warning" v-on:click.prevent="updateEvent">Update Event
+                        </button>
                         <router-link class="button" v-bind:to="'/list-events'">Cancel</router-link>
                     </div>
                 </div>
@@ -45,12 +46,12 @@
 </template>
 
 <script>
-    export default{
+    export default {
         name: "EditEvent",
 
-        data: function() {
+        data: function () {
             return {
-                event:{
+                event: {
                     name: '',
                     frequency: '',
                     start_date: '',
@@ -62,26 +63,38 @@
             };
         },
 
-        created: function()
-        {
+        created: function () {
             let m = this;
             let id = this.$route.query.id;
-
-            // console.log('id edit event',id);
-            let uri = 'http://enekifinalproject.test/events/'+ id;
+            let uri = 'http://enekifinalproject.test/events/' + id;
             axios.get(uri).then((response) => {
-                m.event= response.data;
+                m.event = response.data;
             })
         },
 
         methods: {
-            updateEvent: function()
-            {
-                let uri = 'http://enekifinalproject.test/events/'+ this.$route.query.id;
+            updateEvent: function () {
+                let uri = 'http://enekifinalproject.test/events/' + this.$route.query.id;
                 axios.put(uri, this.event,).then((response) => {
                     this.$router.push({name: 'ListEvents'})
-                })
+                }).catch((e) => {
+                    this.errorShow();
+                });
             },
+
+            errorShow() {
+
+                alert('Oopsie! Sorry but you are not allowed to perform this action. ' +
+                    'Log in with an admin account to edit an event.', 'Title', {
+                    confirmButtonText: 'OK',
+                    callback: action => {
+                        this.$message({
+                            type: 'info',
+                            message: `action: ${ action }`
+                        });
+                    }
+                });
+            }
         }
     }
 </script>

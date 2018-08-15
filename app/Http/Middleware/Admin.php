@@ -17,11 +17,12 @@ class Admin
     public function handle($request, Closure $next)
     {
         if (Auth::check() && Auth::user()->role == 'admin') {
-
             return $next($request);
         }
         else {
-            return redirect('/regular');
+
+
+            return response()->json("You do not have sufficient privilages to carry out this operatiion",403);
         }
     }
 }

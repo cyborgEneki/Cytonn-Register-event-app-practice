@@ -15047,15 +15047,6 @@ switch ("development") {
         break;
 }
 
-switch ("development") {
-    case 'development':
-        api_url = 'http://enekifinalproject.test';
-        break;
-    case 'production':
-        api_url = '#';
-        break;
-}
-
 var REGISTER_CONFIG = {
     API_URL: api_url
 };
@@ -55631,8 +55622,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]);
 
-setTimeout(function () {}, 0);
-/* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
+var routers = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
 
     mode: 'history',
     // history: true,
@@ -55657,16 +55647,28 @@ setTimeout(function () {}, 0);
             name: 'EditEvent',
             component: __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('EditEvent', __webpack_require__(66))
         }, {
-            path: '/view/:id',
+            path: '/view',
             name: 'ViewEvent',
             component: __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('ViewEvent', __webpack_require__(15))
         }, {
-            path: '/activities',
-            name: 'ViewActivity',
-            component: __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('ViewEvent', __webpack_require__(15))
+            path: '/add-activity',
+            name: 'AddActivity',
+            component: __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('AddActivity', __webpack_require__(81))
+        }, {
+            path: '/edit-activity',
+            name: 'EditActivity',
+            component: __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('EditActivity', __webpack_require__(86))
+        }, {
+            path: '/delete-activity/:id',
+            name: 'DeleteActivity',
+            component: __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('DeleteActivity', __webpack_require__(89))
         }]
     }]
-}));
+});
+setTimeout(function () {
+    console.log(routers.currentRoute.path);
+}, 0);
+/* harmony default export */ __webpack_exports__["a"] = (routers);
 
 /***/ }),
 /* 46 */
@@ -55730,6 +55732,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -55742,6 +55745,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     created: function created() {
         this.$store.dispatch('loadEvents');
+
         this.$store.dispatch('loadActivities');
     }
 });
@@ -56093,9 +56097,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         goToEdit: function goToEdit(event) {
             this.$router.push({ name: "EditEvent", query: { id: event.id } });
         },
+
         goToView: function goToView(event) {
             this.$router.push({ name: "ViewEvent", query: { id: event.id } });
         },
+
         goToDelete: function goToDelete(event) {
             this.$router.push({ name: "DeleteEvent", query: { id: event.id } });
         }
@@ -56719,8 +56725,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     created: function created() {
         var m = this;
         var id = this.$route.query.id;
-
-        // console.log('id delete event',id);
         var uri = 'http://enekifinalproject.test/events/' + id;
         axios.get(uri).then(function (response) {
             m.event = response.data;
@@ -56734,6 +56738,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var uri = 'http://enekifinalproject.test/events/' + this.$route.query.id;
             axios.delete(uri, this.event).then(function (response) {
                 _this.$router.push({ name: 'ListEvents' });
+            }).catch(function (e) {
+                _this.errorShow();
+            });
+        },
+
+        errorShow: function errorShow() {
+            var _this2 = this;
+
+            alert('Oopsie! Sorry but you are not allowed to perform this action. ' + 'Log in with an admin account to delete an event.', 'Title', {
+                confirmButtonText: 'OK',
+                callback: function callback(action) {
+                    _this2.$message({
+                        type: 'info',
+                        message: 'action: ' + action
+                    });
+                }
             });
         }
     }
@@ -56767,7 +56787,7 @@ var render = function() {
               }
             }
           },
-          [_vm._v("Delete Event")]
+          [_vm._v("Delete Event\n        ")]
         ),
         _vm._v(" "),
         _c(
@@ -56889,6 +56909,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "EditEvent",
@@ -56910,8 +56931,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     created: function created() {
         var m = this;
         var id = this.$route.query.id;
-
-        // console.log('id edit event',id);
         var uri = 'http://enekifinalproject.test/events/' + id;
         axios.get(uri).then(function (response) {
             m.event = response.data;
@@ -56925,6 +56944,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var uri = 'http://enekifinalproject.test/events/' + this.$route.query.id;
             axios.put(uri, this.event).then(function (response) {
                 _this.$router.push({ name: 'ListEvents' });
+            }).catch(function (e) {
+                _this.errorShow();
+            });
+        },
+
+        errorShow: function errorShow() {
+            var _this2 = this;
+
+            alert('Oopsie! Sorry but you are not allowed to perform this action. ' + 'Log in with an admin account to edit an event.', 'Title', {
+                confirmButtonText: 'OK',
+                callback: function callback(action) {
+                    _this2.$message({
+                        type: 'info',
+                        message: 'action: ' + action
+                    });
+                }
             });
         }
     }
@@ -57116,7 +57151,7 @@ var render = function() {
                     }
                   }
                 },
-                [_vm._v("Update Event")]
+                [_vm._v("Update Event\n                    ")]
               ),
               _vm._v(" "),
               _c(
@@ -57180,6 +57215,38 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'ViewEvent',
@@ -57192,7 +57259,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 start_date: '',
                 start_time: '',
                 location: '',
-                lead_start_date: ''
+                lead_start_date: '',
+                activities: []
             }
         };
     },
@@ -57200,12 +57268,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     created: function created() {
         var m = this;
         var id = this.$route.query.id;
-
-        // console.log('id view event',id);
         var uri = 'http://enekifinalproject.test/events/' + id;
         axios.get(uri).then(function (response) {
             m.event = response.data;
         });
+    },
+
+    methods: {
+        goToEdit: function goToEdit(activity) {
+            this.$router.push({ name: "EditActivity", query: { id: activity.id } });
+        },
+        deleteActivity: function deleteActivity(activity) {
+            var _this = this;
+
+            var uri = 'http://enekifinalproject.test/activities/' + activity.activity_id;
+            axios.delete(uri, this.event).then(function (response) {
+                _this.$router.push({ name: 'ViewEvent' });
+            }).catch(function (e) {
+                // this.errorShow();
+            });
+            // this.$router.push({name: "DeleteActivity", query: {id: activity.id}})
+        }
     }
 });
 
@@ -57218,6 +57301,8 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { attrs: { id: "view-event" } }, [
+    _c("button", { staticClass: "primary" }, [_vm._v("New")]),
+    _vm._v(" "),
     _c(
       "table",
       { staticClass: "hover unstriped" },
@@ -57249,6 +57334,65 @@ var render = function() {
         )
       ],
       1
+    ),
+    _vm._v(" "),
+    _c("table", { staticClass: "hover unstriped" }, [
+      _vm._m(1),
+      _vm._v(" "),
+      _c(
+        "tbody",
+        _vm._l(_vm.event.activities, function(activity) {
+          return _c("tr", [
+            _c("td", [_vm._v(_vm._s(activity.name))]),
+            _vm._v(" "),
+            _c("td", [
+              _c(
+                "button",
+                {
+                  staticClass: "button warning",
+                  on: {
+                    click: function($event) {
+                      _vm.goToEdit(_vm.event)
+                    }
+                  }
+                },
+                [_vm._v("\n                    Edit\n                ")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "button alert",
+                  on: {
+                    click: function($event) {
+                      _vm.deleteActivity(_vm.event)
+                    }
+                  }
+                },
+                [_vm._v("\n                    Delete\n                ")]
+              )
+            ])
+          ])
+        })
+      )
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "large-12 medium-12 small-12 cell" },
+      [
+        _c(
+          "router-link",
+          {
+            staticClass: "button",
+            attrs: {
+              to: { name: "AddActivity", query: { eventId: _vm.event.id } }
+            }
+          },
+          [_vm._v("Add a new activity\n        ")]
+        )
+      ],
+      1
     )
   ])
 }
@@ -57271,6 +57415,14 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Lead Start Date")])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [_c("th", [_vm._v("Activity Name")]), _vm._v(" "), _c("th")])
     ])
   }
 ]
@@ -58369,28 +58521,6 @@ var events = {
         return axios.get(__WEBPACK_IMPORTED_MODULE_0__config__["a" /* REGISTER_CONFIG */].API_URL + '/events/' + eventID);
     },
 
-    deleteEvent: function deleteEvent(eventID) {
-        return axios.delete(__WEBPACK_IMPORTED_MODULE_0__config__["a" /* REGISTER_CONFIG */].API_URL + '/events/' + eventID);
-    },
-
-    updateEvent: function updateEvent(eventID) {
-        return axios.put(__WEBPACK_IMPORTED_MODULE_0__config__["a" /* REGISTER_CONFIG */].API_URL + '/events/' + eventID);
-    },
-
-    // postNewEvent: function( name, frequency, start_date, start_time, lead_start_date, location ){
-    //     return axios.post( REGISTER_CONFIG.API_URL,
-    //         // {
-    //         //     name: name,
-    //         //     frequency: frequency,
-    //         //     start_date: start_date,
-    //         //     start_time: start_time,
-    //         //     lead_start_date: lead_start_date,
-    //         //     location: location
-    //         // }
-    //     );
-    // }
-
-
     postNewEvent: function postNewEvent(newEvent) {
         return axios.post(__WEBPACK_IMPORTED_MODULE_0__config__["a" /* REGISTER_CONFIG */].API_URL + '/events', newEvent);
     }
@@ -58408,21 +58538,25 @@ var events = {
 var activities = {
     state: {
         activities: [],
-        activitiesLoadStatus: 0
+
+        activity: {}
     },
 
     actions: {
         loadActivities: function loadActivities(_ref) {
             var commit = _ref.commit;
 
-            commit('setActivitiesLoadStatus', 1);
-
             __WEBPACK_IMPORTED_MODULE_0__api_activity__["a" /* default */].getActivities().then(function (response) {
                 commit('setActivities', response.data);
-                commit('setActivitiesLoadStatus', 2);
-            }).catch(function () {
-                commit('setActivities', []);
-                commit('setActivitiesLoadStatus', 3);
+            });
+        },
+        addActivity: function addActivity(_ref2, data) {
+            var commit = _ref2.commit,
+                state = _ref2.state,
+                dispatch = _ref2.dispatch;
+
+            __WEBPACK_IMPORTED_MODULE_0__api_activity__["a" /* default */].postNewActivity(data).then(function (response) {
+                dispatch('loadActivities');
             });
         }
     },
@@ -58431,8 +58565,8 @@ var activities = {
         setActivities: function setActivities(state, activities) {
             state.activities = activities;
         },
-        setActivitiesLoadStatus: function setActivitiesLoadStatus(state, status) {
-            state.activitiesLoadStatus = status;
+        setActivity: function setActivity(state, activity) {
+            state.activity = activity;
         }
     },
 
@@ -58440,8 +58574,8 @@ var activities = {
         getActivities: function getActivities(state) {
             return state.activities;
         },
-        getActivitiesLoadStatus: function getActivitiesLoadStatus(state) {
-            return state.activitiesLoadStatus;
+        getActivity: function getActivity(state) {
+            return state.activity;
         }
     }
 };
@@ -58457,6 +58591,14 @@ var activities = {
 /* harmony default export */ __webpack_exports__["a"] = ({
     getActivities: function getActivities() {
         return axios.get(__WEBPACK_IMPORTED_MODULE_0__config__["a" /* REGISTER_CONFIG */].API_URL + '/activities');
+    },
+
+    getActivity: function getActivity(activityID) {
+        return axios.get(__WEBPACK_IMPORTED_MODULE_0__config__["a" /* REGISTER_CONFIG */].API_URL + '/activities/' + eventID);
+    },
+
+    postNewActivity: function postNewActivity(newActivity) {
+        return axios.post(__WEBPACK_IMPORTED_MODULE_0__config__["a" /* REGISTER_CONFIG */].API_URL + '/activities', newActivity);
     }
 });
 
@@ -58465,6 +58607,592 @@ var activities = {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 78 */,
+/* 79 */,
+/* 80 */,
+/* 81 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(82)
+}
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(84)
+/* template */
+var __vue_template__ = __webpack_require__(85)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-69592a69"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/AddActivity.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-69592a69", Component.options)
+  } else {
+    hotAPI.reload("data-v-69592a69", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 82 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(83);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(14)("3e95b0dd", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-69592a69\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./AddActivity.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-69592a69\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./AddActivity.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 83 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(13)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 84 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+// import vSelect from './Select'
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+    // components:{vSelect},
+    name: "AddActivity",
+
+    data: function data() {
+        return {
+            activity: {
+                name: '',
+                event_id: ''
+
+            }
+
+        };
+    },
+
+
+    methods: {
+        submitNewActivity: function submitNewActivity() {
+            var vm = this;
+            this.$store.dispatch('addActivity', this.activity).then(function () {
+                vm.$router.go(-1);
+            });
+        }
+    },
+
+    created: function created() {
+        this.activity.event_id = this.$route.query.eventId;
+    }
+});
+
+/***/ }),
+/* 85 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("form", [
+    _c("div", { staticClass: "grid-container" }, [
+      _c("div", { staticClass: "grid-x grid-padding-x" }, [
+        _c("div", { staticClass: "large-12 medium-12 small-12 cell" }, [
+          _c("label", [
+            _vm._v("Activity Name\n                    "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.activity.name,
+                  expression: "activity.name"
+                }
+              ],
+              attrs: { type: "text", placeholder: "Activity name" },
+              domProps: { value: _vm.activity.name },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.activity, "name", $event.target.value)
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "large-12 medium-12 small-12 cell" }, [
+            _c(
+              "a",
+              { staticClass: "button", on: { click: _vm.submitNewActivity } },
+              [_vm._v("Add Activity")]
+            )
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-69592a69", module.exports)
+  }
+}
+
+/***/ }),
+/* 86 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(87)
+/* template */
+var __vue_template__ = __webpack_require__(88)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/EditActivity.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-406be870", Component.options)
+  } else {
+    hotAPI.reload("data-v-406be870", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 87 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: "EditActivity",
+
+    data: function data() {
+        return {
+            activity: {
+                name: ''
+
+            }
+
+        };
+    },
+
+    created: function created() {
+        var m = this;
+        var id = this.$route.query.id;
+        var uri = 'http://enekifinalproject.test/activities/' + id;
+        axios.get(uri).then(function (response) {
+            m.activity = response.data;
+        });
+    },
+
+    methods: {
+        updateActivity: function updateActivity() {
+            var _this = this;
+
+            var uri = 'http://enekifinalproject.test/activities/' + this.$route.query.id;
+            axios.put(uri, this.activity).then(function (response) {
+                _this.$router.go(-1);
+            }).catch(function (e) {
+                _this.errorShow();
+            });
+        },
+
+        errorShow: function errorShow() {
+            var _this2 = this;
+
+            alert('Oopsie! Sorry but you are not allowed to perform this action. ' + 'Log in with an admin account to edit an activity.', 'Title', {
+                confirmButtonText: 'OK',
+                callback: function callback(action) {
+                    _this2.$message({
+                        type: 'info',
+                        message: 'action: ' + action
+                    });
+                }
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 88 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "container", attrs: { id: "edit-activity" } },
+    [
+      _c("h3", [_vm._v("Edit Activity")]),
+      _vm._v(" "),
+      _c("form", [
+        _c("div", { staticClass: "grid-container" }, [
+          _c("div", { staticClass: "grid-x grid-padding-x" }, [
+            _c("div", { staticClass: "large-12 medium-12 small-12 cell" }, [
+              _c("label", [
+                _vm._v("Activity Name\n                        "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.activity.name,
+                      expression: "activity.name"
+                    }
+                  ],
+                  attrs: { type: "text", placeholder: "Activity name" },
+                  domProps: { value: _vm.activity.name },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.activity, "name", $event.target.value)
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "large-12 medium-12 small-12 cell" },
+                [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "button warning",
+                      attrs: { type: "submit" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.updateActivity($event)
+                        }
+                      }
+                    },
+                    [_vm._v("Update Activity\n                        ")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "router-link",
+                    { staticClass: "button", attrs: { to: "/list-events" } },
+                    [_vm._v("Cancel")]
+                  )
+                ],
+                1
+              )
+            ])
+          ])
+        ])
+      ])
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-406be870", module.exports)
+  }
+}
+
+/***/ }),
+/* 89 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(90)
+/* template */
+var __vue_template__ = __webpack_require__(91)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/DeleteActivity.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-ae776a5e", Component.options)
+  } else {
+    hotAPI.reload("data-v-ae776a5e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 90 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: "DeleteActivity",
+
+    data: function data() {
+        return {
+            activity: {
+                name: ''
+            }
+        };
+    },
+
+    created: function created() {
+        var m = this;
+        var id = this.$route.query.id;
+        var uri = 'http://enekifinalproject.test/activities/' + id;
+        axios.get(uri).then(function (response) {
+            m.activity = response.data;
+        });
+    },
+
+    methods: {
+        removeEvent: function removeEvent() {
+            var _this = this;
+
+            var uri = 'http://enekifinalproject.test/activity/' + this.$route.query.id;
+            axios.delete(uri, this.event).then(function (response) {
+                _this.$router.push({ name: 'ViewEvent' });
+            }).catch(function (e) {
+                _this.errorShow();
+            });
+        },
+
+        errorShow: function errorShow() {
+            var _this2 = this;
+
+            alert('Oopsie! Sorry but you are not allowed to perform this action. ' + 'Log in with an admin account to delete an activity.', 'Title', {
+                confirmButtonText: 'OK',
+                callback: function callback(action) {
+                    _this2.$message({
+                        type: 'info',
+                        message: 'action: ' + action
+                    });
+                }
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 91 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { attrs: { id: "delete-activity" } }, [
+    _c("h3", [_vm._v(_vm._s(_vm.activity.name))]),
+    _vm._v(" "),
+    _c(
+      "form",
+      [
+        _c("p", [_vm._v("The action cannot be undone")]),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "button alert",
+            attrs: { type: "submit", name: "button" },
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                return _vm.removeActivity($event)
+              }
+            }
+          },
+          [_vm._v("Delete Activity\n        ")]
+        ),
+        _vm._v(" "),
+        _c(
+          "router-link",
+          { staticClass: "button primary", attrs: { to: "/list-events" } },
+          [_vm._v("Back to Events")]
+        )
+      ],
+      1
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-ae776a5e", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);
