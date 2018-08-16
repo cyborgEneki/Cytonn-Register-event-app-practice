@@ -29,17 +29,15 @@ class ActivitiesRepository
 
     public function postNewActivity($request)
     {
-//        $activity = new Activity();
+        $activity = Activity::create([
+            'name' => $request['name'],
+            'user_id' => auth()->id(),
+        ]);
 
-        $activity= Activity::create([
-           'name'=>$request['name'],
-           'user_id'=>auth()->id(),
-       ]);
-
-       ActivityEvent::create([
-           'event_id'=>$request['event_id'],
-           'activity_id'=>$activity->id,
-       ]);
+        ActivityEvent::create([
+            'event_id' => $request['event_id'],
+            'activity_id' => $activity->id,
+        ]);
 
         return $activity;
 
@@ -61,9 +59,10 @@ class ActivitiesRepository
     {
 
         $activity = Activity::findOrFail($id);
+
         $activity->delete();
 
-            return true;
+        return true;
 
     }
 }

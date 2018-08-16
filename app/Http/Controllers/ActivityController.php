@@ -22,7 +22,6 @@ class ActivityController extends Controller
         return response()->json($activities);
     }
 
-
     public function show($id)
     {
         $activity = $this->repo->getActivity($id);

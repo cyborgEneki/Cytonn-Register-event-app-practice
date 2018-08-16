@@ -44,7 +44,7 @@ let routers= new VueRouter({
                     component: Vue.component( 'AddActivity', require( './components/AddActivity' ) )
                 },
                 {
-                    path: '/edit-activity',
+                    path: '/edit-activity/:id',
                     name: 'EditActivity',
                     component: Vue.component( 'EditActivity', require( './components/EditActivity' ) )
                 },

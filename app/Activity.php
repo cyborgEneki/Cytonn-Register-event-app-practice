@@ -15,6 +15,7 @@ class Activity extends Model
 
     public function events ()
     {
-        return $this->belongsToMany( 'App\Event', 'activity_event', 'activity_id', 'event_id' );
+        return $this->belongsToMany( 'App\Event', 'activity_event',
+            'activity_id', 'event_id' );
     }
 }

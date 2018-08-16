@@ -110,8 +110,24 @@
                 axios.delete(uri, this.event).then((response) => {
                     vm.$router.go()
                 }).catch((e) => {
+                    this.errorShow();
                 });
             },
+
+            errorShow() {
+
+                alert('Oopsie! Sorry but you are not allowed to perform this action. ' +
+                    'Log in with an admin account to delete an activity.', 'Title', {
+                    confirmButtonText: 'OK',
+                    callback: action => {
+                        this.$message({
+                            type: 'info',
+                            message: `action: ${ action }`
+                        });
+                    }
+                });
+            },
+
             getChecked: function (event) {
                 if (event.activities[0].checked === 1) {
                     this.check = true;

@@ -55660,7 +55660,7 @@ var routers = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
             name: 'AddActivity',
             component: __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('AddActivity', __webpack_require__(81))
         }, {
-            path: '/edit-activity',
+            path: '/edit-activity/:id',
             name: 'EditActivity',
             component: __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('EditActivity', __webpack_require__(86))
         }, {
@@ -55746,12 +55746,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     components: {
         Navigation: __WEBPACK_IMPORTED_MODULE_0__components_Navigation___default.a
-    },
-
-    created: function created() {
-        this.$store.dispatch('loadEvents');
-
-        this.$store.dispatch('loadActivities');
     }
 });
 
@@ -57297,12 +57291,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.$router.push({ name: "EditActivity", query: { id: activity } });
         },
         deleteActivity: function deleteActivity(activity) {
+            var _this2 = this;
+
             var vm = this;
             var uri = 'http://enekifinalproject.test/activities/' + activity;
             axios.delete(uri, this.event).then(function (response) {
                 vm.$router.go();
-            }).catch(function (e) {});
+            }).catch(function (e) {
+                _this2.errorShow();
+            });
         },
+
+        errorShow: function errorShow() {
+            var _this3 = this;
+
+            alert('Oopsie! Sorry but you are not allowed to perform this action. ' + 'Log in with an admin account to delete an activity.', 'Title', {
+                confirmButtonText: 'OK',
+                callback: function callback(action) {
+                    _this3.$message({
+                        type: 'info',
+                        message: 'action: ' + action
+                    });
+                }
+            });
+        },
+
+
         getChecked: function getChecked(event) {
             if (event.activities[0].checked === 1) {
                 this.check = true;
@@ -58728,7 +58742,7 @@ exports = module.exports = __webpack_require__(13)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -58768,7 +58782,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 event_id: ''
 
             }
-
         };
     },
 
