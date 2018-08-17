@@ -15,6 +15,8 @@ use App\Mail\eventNotif;
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/events_blade', 'HomeController@events_index')->name('home');
+Route::get('/activities_blade', 'HomeController@activities_index')->name('home');
 
 Route::get('/', 'AppController@getApp')
     ->middleware('auth');
