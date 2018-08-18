@@ -31,7 +31,7 @@
         "vue": "^2.5.7"
     },
     "dependencies": {
-        "element-ui": "^2.4.4",
+        "element-ui": "^2.4.6",
         "expect": "^23.5.0",
         "vue-axios": "^2.1.2",
         "vue-router": "^3.0.1",
