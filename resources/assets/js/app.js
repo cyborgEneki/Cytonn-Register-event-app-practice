@@ -1,4 +1,5 @@
 require('./bootstrap');
+require('./custom');
 
 window.VueAxios=require('vue-axios').default;
 
@@ -10,11 +11,14 @@ import store from './store.js'
 import ElementUI from  'element-ui'
 import VueRouter from 'vue-router'
 
+require('./components')
+
+
 // Registering modules
 Vue.use(VueRouter,VueAxios,Axios);
 Vue.use(ElementUI);
 
-new Vue({
+export const app = new Vue({
     router,
     ElementUI,
     store

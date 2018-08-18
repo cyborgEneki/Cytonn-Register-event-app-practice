@@ -25,4 +25,14 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    public function events_index()
+    {
+        return view('events');
+    }
+
+    public function activities_index()
+    {
+        return view('activities');
+    }
 }

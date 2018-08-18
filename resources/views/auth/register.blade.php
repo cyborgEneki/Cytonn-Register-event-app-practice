@@ -1,25 +1,20 @@
-@extends('layouts.app')
+@extends('layouts.auth_app')
 
 @section('content')
 
-<div class="container">
+<div class="container" style="margin-top: 30px;">
+    <h2 class="text-center">REGISTER HERE</h2>
 
     <div class="row">
 
         <div class="form-container small-6 small-centered columns">
-
-            <div class="form-title text-center">
-                Register
-            </div>
-
             <form class="register-form" method="POST" action="{{ route('register') }}">
 
                 {{ csrf_field() }}
 
                 <div class="name">
-                    <label for="email">Name</label>
 
-                    <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" aria-describedby="nameHelpText" required autofocus>
+                    <input id="name" type="text" autocomplete="off" placeholder="Name" class="form-control" name="name" value="{{ old('name') }}" aria-describedby="nameHelpText" required autofocus>
 
                     @if ($errors->has('name'))
                         <span class="help-text" id="nameHelpText">
@@ -29,9 +24,8 @@
                 </div>
 
                 <div class="email">
-                    <label for="email">E-Mail Address</label>
 
-                    <input id="email" type="email" name="email" value="{{ old('email') }}" aria-describedby="emailHelpText" required>
+                    <input id="email" type="email" placeholder="Email" autocomplete="off" name="Email" value="{{ old('email') }}" aria-describedby="emailHelpText" required>
 
                     @if ($errors->has('email'))
                         <span class="help-text" id="emailHelpText">
@@ -41,9 +35,9 @@
                 </div>
 
                 <div class="role">
-                    <label for="role">Role</label>
                     <div>
                         <select name="role">
+                            <option value="">Select User Role</option>
                             <option value="admin">Admin</option>
                             <option value="regular">Regular</option>
                         </select>
@@ -51,9 +45,8 @@
                 </div>
 
                 <div class="password">
-                    <label for="password">Password</label>
 
-                    <input id="password" type="password" name="password" aria-describedby="passwordHelpText" required>
+                    <input id="password" type="password" placeholder="Password" name="password" aria-describedby="passwordHelpText" required>
 
                     @if ($errors->has('password'))
                         <span class="help-text" id="passwordHelpText">
@@ -61,18 +54,15 @@
                         </span>
                     @endif
                 </div>
-
                 <div class="password-confirm">
-                    <label for="password-confirm">Confirm Password</label>
-                    <input id="password-confirm" type="password" name="password_confirmation" required>
+                    <input id="password-confirm" type="password" placeholder="Confirm Password" name="password_confirmation" required>
                 </div>
 
-                <div class="register_button">
-                    <button type="submit" class="button">
-                        Register
+                    <button type="submit" class="button expanded">
+                        REGISTER
                     </button>
-                </div>
 
+                <p class="help-text text-center" style="margin-top: 30px;">Have an account <a href="/login">Login Here</a> </p>
 
             </form>
 
