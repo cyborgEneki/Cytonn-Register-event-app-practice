@@ -7,7 +7,10 @@
     <br>
     <a href="/events_blade">Events</a>
     <br>
+
+
     <a href="/activities_blade">Activities</a>
+
     <br><br>
     <a href="{{ route('logout') }}"
        onclick="event.preventDefault();document.getElementById('logout-form').submit();">

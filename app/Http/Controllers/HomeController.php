@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Activity;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -33,6 +34,13 @@ class HomeController extends Controller
 
     public function activities_index()
     {
-        return view('activities');
+        $activities = Activity::all();
+
+        return view('activities', compact('activities'));
+    }
+
+    public function login_index()
+    {
+        return view('auth.login');
     }
 }

@@ -1,6 +1,5 @@
 <template>
     <div id="list-events">
-
         <span v-show="eventsLoadStatus == 1">Loading</span>
         <span v-show="eventsLoadStatus == 2">Events loaded successfully!</span>
         <span v-show="eventsLoadStatus == 3">Events loaded unsuccessfully!</span>
@@ -51,8 +50,8 @@
 <script>
     export default {
 
-        data(){
-            return{
+        data() {
+            return {
 
             }
         },
@@ -60,17 +59,17 @@
             this.$store.dispatch('loadEvents');
         },
 
-        methods:{
-            goToEdit:function(event) {
-                this.$router.push({name:"EditEvent",query: {id: event.id}})
+        methods: {
+            goToEdit: function (event) {
+                this.$router.push({name: "EditEvent", query: {id: event.id}})
             },
 
-            goToView:function (event) {
-                this.$router.push({name:"ViewEvent", query: {id: event.id}})
+            goToView: function (event) {
+                this.$router.push({name: "ViewEvent", query: {id: event.id}})
             },
 
-            goToDelete:function (event) {
-                this.$router.push({name:"DeleteEvent", query: {id: event.id}})
+            goToDelete: function (event) {
+                this.$router.push({name: "DeleteEvent", query: {id: event.id}})
             }
         },
 

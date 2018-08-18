@@ -9,6 +9,7 @@ import Vue from 'vue'
 import router from './routes.js'
 import store from './store.js'
 import ElementUI from  'element-ui'
+import 'element-ui/lib/theme-chalk/index.css';
 import VueRouter from 'vue-router'
 
 require('./components')

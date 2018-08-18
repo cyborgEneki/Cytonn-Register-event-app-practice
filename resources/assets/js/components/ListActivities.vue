@@ -1,7 +1,7 @@
 <template>
     <div>
 
-        <h3 class="form-heading">Add a new activity</h3>
+        <h4 class="form-heading">Add a new activity</h4>
         <form class="form-body">
             Activity name:<br>
             <input type="text" name="name">
