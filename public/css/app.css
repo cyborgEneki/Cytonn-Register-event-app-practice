@@ -9954,3 +9954,47 @@ body .sidebar_admin .main_admin {
   }
 }
 
+body .form-heading {
+  text-align: center;
+}
+
+body .form-body {
+  font-family: 'Caveat+Brush';
+  margin: 0 auto;
+  width: 500px;
+}
+
+body .form-body .form-button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  border-radius: 12px;
+  font-family: 'Caveat+Brush';
+  width: 100%;
+}
+
+body #myInput {
+  background-image: url("/css/searchicon.png");
+  /* Add a search icon to input */
+  background-position: 10px 12px;
+  /* Position the search icon */
+  background-repeat: no-repeat;
+  /* Do not repeat the icon image */
+  width: 100%;
+  /* Full-width */
+  font-size: 16px;
+  /* Increase font-size */
+  padding: 12px 20px 12px 40px;
+  /* Add some padding */
+  border: 1px solid #ddd;
+  /* Add a grey border */
+  margin-bottom: 12px;
+  /* Add some space below the input */
+}
+

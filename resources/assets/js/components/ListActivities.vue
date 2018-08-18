@@ -1,13 +1,15 @@
 <template>
     <div>
-        <form action="">
-            First name:<br>
-            <input type="text" name="firstname" value="Mickey">
+
+        <h3 class="form-heading">Add a new activity</h3>
+        <form class="form-body">
+            Activity name:<br>
+            <input type="text" name="name">
             <br>
-            Last name:<br>
-            <input type="text" name="lastname" value="Mouse">
-            <br><br>
-            <input type="submit" value="Submit">
+            Description:<br>
+            <input type="text" name="lastname">
+            <br>
+            <input class="form-button" type="submit" value="Submit">
         </form>
     </div>
 </template>
