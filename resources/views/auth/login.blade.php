@@ -1,25 +1,18 @@
-@extends('layouts.app')
+@extends('layouts.auth_app')
 
 @section('content')
 
-<div class="container">
-
+<div class="login-content">
     <div class="row">
-
-        <div class="form-container small-6 small-centered columns">
-
-            <div class="form-title text-center">
-                Login
-            </div>
-
+      <h2 class="text-center">LOGIN HERE</h2>
+        <div class="form-container columns">
             <form class="login-form" method="POST" action="{{ route('login') }}">
 
                 {{ csrf_field() }}
 
                 <div class="email">
-                    <label for="email">E-Mail Address</label>
 
-                    <input id="email" type="email" name="email" value="{{ old('email') }}" aria-describedby="emailHelpText" required autofocus>
+                    <input id="email" autocomplete="off" type="email" name="email" placeholder="Email" value="{{ old('email') }}" aria-describedby="emailHelpText" required autofocus>
 
                     @if ($errors->has('email'))
                         <span class="help-text" id="emailHelpText">
@@ -29,9 +22,8 @@
                 </div>
 
                 <div class="password">
-                    <label for="password">Password</label>
 
-                    <input id="password" type="password" name="password" aria-describedby="passwordHelpText" required>
+                    <input id="password" autocomplete="off" type="password" name="password" placeholder="Password" aria-describedby="passwordHelpText" required>
 
                     @if ($errors->has('password'))
                         <span class="help-text" id="passwordHelpText">
@@ -39,24 +31,23 @@
                         </span>
                     @endif
                 </div>
-
+                <div class="level">
+                    <a href="{{ route('password.request') }}">
+                        &nbsp;
+                        Forgot Your Password?
+                    </a>
+                </div>
                 <div class="checkbox">
                     <label>
                         <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
                     </label>
                 </div>
 
-                <div class="button-plus-link">
-                    <button type="submit" class="button">
-                        Login
+                    <button type="submit" class="button button-success expanded">
+                        <i class=""></i>LOGIN
                     </button>
-
-                    <a href="{{ route('password.request') }}">
-                        &nbsp;
-                        Forgot Your Password?
-                    </a>
-                </div>
             </form>
+            {{--<p class="help-text text-center" style="margin-top: 30px;">Don't have an account <a href="/register">Register Here</a> </p>--}}
 
         </div>
 

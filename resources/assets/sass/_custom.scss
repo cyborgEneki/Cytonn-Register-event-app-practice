@@ -1,0 +1,145 @@
+body {
+
+  background-color: #ffffff;
+  h1 {
+    font-size: 100px;
+    font-family: 'Caveat+Brush';
+
+  }
+  .auth_back {
+    height: 300px;
+    background-color: #5cb85c;
+    padding-top: 100px;
+    color: white;
+  }
+  .login-content {
+    margin: 50px auto;
+    width: 550px;
+
+    .button {
+      margin-top: 30px;
+      background-color: #5cb85c;
+      font-weight: 700;
+    }
+  }
+
+  .navbar_top {
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    padding: 20px;
+    background-color: #5cb85c;
+    color: white;
+
+    .top-bar-left .top-bar-right {
+      background-color: #5cb85c;
+    }
+
+    .top-bar-left {
+      font-weight: bold;
+
+      a {
+        color: white;
+      }
+    }
+
+    .top-bar-right {
+      .menu {
+        background-color: transparent;
+        color: white;
+        font-weight: bold;
+        .navbar_button {
+
+          background: #5cb85c;
+
+          a {
+            color: white;
+          }
+
+          .navbar_logout:hover{
+            background-color: #5cb85c;
+          }
+        }
+
+        .dropdown.menu > li.is-dropdown-submenu-parent > a::after {
+          border-color: white transparent transparent;
+        }
+
+      }
+    }
+  }
+
+  .sidebar_admin{
+    height: 100%; /* Full-height: remove this if you want "auto" height */
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    background-color: #111; /* Black */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 20px;
+    width: 15%;
+    font-family: 'Caveat+Brush';
+
+    a {
+      padding: 6px 8px 6px 16px;
+      text-decoration: none;
+      font-size: 25px;
+      color: #818181;
+      display: block;
+
+      &:hover {
+        color: #f1f1f1;
+      }
+
+    }
+    a.active{
+      color: #f1f1f1;
+    }
+
+    .main_admin {
+      font-family: 'Caveat+Brush';
+
+      //margin-left: 160px; /* Same as the width of the sidebar */
+      //padding: 0px 10px;
+    }
+
+    /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+    @media screen and (max-height: 450px) {
+      .sidebar_admin {padding-top: 15px;}
+      .sidebar_admin a {font-size: 18px;}
+    }
+
+  }
+
+  .form-heading {
+    text-align: center;
+  }
+
+  .form-body {
+    font-family: 'Caveat+Brush';
+    margin: 0 auto;
+    width: 500px;
+
+    .form-button {
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      border-radius: 12px;
+      font-family: 'Caveat+Brush';
+      width: 100%;
+    }
+  }
+
+  #myInput {
+    background-image: url('/css/searchicon.png'); /* Add a search icon to input */
+    background-position: 10px 12px; /* Position the search icon */
+    background-repeat: no-repeat; /* Do not repeat the icon image */
+    width: 100%; /* Full-width */
+    font-size: 16px; /* Increase font-size */
+    padding: 12px 20px 12px 40px; /* Add some padding */
+    border: 1px solid #ddd; /* Add a grey border */
+    margin-bottom: 12px; /* Add some space below the input */
+  }
+}
