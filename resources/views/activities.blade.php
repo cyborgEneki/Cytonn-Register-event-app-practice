@@ -9,48 +9,43 @@
         <div class="small-10 medium-10">
             <div class="container_content">
                 @if(Auth::check() && Auth::user()->role == 'admin')
-                <list-activities>
-                    <slot></slot>
-                </list-activities>
+                    <list-activities>
+                        <slot></slot>
+                    </list-activities>
                 @endif
 
                 <hr/>
 
                 <div class="grid-x">
 
-                  <div style="margin:0 auto; width: 900px;">
+                    <div style="margin:0 auto; width: 900px;">
 
-                      <table>
-                          <thead>
-                          <tr>
-                              <th width="20%">Activity Name</th>
-                              <th width="60%">Description</th>
-                              @if(Auth::check() && Auth::user()->role == 'admin')
-                              <th width="20%">Action</th>
-                              @endif
-                          </tr>
-                          </thead>
-                          <tbody>
+                        <table>
+                            <thead>
+                            <tr>
+                                <th width="20%">Activity Name</th>
+                                <th width="60%">Description</th>
+                                @if(Auth::check() && Auth::user()->role == 'admin')
+                                    <th width="20%">Action</th>
+                                @endif
+                            </tr>
+                            </thead>
+                            <tbody>
 
-                          @foreach($activities as $activity)
-                          <tr >
-                              <td>{{$activity->name}}</td>
-                              <td>{{$activity->description ?? "No Description"}}</td>
-                              @if(Auth::check() && Auth::user()->role == 'admin')
-                              <td>
+                            @foreach($activities as $activity)
+                                <tr>
+                                    <td>{{$activity->name}}</td>
+                                    <td>{{$activity->description ?? "No Description"}}</td>
+                                    <td>
+                                        <a href="#" class="button">Edit</a>
+                                        <a href="#" class="alert button">Delete</a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
 
-
-                                  <a href="#" class="button">Edit</a>
-                                  <a href="#" class="alert button">Delete</a>
-
-                              </td>
-                                  @endif
-                          </tr>
-                          @endforeach
-                          </tbody>
-                      </table>
-
-                  </div>
+                    </div>
 
                 </div>
 
