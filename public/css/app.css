@@ -9998,3 +9998,7 @@ body #myInput {
   /* Add some space below the input */
 }
 
+body event_column {
+  width: 14.2%;
+}
+

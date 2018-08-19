@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Activity;
+use App\Event;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -29,7 +30,9 @@ class HomeController extends Controller
 
     public function events_index()
     {
-        return view('events');
+        $events = Event::all();
+
+        return view('events', compact('events'));
     }
 
     public function activities_index()
