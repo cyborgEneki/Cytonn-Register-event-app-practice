@@ -6,7 +6,7 @@ use App\Activity;
 use App\Event;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class PageController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -32,14 +32,14 @@ class HomeController extends Controller
     {
         $events = Event::all();
 
-        return view('events', compact('events'));
+        return view('events')->with('events', $events);
     }
 
     public function activities_index()
     {
         $activities = Activity::all();
 
-        return view('activities', compact('activities'));
+        return view('activities')->with('activities', $activities);
     }
 
     public function login_index()

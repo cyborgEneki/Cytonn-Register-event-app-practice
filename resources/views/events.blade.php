@@ -17,12 +17,11 @@
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th class="event_column">Event Name</th>
+                            <th>Event Name</th>
                             <th>Frequency</th>
                             <th>Start Date</th>
                             <th>Start Time</th>
                             <th>Location</th>
-                            <th>Lead Start Date</th>
                             @if(Auth::check() && Auth::user()->role == 'admin')
                                 <th>Actions</th>
                             @endif
@@ -30,21 +29,25 @@
                         </thead>
                         <tbody>
 
-                        @foreach($events as $event)
-                            <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{$event->name}}</td>
-                                <td>{{$event->frequency}}</td>
-                                <td>{{$event->start_date}}</td>
-                                <td>{{$event->start_time}}</td>
-                                <td>{{$event->location}}</td>
-                                <td>{{$event->lead_start_date}}</td>
-                                <td>
-                                    <a href="#" class="button">Edit</a>
-                                    <a href="#" class="alert button">Delete</a>
-                                </td>
-                            </tr>
-                        @endforeach
+                        @if (count($events)>0)
+                            @foreach($events as $event)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td><a href="/events/{{$event->id}}">{{$event->name}}</a></td>
+                                    <td>{{$event->frequency}}</td>
+                                    <td>{{$event->start_date}}</td>
+                                    <td>{{$event->start_time}}</td>
+                                    <td>{{$event->location}}</td>
+                                    <td>
+                                        <a href="#" class="button">Edit</a>
+                                        <a href="#" class="alert button">Delete</a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @else
+                            <p>No events found</p>
+                        @endif
+
                         </tbody>
                     </table>
 

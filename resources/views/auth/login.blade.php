@@ -31,17 +31,17 @@
                         </span>
                     @endif
                 </div>
-                {{--<div class="level">--}}
-                    {{--<a href="{{ route('password.request') }}">--}}
-                        {{--&nbsp;--}}
-                        {{--Forgot Your Password?--}}
-                    {{--</a>--}}
-                {{--</div>--}}
-                {{--<div class="checkbox">--}}
-                    {{--<label>--}}
-                        {{--<input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me--}}
-                    {{--</label>--}}
-                {{--</div>--}}
+                <div class="level">
+                    <a href="{{ route('password.request') }}">
+                        &nbsp;
+                        Forgot Your Password?
+                    </a>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
+                    </label>
+                </div>
 
                     <button type="submit" class="button button-success expanded">
                         <i class=""></i>LOGIN

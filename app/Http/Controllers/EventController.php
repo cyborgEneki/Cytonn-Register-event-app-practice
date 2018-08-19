@@ -22,6 +22,11 @@ class EventController extends Controller
         return response()->json($events);
     }
 
+    public function store()
+    {
+//
+    }
+
     public function show($id)
     {
         $event = $this->repo->getEvent($id);
@@ -43,6 +48,11 @@ class EventController extends Controller
         $event = $this->repo->postNewEvent($request);
 
         return response()->json($event, 201);
+    }
+
+    public function edit($id)
+    {
+//
     }
 
     public function update(Request $request, Event $event, $id)

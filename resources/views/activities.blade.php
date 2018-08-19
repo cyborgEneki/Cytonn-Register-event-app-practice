@@ -32,16 +32,21 @@
                             </thead>
                             <tbody>
 
-                            @foreach($activities as $activity)
-                                <tr>
-                                    <td>{{$activity->name}}</td>
-                                    <td>{{$activity->description ?? "No Description"}}</td>
-                                    <td>
-                                        <a href="#" class="button">Edit</a>
-                                        <a href="#" class="alert button">Delete</a>
-                                    </td>
-                                </tr>
-                            @endforeach
+                            @if (count($activities) > 0)
+                                @foreach($activities as $activity)
+                                    <tr>
+                                        <td>{{$activity->name}}</td>
+                                        <td>{{$activity->description ?? "No Description"}}</td>
+                                        <td>
+                                            <a href="#" class="button">Edit</a>
+                                            <a href="#" class="alert button">Delete</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @else
+                                <p>No activities found</p>
+                            @endif
+
                             </tbody>
                         </table>
 

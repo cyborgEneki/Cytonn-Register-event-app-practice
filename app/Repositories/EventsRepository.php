@@ -8,7 +8,6 @@
 
 namespace App\Repositories;
 
-use App\Activity;
 use App\Event;
 
 class EventsRepository
@@ -41,7 +40,6 @@ class EventsRepository
         $event->location = request('location');
         $event->team_id = 7;
         $event->category_id = 1;
-        $event->activity_id = 2;
 
         return $event->save();
 
