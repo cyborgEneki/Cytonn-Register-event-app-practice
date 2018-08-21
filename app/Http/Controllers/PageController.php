@@ -30,7 +30,7 @@ class PageController extends Controller
 
     public function events_index()
     {
-        $events = Event::orderBy('name', 'desc')->paginate(15);
+        $events = Event::orderBy('start_date', 'desc')->paginate(15);
 
         return view('events.index')->with('events', $events);
     }

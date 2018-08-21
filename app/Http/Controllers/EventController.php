@@ -32,12 +32,11 @@ class EventController extends Controller
             'start_time' => 'required',
             'location' => 'required',
             'lead_start_date' => 'required',
-            'activities'
         ]);
 
-        $event = $this->eventsRepository->postNewEvent($request);
+        $this->eventsRepository->postNewEvent($request);
 
-        return response()->json($event);
+        return redirect('/events_blade')->with('success', 'Event added successfully');
     }
 
     public function show($id)

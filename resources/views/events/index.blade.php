@@ -2,8 +2,6 @@
 
 @section('content')
 
-        <div class="small-10 medium-10">
-
             <div class="grid-x">
 
                 <div class="form_table_arrangement">
@@ -49,7 +47,5 @@
                 </div>
 
             </div>
-
-        </div>
 
 @endsection
