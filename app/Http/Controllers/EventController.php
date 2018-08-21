@@ -23,7 +23,7 @@ class EventController extends Controller
         return response()->json($events);
     }
 
-    public function store(Request $request)
+    public function store($request)
     {
         $this->validate($request, [
             'name' => 'required',
@@ -43,7 +43,7 @@ class EventController extends Controller
     {
         $event = $this->eventsRepository->getEvent($id);
 
-        $activities = $event->activities()->get();
+        $activities = $event->activities()->get(); //From activities repository?
 
         $data = [
             'event' => $event,
@@ -53,7 +53,7 @@ class EventController extends Controller
         return view('events.show')->with('data', $data);
     }
 
-    public function create(Request $request)
+    public function create()
     {
         $activities = Activity::all(); //Try calling this from the activities repository when I create it
 
@@ -62,10 +62,19 @@ class EventController extends Controller
 
     public function edit($id)
     {
-//
+        $event = $this->eventsRepository->getEvent($id);
+
+        $activities = Activity::all(); //Try calling this from the activities repository when I create it
+
+        $data = [
+            'event' => $event,
+            'activities' => $activities
+        ];
+
+        return view('events.edit')->with('data', $data);
     }
 
-    public function update(Request $request, Event $event, $id)
+    public function update(Request $request, Event $event)
     {
         $this->validate($request, [
             'name' => 'required',
@@ -74,20 +83,17 @@ class EventController extends Controller
             'start_time' => 'required',
             'location' => 'required',
             'lead_start_date' => 'required',
-
         ]);
 
-        $result = $this->eventsRepository->editEvent($request, $event, $id);
+        $this->eventsRepository->editEvent($request, $event);
 
-        return $result ? response()->json(['status' => 'success', 'msg' => 'Event updated successfully']) :
-            response()->json(['status' => 'error', 'msg' => 'Error in updating event']);
+        return redirect('/events_blade')->with('success', 'Event updated successfully');
     }
 
-    public function destroy(Event $event, $id)
+    public function destroy($id)
     {
-        $result = $this->eventsRepository->deleteEvent($event, $id);
+        $this->eventsRepository->deleteEvent($id);
 
-        return $result ? response()->json(['status' => 'success', 'msg' => 'Event deleted successfully']) :
-            response()->json(['status' => 'error', 'msg' => 'Error in deleting event']);
+        return redirect('/events_blade')->with('success', 'Event deleted successfully');
     }
 }

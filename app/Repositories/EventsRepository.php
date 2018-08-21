@@ -9,6 +9,7 @@
 namespace App\Repositories;
 
 use App\Event;
+use http\Env\Request;
 
 class EventsRepository
 {
@@ -30,9 +31,8 @@ class EventsRepository
         return $event;
     }
 
-    public function postNewEvent($request)
+    public function postNewEvent(Request $request)
     {
-
         $event = Event::create($request->except("activity_id"));
 
         foreach ($request["activity_id"] as $activity){
@@ -44,29 +44,29 @@ class EventsRepository
         return $event;
     }
 
-    public function editEvent($request, $event, $id)
+    public function editEvent(Request $request, Event $event)
     {
-        $event = $this->getEvent($id);
+//        $event->update($request->except("activity_id"));
+//
+//        $event->activities()->detach();
 
-        if ($event->count()) {
-            $event->update($request->all());
-            return true;
-        } else {
-            return false;
-        }
+//        $event = Event::create($request->except("activity_id"));
+//
+//        foreach ($request["activity_id"] as $activity){
+//
+//            $event->activities()->attach($activity);
+//
+//        };
+
+        return $event;
     }
 
-    public function deleteEvent(Event $event, $id)
+    public function deleteEvent($id)
     {
-
-
         $event = $this->getEvent($id);
 
-        if ($event->count()) {
-            $event->delete();
-            return true;
-        } else {
-            return false;
-        }
+        $event->activities()->delete();
+
+        return $event;
     }
 }
