@@ -25,10 +25,6 @@ class EventController extends Controller
 
     public function store(Request $request)
     {
-//        $data = [
-//            'activities' => $activities
-//        ];
-
         $this->validate($request, [
             'name' => 'required',
             'frequency' => 'required',
@@ -60,8 +56,9 @@ class EventController extends Controller
 
     public function create(Request $request)
     {
-        $activities = Activity::all();
-        return view ('events.create', compact('activities'));
+        $activities = Activity::all(); //Try calling this from the activities repository when I create it
+
+        return view ('events.create')->with('activities', $activities);
     }
 
     public function edit($id)

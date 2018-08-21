@@ -17,15 +17,20 @@
 <body>
     <div id="app">
 
+        <div class="grid-x">
+            <div class="small-2 medium-2">
+                @include ("layouts.sidebar")
+            </div>
+
         @yield('content')
 
+        </div>
     </div>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
     <script>
         $(document).foundation();
-        $(".chosen-select").chosen({disable_search_threshold: 10});
     </script>
 
 </body>

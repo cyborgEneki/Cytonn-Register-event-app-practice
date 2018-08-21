@@ -2,11 +2,6 @@
 
 @section('content')
 
-<div class="grid-x">
-    <div class="small-2 medium-2">
-        @include ("layouts.sidebar")
-    </div>
-
     <div class="small-10 medium-10">
 
         <div class="grid-x">
@@ -14,7 +9,7 @@
 
                 @if(Auth::check() && Auth::user()->role == 'admin')
                     <h4 class="form-heading">Add a new event</h4>
-                    <form class="form-body" method="post" action="/events">
+                    <form class="form-body" method="post" action="/api/events">
                         @csrf
                         Event name:<br>
                         <input type="text" name="name" required>
@@ -35,8 +30,8 @@
                                 <option value="">Select Activity</option>
                                 @foreach($activities as $activity)
 
-                                <option value="{{ $activity->id }}">{{ $activity->name }}</option>
-                                    @endforeach
+                                    <option value="{{ $activity->id }}">{{ $activity->name }}</option>
+                                @endforeach
                             </select>
                         </label>
 
@@ -47,4 +42,5 @@
             </div>
         </div>
     </div>
-</div>
+
+@endsection

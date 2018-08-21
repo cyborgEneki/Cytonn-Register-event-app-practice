@@ -1,7 +1,4 @@
 <?php
-
-use App\Mail\eventNotif;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,12 +16,11 @@ Route::get('/events_blade', 'PageController@events_index')->name('home');
 Route::get('/activities_blade', 'PageController@activities_index')->name('home');
 Route::get('/login_blade', 'PageController@login_index')->name('home');
 
-Route::get('/', 'AppController@getApp')
-    ->middleware('auth');
 
-Route::resource('events', 'EventController');
 Route::resource('activities', 'ActivityController');
 
+Route::get('/', 'AppController@getApp')
+    ->middleware('auth');
 //Route::get('events', 'EventController@index');
 //Route::get('events/{id}', 'EventController@show');
 //Route::post('events', 'EventController@create');
