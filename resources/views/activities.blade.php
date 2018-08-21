@@ -18,9 +18,9 @@
 
                 <div class="grid-x">
 
-                    <div style="margin:0 auto; width: 900px;">
+                    <div class="form_table_arrangement">
 
-                        <table>
+                        <table class="table-font">
                             <thead>
                             <tr>
                                 <th width="20%">Activity Name</th>
@@ -37,10 +37,12 @@
                                     <tr>
                                         <td>{{$activity->name}}</td>
                                         <td>{{$activity->description ?? "No Description"}}</td>
-                                        <td>
-                                            <a href="#" class="button">Edit</a>
-                                            <a href="#" class="alert button">Delete</a>
-                                        </td>
+                                        @if(Auth::check() && Auth::user()->role == 'admin')
+                                            <td>
+                                                <a href="#" class="button edit-button">Edit</a>
+                                                <a href="#" class="alert button delete-button">Delete</a>
+                                            </td>
+                                        @endif
                                     </tr>
                                 @endforeach
                             @else

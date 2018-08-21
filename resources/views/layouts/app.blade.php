@@ -25,6 +25,7 @@
     <script src="{{ asset('js/app.js') }}"></script>
     <script>
         $(document).foundation();
+        $(".chosen-select").chosen({disable_search_threshold: 10});
     </script>
 
 </body>

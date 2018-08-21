@@ -32,7 +32,7 @@ class PageController extends Controller
     {
         $events = Event::all();
 
-        return view('events')->with('events', $events);
+        return view('events.index')->with('events', $events);
     }
 
     public function activities_index()

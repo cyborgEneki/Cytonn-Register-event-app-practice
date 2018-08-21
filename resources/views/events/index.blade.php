@@ -11,9 +11,13 @@
 
             <div class="grid-x">
 
-                <div style="margin:0 auto; width: 900px;">
+                <div class="form_table_arrangement">
 
-                    <table>
+                    @if(Auth::check() && Auth::user()->role == 'admin')
+                        <a href="/events/create" class="button">Add Event</a>
+                    @endif
+
+                    <table class="table-font">
                         <thead>
                         <tr>
                             <th>#</th>
@@ -22,9 +26,6 @@
                             <th>Start Date</th>
                             <th>Start Time</th>
                             <th>Location</th>
-                            @if(Auth::check() && Auth::user()->role == 'admin')
-                                <th>Actions</th>
-                            @endif
                         </tr>
                         </thead>
                         <tbody>
@@ -38,10 +39,6 @@
                                     <td>{{$event->start_date}}</td>
                                     <td>{{$event->start_time}}</td>
                                     <td>{{$event->location}}</td>
-                                    <td>
-                                        <a href="#" class="button">Edit</a>
-                                        <a href="#" class="alert button">Delete</a>
-                                    </td>
                                 </tr>
                             @endforeach
                         @else
@@ -57,7 +54,6 @@
 
         </div>
 
-    </div>
     </div>
 
 @endsection

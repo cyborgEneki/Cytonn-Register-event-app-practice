@@ -18,36 +18,35 @@ class EventsRepository
 
     public function getEvents()
     {
-        return Event::with('activities')->get();
+        $events = Event::with('activities')->get();
+
+        return $events;
     }
 
     public function getEvent($id)
     {
-        return Event::where('id', '=', $id)
-            ->with('activities')
-            ->first();
+        $event = Event::find($id);
+
+        return $event;
     }
 
     public function postNewEvent($request)
     {
-        $event = new Event();
 
-        $event->name = request('name');
-        $event->frequency = request('frequency');
-        $event->start_date = request('start_date');
-        $event->start_time = request('start_time');
-        $event->lead_start_date = request('lead_start_date');
-        $event->location = request('location');
-        $event->team_id = 7;
-        $event->category_id = 1;
+        $event = Event::create($request->except("activity_id"));
 
-        return $event->save();
+        foreach ($request["activity_id"] as $activity){
 
+            $event->activities()->attach($activity);
+
+        };
+
+        return $event;
     }
 
     public function editEvent($request, $event, $id)
     {
-        $event = Event::find($id);
+        $event = $this->getEvent($id);
 
         if ($event->count()) {
             $event->update($request->all());
@@ -61,7 +60,7 @@ class EventsRepository
     {
 
 
-        $event = Event::find($id);
+        $event = $this->getEvent($id);
 
         if ($event->count()) {
             $event->delete();
