@@ -25,7 +25,7 @@
 
                 <div class="email">
 
-                    <input id="email" type="email" placeholder="Email" autocomplete="off" name="Email" value="{{ old('email') }}" aria-describedby="emailHelpText" required>
+                    <input id="email" type="email" placeholder="Email" autocomplete="off" name="email" value="{{ old('email') }}" aria-describedby="emailHelpText" required>
 
                     @if ($errors->has('email'))
                         <span class="help-text" id="emailHelpText">

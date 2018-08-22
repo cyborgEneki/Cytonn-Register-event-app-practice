@@ -80,11 +80,15 @@ class RegisterController extends Controller
      */
     protected function register(Request $request)
     {
-        return User::create([
+
+//        dd($request->all());
+         User::create([
             'name' => $request['name'],
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
             'role' => $request['role'],
         ]);
+
+        return redirect("login");
     }
 }

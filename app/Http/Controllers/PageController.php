@@ -39,11 +39,11 @@ class PageController extends Controller
     {
         $activities = Activity::all();
 
-        return view('activities')->with('activities', $activities);
+        return view('activities.index')->with('activities', $activities);
     }
 
-    public function login_index()
-    {
-        return view('auth.login');
-    }
+//    public function login_index()
+//    {
+//        return view('auth.login');
+//    }
 }

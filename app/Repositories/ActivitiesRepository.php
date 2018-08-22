@@ -10,6 +10,7 @@ namespace App\Repositories;
 
 use App\Activity;
 use App\ActivityEvent;
+use http\Env\Request;
 
 class ActivitiesRepository
 {
@@ -19,15 +20,19 @@ class ActivitiesRepository
 
     public function getActivities()
     {
-        return Activity::all();
+        $activities = Activity::all();
+
+        return $activities;
     }
 
     public function getActivity($id)
     {
-        return Activity::findOrFail($id);
+        $activity = Activity::find($id);
+
+        return $activity;
     }
 
-    public function postNewActivity($request)
+    public function postNewActivity(Request $request)
     {
         $activity = Activity::create([
             'name' => $request['name'],
@@ -43,26 +48,22 @@ class ActivitiesRepository
 
     }
 
-    public function editActivity($request, $activity, $id)
+    public function updateActivity($request, $id)
     {
-        $activity = Activity::find($id);
+        $activity = $this->getActivity($id);
 
-        if ($activity->count()) {
-            $activity->update($request->except('pivot'));
-            return true;
-        } else {
-            return false;
-        }
+        $activity->name = $request->get('name');
+        $activity->description = $request->get('description');
+
+        return $activity->save();
     }
 
-    public function deleteActivity(Activity $activity, $id)
+    public function deleteActivity($id)
     {
-
-        $activity = Activity::findOrFail($id);
+        $activity = $this->getActivity($id);
 
         $activity->delete();
 
-        return true;
-
+        return $activity;
     }
 }

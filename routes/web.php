@@ -14,16 +14,22 @@ Auth::routes();
 Route::get('/home', 'PageController@index')->name('home');
 Route::get('/events_blade', 'PageController@events_index')->name('home');
 Route::get('/activities_blade', 'PageController@activities_index')->name('home');
-Route::get('/login_blade', 'PageController@login_index')->name('home');
 
 Route::resource('events', 'EventController')->only([
     'create', 'edit'
 ]);
 
-Route::resource('activities', 'ActivityController');
+Route::resource('events', 'EventController')->only([
+    'create', 'edit'
+]);
 
-Route::get('/', 'AppController@getApp')
+Route::get('/', 'PageController@index')
     ->middleware('auth');
+
+//Route::get('/', 'AppController@getApp')
+//    ->middleware('auth');
+
+
 
 Route::get('/{any}', 'AppController@getApp')->where('any', '.*');
 

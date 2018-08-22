@@ -9,7 +9,7 @@
 namespace App\Repositories;
 
 use App\Event;
-use http\Env\Request;
+use Illuminate\Http\Request;
 
 class EventsRepository
 {
@@ -44,19 +44,11 @@ class EventsRepository
         return $event;
     }
 
-    public function editEvent(Request $request, Event $event)
+    public function updateEvent(Request $request, Event $event)
     {
-//        $event->update($request->except("activity_id"));
-//
-//        $event->activities()->detach();
-
-//        $event = Event::create($request->except("activity_id"));
-//
-//        foreach ($request["activity_id"] as $activity){
-//
-//            $event->activities()->attach($activity);
-//
-//        };
+        $event->update($request->except("activity_id"));
+//      dd( $request->all());
+      $event->activities()->sync($request["activity_id"]);
 
         return $event;
     }
@@ -64,9 +56,9 @@ class EventsRepository
     public function deleteEvent($id)
     {
         $event = $this->getEvent($id);
-
-        $event->activities()->delete();
-
+        $event->activities()->detach();
+        $event->delete();
+        
         return $event;
     }
 }

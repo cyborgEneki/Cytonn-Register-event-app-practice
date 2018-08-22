@@ -28,8 +28,8 @@
                 <label>Activities
                     <select multiple id="activity_id" name="activity_id[]">
                         <option value="">Select Activity</option>
-                        @foreach($data['activities'] as $activity)
-                            <option value="{{ $activity->id }}">{{ $activity->name }}</option>
+                        @foreach($data['activities'] as $data['activity'])
+                            <option value="{{ $data['activity']->id }}">{{ $data['activity']->name }}</option>
                         @endforeach
                     </select>
                 </label>

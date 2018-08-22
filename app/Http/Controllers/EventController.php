@@ -23,7 +23,7 @@ class EventController extends Controller
         return response()->json($events);
     }
 
-    public function store($request)
+    public function store(Request $request)
     {
         $this->validate($request, [
             'name' => 'required',
@@ -85,7 +85,7 @@ class EventController extends Controller
             'lead_start_date' => 'required',
         ]);
 
-        $this->eventsRepository->editEvent($request, $event);
+        $this->eventsRepository->updateEvent($request, $event);
 
         return redirect('/events_blade')->with('success', 'Event updated successfully');
     }

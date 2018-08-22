@@ -21,5 +21,4 @@ Route::resource('users', 'API\UserController');
 
 Route::apiResource('events', 'EventController');
 
-
-
+Route::apiresource('activities', 'ActivityController');
