@@ -30,12 +30,10 @@ class UserController extends Controller
         $users = $this->usersRepository->getUsers();
 
         return response()->json($users);
-
     }
 
     public function store(UserRequest $request)
     {
-
         $this->usersRepository->postNewUser($request);
 
         return redirect('/users_blade')->with('success', 'User added successfully');
@@ -46,7 +44,6 @@ class UserController extends Controller
         $user = $this->usersRepository->getUser($id);
 
         return view('users.show')->with('user', $user);
-
     }
 
     public function create(Request $request)
@@ -61,22 +58,16 @@ class UserController extends Controller
         return view('users.edit')->with('user', $user);
     }
 
-    public function update(Request $request, $id)
+    public function update(UserRequest $request, User $user)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required',
-            'role' => 'required',
-        ]);
-
-        $this->usersRepository->updateUser($request, $id);
+        $this->usersRepository->updateUser($request, $user);
 
         return redirect('/users_blade')->with('success', 'User updated successfully');
     }
 
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        $this->usersRepository->deleteUser($id);
+        $this->usersRepository->deleteUser($user);
 
         return redirect('/users_blade')->with('success', 'User deleted successfully');
     }

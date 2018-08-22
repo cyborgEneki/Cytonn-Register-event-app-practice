@@ -44,20 +44,15 @@ class ActivitiesRepository
         return $activity;
     }
 
-    public function updateActivity($request, $id)
+    public function updateActivity($request, $activity)
     {
-        $activity = $this->getActivity($id);
+        return $activity->update($request->all());
 
-        $activity->name = $request->get('name');
-
-        $activity->description = $request->get('description');
-
-        return $activity->save();
     }
 
-    public function deleteActivity($id)
+    public function deleteActivity($activity)
     {
-        $activity = $this->getActivity($id);
+        $activity->events()->detach();
 
         $activity->delete();
 

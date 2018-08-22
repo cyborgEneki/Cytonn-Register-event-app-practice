@@ -53,10 +53,13 @@ class EventsRepository
         return $event;
     }
 
-    public function deleteEvent($id)
+    /**
+     * @param Event $event
+     * @return Event
+     * @throws \Exception
+     */
+    public function deleteEvent(Event $event)
     {
-        $event = $this->getEvent($id);
-
         $event->activities()->detach();
 
         $event->delete();

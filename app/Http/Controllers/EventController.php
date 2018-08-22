@@ -2,20 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Activity;
 use App\Event;
 use App\Http\Requests\EventRequest;
 use App\Repositories\EventsRepository;
+use App\Repositories\ActivitiesRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
 {
     protected $eventsRepository;
+    protected $activitiesRepository;
 
-    public function __construct(EventsRepository $eventsRepository)
+    public function __construct(EventsRepository $eventsRepository, ActivitiesRepository $activitiesRepository)
     {
         $this->eventsRepository = $eventsRepository;
+        $this->activitiesRepository = $activitiesRepository;
     }
 
     public function index()
@@ -27,8 +29,6 @@ class EventController extends Controller
 
     public function store(EventRequest $eventRequest)
     {
-        $eventRequest->all();
-
         $this->eventsRepository->postNewEvent($eventRequest);
 
         return redirect('/events_blade')->with('success', 'Event added successfully');
@@ -38,7 +38,7 @@ class EventController extends Controller
     {
         $event = $this->eventsRepository->getEvent($id);
 
-        $activities = $event->activities()->get(); //From activities repository?
+        $activities = $this->activitiesRepository->getActivities();
 
         $data = [
             'event' => $event,
@@ -50,7 +50,7 @@ class EventController extends Controller
 
     public function create()
     {
-        $activities = Activity::all(); //Try calling this from the activities repository when I create it
+        $activities = $this->activitiesRepository->getActivities();
 
         return view ('events.create')->with('activities', $activities);
     }
@@ -59,7 +59,7 @@ class EventController extends Controller
     {
         $event = $this->eventsRepository->getEvent($id);
 
-        $activities = Activity::all(); //Try calling this from the activities repository when I create it
+        $activities = $this->activitiesRepository->getActivities();
 
         $data = [
             'event' => $event,
@@ -77,9 +77,14 @@ class EventController extends Controller
         return redirect('/events_blade')->with('success', 'Event updated successfully');
     }
 
-    public function destroy($id)
+    /**
+     * @param Event $event
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
+     */
+    public function destroy(Event $event)
     {
-        $this->eventsRepository->deleteEvent($id);
+        $this->eventsRepository->deleteEvent($event);
 
         return redirect('/events_blade')->with('success', 'Event deleted successfully');
     }

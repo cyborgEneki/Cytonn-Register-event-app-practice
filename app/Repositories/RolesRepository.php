@@ -46,6 +46,7 @@ class RolesRepository
     public function deleteRole(Role $role)
     {
         $role->users()->detach();
+
         return $role->delete();
 
     }
