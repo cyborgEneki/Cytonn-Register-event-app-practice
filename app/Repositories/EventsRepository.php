@@ -9,6 +9,7 @@
 namespace App\Repositories;
 
 use App\Event;
+use Illuminate\Http\Request;
 
 class EventsRepository
 {
@@ -18,56 +19,46 @@ class EventsRepository
 
     public function getEvents()
     {
-        return Event::with('activities')->get();
+        $events = Event::with('activities')->get();
+
+        return $events;
     }
 
     public function getEvent($id)
     {
-        return Event::where('id', '=', $id)
-            ->with('activities')
-            ->first();
-    }
-
-    public function postNewEvent($request)
-    {
-        $event = new Event();
-
-        $event->name = request('name');
-        $event->frequency = request('frequency');
-        $event->start_date = request('start_date');
-        $event->start_time = request('start_time');
-        $event->lead_start_date = request('lead_start_date');
-        $event->location = request('location');
-        $event->team_id = 7;
-        $event->category_id = 1;
-
-        return $event->save();
-
-    }
-
-    public function editEvent($request, $event, $id)
-    {
         $event = Event::find($id);
 
-        if ($event->count()) {
-            $event->update($request->all());
-            return true;
-        } else {
-            return false;
-        }
+        return $event;
     }
 
-    public function deleteEvent(Event $event, $id)
+    public function postNewEvent(Request $request)
     {
+        $event = Event::create($request->except("activity_id"));
 
+        foreach ($request["activity_id"] as $activity){
 
-        $event = Event::find($id);
+            $event->activities()->attach($activity);
 
-        if ($event->count()) {
-            $event->delete();
-            return true;
-        } else {
-            return false;
-        }
+        };
+
+        return $event;
+    }
+
+    public function updateEvent(Request $request, Event $event)
+    {
+        $event->update($request->except("activity_id"));
+//      dd( $request->all());
+      $event->activities()->sync($request["activity_id"]);
+
+        return $event;
+    }
+
+    public function deleteEvent($id)
+    {
+        $event = $this->getEvent($id);
+        $event->activities()->detach();
+        $event->delete();
+        
+        return $event;
     }
 }

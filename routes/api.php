@@ -19,6 +19,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::resource('users', 'API\UserController');
 
+Route::apiResource('events', 'EventController');
 
-
-
+Route::apiresource('activities', 'ActivityController');

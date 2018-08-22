@@ -8,51 +8,68 @@ use Illuminate\Http\Request;
 
 class ActivityController extends Controller
 {
-    protected $repo;
+    protected $activitiesRepository;
 
     public function __construct(ActivitiesRepository $activitiesRepository)
     {
-        $this->repo = $activitiesRepository;
+        $this->activitiesRepository = $activitiesRepository;
     }
 
     public function index()
     {
-        $activities = $this->repo->getActivities();
+        $activities = $this->activitiesRepository->getActivities();
 
         return response()->json($activities);
     }
 
+    public function store($request)
+    {
+        $this->validate($request, [
+            'name' => 'required',
+            'description' => 'required',
+        ]);
+
+        $this->activitiesRepository->postNewActivity($request);
+
+        return redirect('/activities_blade')->with('success', 'Activity added successfully');
+    }
+
     public function show($id)
     {
-        $activity = $this->repo->getActivity($id);
+        $activity = $this->activitiesRepository->getActivity($id);
 
-        return response()->json($activity);
+        return view('activities.show')->with('activity', $activity);
+
     }
 
     public function create(Request $request)
     {
-        $activity = $this->repo->postNewActivity($request);
-
-        return response()->json($activity, 201);
+        return view ('activities.create');
     }
 
-    public function update(Request $request, Activity $activity, $id)
+    public function edit($id)
+    {
+        $activity = $this->activitiesRepository->getActivity($id);
+
+        return view('activities.edit')->with('activity', $activity);
+    }
+
+    public function update(Request $request, $id)
     {
         $this->validate($request, [
             'name' => 'required',
+            'description' => 'required',
         ]);
 
-        $result = $this->repo->editActivity($request, $activity, $id);
+        $this->activitiesRepository->updateActivity($request, $id);
 
-        return $result ? response()->json(['status' => 'success', 'msg' => 'Activity updated successfully']) :
-            response()->json(['status' => 'error', 'msg' => 'Error in updating activity']);
+        return redirect('/activities_blade')->with('success', 'Activity updated successfully');
     }
 
-    public function destroy(Activity $event, $id)
+    public function destroy($id)
     {
-        $result = $this->repo->deleteActivity($event, $id);
+        $this->activitiesRepository->deleteActivity($id);
 
-        return $result ? response()->json(['status' => 'success', 'msg' => 'Activity deleted successfully']) :
-            response()->json(['status' => 'error', 'msg' => 'Error in deleting activity']);
+        return redirect('/activities_blade')->with('success', 'Activity deleted successfully');
     }
 }

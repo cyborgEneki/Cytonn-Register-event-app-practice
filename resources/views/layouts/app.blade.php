@@ -15,17 +15,28 @@
 
 </head>
 <body>
-    <div id="app">
+<div id="app">
 
-        @yield('content')
+    <div class="grid-x">
+        <div class="small-2 medium-2">
+            @include ("layouts.sidebar")
+        </div>
 
+        <div class="small-10 medium-10">
+
+            @include ('layouts.messages')
+            @yield('content')
+
+        </div>
     </div>
+</div>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
-    <script>
-        $(document).foundation();
-    </script>
+<!-- Scripts -->
+<script src="{{ asset('js/app.js') }}"></script>
+
+<script>
+    $(document).foundation();
+</script>
 
 </body>
 </html>

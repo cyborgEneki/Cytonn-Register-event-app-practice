@@ -2,81 +2,98 @@
 
 namespace App\Http\Controllers;
 
+use App\Activity;
 use App\Event;
 use App\Repositories\EventsRepository;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
 {
-    protected $repo;
+    protected $eventsRepository;
 
     public function __construct(EventsRepository $eventsRepository)
     {
-        $this->repo = $eventsRepository;
+        $this->eventsRepository = $eventsRepository;
     }
 
     public function index()
     {
-        $events = $this->repo->getEvents();
+        $events = $this->eventsRepository->getEvents();
 
         return response()->json($events);
     }
 
-    public function store()
+    public function store(Request $request)
     {
-//
+        $this->validate($request, [
+            'name' => 'required',
+            'frequency' => 'required',
+            'start_date' => 'required',
+            'start_time' => 'required',
+            'location' => 'required',
+            'lead_start_date' => 'required',
+        ]);
+
+        $this->eventsRepository->postNewEvent($request);
+
+        return redirect('/events_blade')->with('success', 'Event added successfully');
     }
 
     public function show($id)
     {
-        $event = $this->repo->getEvent($id);
+        $event = $this->eventsRepository->getEvent($id);
 
-        return response()->json($event);
+        $activities = $event->activities()->get(); //From activities repository?
+
+        $data = [
+            'event' => $event,
+            'activities' => $activities
+        ];
+
+        return view('events.show')->with('data', $data);
     }
 
-    public function create(Request $request)
+    public function create()
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'frequency' => 'required',
-            'start_date' => 'required',
-            'start_time' => 'required',
-            'lead_start_date' => 'required',
-            'location' => 'required',
-        ]);
+        $activities = Activity::all(); //Try calling this from the activities repository when I create it
 
-        $event = $this->repo->postNewEvent($request);
-
-        return response()->json($event, 201);
+        return view ('events.create')->with('activities', $activities);
     }
 
     public function edit($id)
     {
-//
+        $event = $this->eventsRepository->getEvent($id);
+
+        $activities = Activity::all(); //Try calling this from the activities repository when I create it
+
+        $data = [
+            'event' => $event,
+            'activities' => $activities
+        ];
+
+        return view('events.edit')->with('data', $data);
     }
 
-    public function update(Request $request, Event $event, $id)
+    public function update(Request $request, Event $event)
     {
         $this->validate($request, [
             'name' => 'required',
             'frequency' => 'required',
             'start_date' => 'required',
             'start_time' => 'required',
-            'lead_start_date' => 'required',
             'location' => 'required',
+            'lead_start_date' => 'required',
         ]);
 
-        $result = $this->repo->editEvent($request, $event, $id);
+        $this->eventsRepository->updateEvent($request, $event);
 
-        return $result ? response()->json(['status' => 'success', 'msg' => 'Event updated successfully']) :
-            response()->json(['status' => 'error', 'msg' => 'Error in updating event']);
+        return redirect('/events_blade')->with('success', 'Event updated successfully');
     }
 
-    public function destroy(Event $event, $id)
+    public function destroy($id)
     {
-        $result = $this->repo->deleteEvent($event, $id);
+        $this->eventsRepository->deleteEvent($id);
 
-        return $result ? response()->json(['status' => 'success', 'msg' => 'Event deleted successfully']) :
-            response()->json(['status' => 'error', 'msg' => 'Error in deleting event']);
+        return redirect('/events_blade')->with('success', 'Event deleted successfully');
     }
 }

@@ -59838,67 +59838,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {};
-    },
-    created: function created() {
-        this.$store.dispatch('loadEvents');
-    },
-
-
-    methods: {
-        goToEdit: function goToEdit(event) {
-            this.$router.push({ name: "EditEvent", query: { id: event.id } });
-        },
-
-        goToView: function goToView(event) {
-            this.$router.push({ name: "ViewEvent", query: { id: event.id } });
-        },
-
-        goToDelete: function goToDelete(event) {
-            this.$router.push({ name: "DeleteEvent", query: { id: event.id } });
-        }
-    },
-
-    computed: {
-        eventsLoadStatus: function eventsLoadStatus() {
-            return this.$store.getters.getEventsLoadStatus;
-        },
-        events: function events() {
-            return this.$store.getters.getEvents;
-        },
-
-        filteredEvents: function filteredEvents() {
-            if (this.events.length) {
-                return this.events;
-            }
-        }
-    }
+    name: "ListEvents"
 });
 
 /***/ }),
@@ -59909,141 +59851,54 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { attrs: { id: "list-events" } }, [
-    _c(
-      "span",
-      {
-        directives: [
-          {
-            name: "show",
-            rawName: "v-show",
-            value: _vm.eventsLoadStatus == 1,
-            expression: "eventsLoadStatus == 1"
-          }
-        ]
-      },
-      [_vm._v("Loading")]
-    ),
-    _vm._v(" "),
-    _c(
-      "span",
-      {
-        directives: [
-          {
-            name: "show",
-            rawName: "v-show",
-            value: _vm.eventsLoadStatus == 2,
-            expression: "eventsLoadStatus == 2"
-          }
-        ]
-      },
-      [_vm._v("Events loaded successfully!")]
-    ),
-    _vm._v(" "),
-    _c(
-      "span",
-      {
-        directives: [
-          {
-            name: "show",
-            rawName: "v-show",
-            value: _vm.eventsLoadStatus == 3,
-            expression: "eventsLoadStatus == 3"
-          }
-        ]
-      },
-      [_vm._v("Events loaded unsuccessfully!")]
-    ),
-    _vm._v(" "),
-    _c("table", { staticClass: "hover unstriped" }, [
-      _vm._m(0),
-      _vm._v(" "),
-      _c(
-        "tbody",
-        _vm._l(_vm.filteredEvents, function(event, index) {
-          return _c("tr", [
-            _c("td", [_vm._v(_vm._s(index + 1))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(event.name))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(event.frequency))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(event.start_date))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(event.start_time))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(event.location))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(event.lead_start_date))]),
-            _vm._v(" "),
-            _c("td", [
-              _c(
-                "button",
-                {
-                  staticClass: "button primary",
-                  on: {
-                    click: function($event) {
-                      _vm.goToView(event)
-                    }
-                  }
-                },
-                [_vm._v("\n                    Show\n                ")]
-              ),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass: "button warning",
-                  on: {
-                    click: function($event) {
-                      _vm.goToEdit(event)
-                    }
-                  }
-                },
-                [_vm._v("\n                    Edit\n                ")]
-              ),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass: "button alert",
-                  on: {
-                    click: function($event) {
-                      _vm.goToDelete(event)
-                    }
-                  }
-                },
-                [_vm._v("\n                    Delete\n                ")]
-              )
-            ])
-          ])
-        })
-      )
-    ])
-  ])
+  return _vm._m(0)
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", [_vm._v("#")]),
+    return _c("div", [
+      _c("h4", { staticClass: "form-heading" }, [_vm._v("Add a new event")]),
+      _vm._v(" "),
+      _c("form", { staticClass: "form-body" }, [
+        _vm._v("\n        Event name:"),
+        _c("br"),
         _vm._v(" "),
-        _c("th", [_vm._v("Event Name")]),
+        _c("input", { attrs: { type: "text", name: "name" } }),
         _vm._v(" "),
-        _c("th", [_vm._v("Frequency")]),
+        _c("br"),
+        _vm._v("\n        Frequency:"),
+        _c("br"),
         _vm._v(" "),
-        _c("th", [_vm._v("Start Date")]),
+        _c("input", { attrs: { type: "text", name: "frequency" } }),
+        _vm._v("\n        Start Date:"),
+        _c("br"),
         _vm._v(" "),
-        _c("th", [_vm._v("Start Time")]),
+        _c("input", { attrs: { type: "text", name: "start_date" } }),
+        _vm._v("\n        Start Time:"),
+        _c("br"),
         _vm._v(" "),
-        _c("th", [_vm._v("Location")]),
+        _c("input", { attrs: { type: "text", name: "start_time" } }),
+        _vm._v("\n        Location:"),
+        _c("br"),
         _vm._v(" "),
-        _c("th", [_vm._v("Lead Start Date")]),
+        _c("input", { attrs: { type: "text", name: "location" } }),
+        _vm._v("\n        Lead Start Date:"),
+        _c("br"),
         _vm._v(" "),
-        _c("th", [_vm._v("Actions")])
+        _c("input", { attrs: { type: "text", name: "lead_start_date" } }),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v("\n        Activities:"),
+        _c("br"),
+        _vm._v(" "),
+        _c("input", { attrs: { type: "text", name: "activities" } }),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-button",
+          attrs: { type: "submit", value: "Submit" }
+        })
       ])
     ])
   }

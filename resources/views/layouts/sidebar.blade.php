@@ -13,4 +13,18 @@
        onclick="event.preventDefault();document.getElementById('logout-form').submit();">
         Logout
     </a>
+
+
+
+    <ul class="dropdown menu" data-dropdown-menu>
+        <li>
+            <a href="#">User Management</a>
+            <ul class="menu">
+                <li><a href="#">Users</a></li>
+
+                <li><a href="#">Roles</a></li>
+                <!-- ... -->
+            </ul>
+        </li>
+    </ul>
 </div>
