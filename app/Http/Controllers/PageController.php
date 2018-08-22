@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Activity;
 use App\Event;
+use App\Role;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PageController extends Controller
 {
@@ -42,8 +45,22 @@ class PageController extends Controller
         return view('activities.index')->with('activities', $activities);
     }
 
-//    public function login_index()
-//    {
-//        return view('auth.login');
-//    }
+    public function roles_index()
+    {
+        $roles = Role::all();
+
+        return view('roles.index')->with('roles', $roles);
+    }
+
+    public function users_index()
+    {
+        $users = User::orderBy('name', 'asc')->paginate(15);
+
+        return view('users.index')->with('users', $users);
+    }
+
+    public function login_index()
+    {
+        return view('auth.login');
+    }
 }

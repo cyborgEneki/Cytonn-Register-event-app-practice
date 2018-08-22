@@ -9,7 +9,6 @@
 namespace App\Repositories;
 
 use App\Activity;
-use App\ActivityEvent;
 use Illuminate\Http\Request;
 
 class ActivitiesRepository

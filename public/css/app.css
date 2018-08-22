@@ -9846,7 +9846,7 @@ body {
 
 body h1 {
   font-size: 100px;
-  font-family: 'Caveat+Brush';
+  font-family: 'Quicksand';
 }
 
 body .auth_back {
@@ -9920,7 +9920,7 @@ body .sidebar_admin {
   /* Disable horizontal scroll */
   padding-top: 20px;
   width: 15%;
-  font-family: 'Caveat+Brush';
+  font-family: 'Quicksand';
   /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
 }
 
@@ -9941,7 +9941,7 @@ body .sidebar_admin a.active {
 }
 
 body .sidebar_admin .main_admin {
-  font-family: 'Caveat+Brush';
+  font-family: 'Quicksand';
 }
 
 @media screen and (max-height: 450px) {
@@ -9959,7 +9959,7 @@ body .form-heading {
 }
 
 body .form-body {
-  font-family: 'Caveat+Brush';
+  font-family: 'Quicksand';
   margin: 0 auto;
   width: 500px;
 }
@@ -9975,7 +9975,7 @@ body .form-body .form-button {
   font-size: 16px;
   margin: 4px 2px;
   border-radius: 12px;
-  font-family: 'Caveat+Brush';
+  font-family: 'Quicksand';
   width: 100%;
 }
 
@@ -9990,12 +9990,12 @@ body .add-button {
   font-size: 16px;
   margin: 4px 2px;
   border-radius: 12px;
-  font-family: 'Caveat+Brush';
+  font-family: 'Quicksand';
   width: 100%;
 }
 
 body .table-font {
-  font-family: 'Caveat+Brush';
+  font-family: 'Quicksand';
 }
 
 body .edit-button {
@@ -10009,7 +10009,7 @@ body .edit-button {
   font-size: 16px;
   margin: 4px 2px;
   border-radius: 12px;
-  font-family: 'Caveat+Brush';
+  font-family: 'Quicksand';
 }
 
 body .delete-button {
@@ -10023,7 +10023,7 @@ body .delete-button {
   font-size: 16px;
   margin: 4px 2px;
   border-radius: 12px;
-  font-family: 'Caveat+Brush';
+  font-family: 'Quicksand';
 }
 
 body .form_table_arrangement {

@@ -1,26 +1,23 @@
 <template>
     <div>
+        <table class="table-font">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Activity Name</th>
+                <th>Description</th>
+            </tr>
+            </thead>
+            <tbody>
 
-        <h4 class="form-heading">Add a new event</h4>
-        <form class="form-body">
-            Event name:<br>
-            <input type="text" name="name">
-            <br>
-            Frequency:<br>
-            <input type="text" name="frequency">
-            Start Date:<br>
-            <input type="text" name="start_date">
-            Start Time:<br>
-            <input type="text" name="start_time">
-            Location:<br>
-            <input type="text" name="location">
-            Lead Start Date:<br>
-            <input type="text" name="lead_start_date">
-            <br>
-            Activities:<br>
-            <input type="text" name="activities">
-            <input class="form-button" type="submit" value="Submit">
-        </form>
+            <tr>
+                <td>{{ ($activities ->currentpage()-1) * $activities ->perpage() + $loop->index + 1 }}</td>
+                <td><a href="/api/activities/{{$activity->id}}">{{$activity->name}}</a></td>
+                <td>{{$activity->description}}</td>
+            </tr>
+
+            </tbody>
+        </table>
     </div>
 </template>
 

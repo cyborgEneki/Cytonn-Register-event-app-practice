@@ -3,10 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Role;
+use App\Repositories\RolesRepository;
 use Illuminate\Http\Request;
 
 class RoleController extends Controller
 {
+    protected $rolesRepository;
+
+    public function __construct(RolesRepository $rolesRepository)
+    {
+        $this->rolesRepository = $rolesRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +22,9 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
+        $roles = $this->rolesRepository->getRoles();
+
+        return response()->json($roles);
     }
 
     /**
@@ -24,7 +34,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        return view ('roles.create');
     }
 
     /**
@@ -35,7 +45,15 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'display_name' => 'required',
+            'description' => 'required',
+        ]);
+
+        $this->rolesRepository->postNewRole($request);
+
+        return redirect('/roles_blade')->with('success', 'Role added successfully');
     }
 
     /**
@@ -44,20 +62,24 @@ class RoleController extends Controller
      * @param  \App\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function show(Role $role)
+    public function show($id)
     {
-        //
+        $role = $this->rolesRepository->getRole($id);
+
+        return view('roles.show')->with('role', $role);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Role  $role
+     * @param $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Role $role)
+    public function edit($id)
     {
-        //
+        $role = $this->rolesRepository->getRole($id);
+
+        return view('roles.edit')->with('role', $role);
     }
 
     /**
@@ -69,7 +91,15 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'display_name' => 'required',
+            'description' => 'required',
+        ]);
+
+        $this->rolesRepository->updateRole($request, $role);
+
+        return redirect('/roles_blade')->with('success', 'Role updated successfully');
     }
 
     /**
@@ -80,6 +110,8 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
-        //
+        $this->rolesRepository->deleteRole($role);
+
+        return redirect('/roles_blade')->with('success', 'Role deleted successfully');
     }
 }

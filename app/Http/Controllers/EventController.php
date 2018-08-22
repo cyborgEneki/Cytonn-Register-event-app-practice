@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Activity;
 use App\Event;
+use App\Http\Requests\EventRequest;
 use App\Repositories\EventsRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
 {
@@ -23,18 +25,11 @@ class EventController extends Controller
         return response()->json($events);
     }
 
-    public function store(Request $request)
+    public function store(EventRequest $eventRequest)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'frequency' => 'required',
-            'start_date' => 'required',
-            'start_time' => 'required',
-            'location' => 'required',
-            'lead_start_date' => 'required',
-        ]);
+        $eventRequest->all();
 
-        $this->eventsRepository->postNewEvent($request);
+        $this->eventsRepository->postNewEvent($eventRequest);
 
         return redirect('/events_blade')->with('success', 'Event added successfully');
     }
@@ -74,16 +69,8 @@ class EventController extends Controller
         return view('events.edit')->with('data', $data);
     }
 
-    public function update(Request $request, Event $event)
+    public function update(EventRequest $request, Event $event)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'frequency' => 'required',
-            'start_date' => 'required',
-            'start_time' => 'required',
-            'location' => 'required',
-            'lead_start_date' => 'required',
-        ]);
 
         $this->eventsRepository->updateEvent($request, $event);
 

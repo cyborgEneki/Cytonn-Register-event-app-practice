@@ -26,7 +26,7 @@
                 <br>
                 <label>Activities
                     <select multiple id="activity_id" name="activity_id[]">
-                        <option value="">Select Activity</option>
+                        <option value>Select Activity</option>
                         @foreach($activities as $activity)
                             <option value="{{ $activity->id }}">{{ $activity->name }}</option>
                         @endforeach

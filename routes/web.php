@@ -14,12 +14,23 @@ Auth::routes();
 Route::get('/home', 'PageController@index')->name('home');
 Route::get('/events_blade', 'PageController@events_index')->name('home');
 Route::get('/activities_blade', 'PageController@activities_index')->name('home');
+Route::get('/roles_blade', 'PageController@roles_index')->name('home');
+Route::get('/users_blade', 'PageController@users_index')->name('home');
+Route::get('/login_blade', 'PageController@login_index')->name('home');
 
 Route::resource('events', 'EventController')->only([
     'create', 'edit'
 ]);
 
 Route::resource('activities', 'ActivityController')->only([
+    'create', 'edit'
+]);
+
+Route::resource('roles', 'RoleController')->only([
+    'create', 'edit'
+]);
+
+Route::resource('users', 'UserController')->only([
     'create', 'edit'
 ]);
 

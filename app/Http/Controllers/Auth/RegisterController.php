@@ -87,6 +87,6 @@ class RegisterController extends Controller
             'role' => $request['role'],
         ]);
 
-        return redirect("login");
+        return redirect("login_blade");
     }
 }

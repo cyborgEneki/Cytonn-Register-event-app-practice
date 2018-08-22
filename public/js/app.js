@@ -59835,9 +59835,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "ListEvents"
@@ -59847,64 +59844,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("h4", { staticClass: "form-heading" }, [_vm._v("Add a new event")]),
-      _vm._v(" "),
-      _c("form", { staticClass: "form-body" }, [
-        _vm._v("\n        Event name:"),
-        _c("br"),
-        _vm._v(" "),
-        _c("input", { attrs: { type: "text", name: "name" } }),
-        _vm._v(" "),
-        _c("br"),
-        _vm._v("\n        Frequency:"),
-        _c("br"),
-        _vm._v(" "),
-        _c("input", { attrs: { type: "text", name: "frequency" } }),
-        _vm._v("\n        Start Date:"),
-        _c("br"),
-        _vm._v(" "),
-        _c("input", { attrs: { type: "text", name: "start_date" } }),
-        _vm._v("\n        Start Time:"),
-        _c("br"),
-        _vm._v(" "),
-        _c("input", { attrs: { type: "text", name: "start_time" } }),
-        _vm._v("\n        Location:"),
-        _c("br"),
-        _vm._v(" "),
-        _c("input", { attrs: { type: "text", name: "location" } }),
-        _vm._v("\n        Lead Start Date:"),
-        _c("br"),
-        _vm._v(" "),
-        _c("input", { attrs: { type: "text", name: "lead_start_date" } }),
-        _vm._v(" "),
-        _c("br"),
-        _vm._v("\n        Activities:"),
-        _c("br"),
-        _vm._v(" "),
-        _c("input", { attrs: { type: "text", name: "activities" } }),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-button",
-          attrs: { type: "submit", value: "Submit" }
-        })
-      ])
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
+module.exports={render:function(){},staticRenderFns:[]}
 if (false) {
   module.hot.accept()
   if (module.hot.data) {

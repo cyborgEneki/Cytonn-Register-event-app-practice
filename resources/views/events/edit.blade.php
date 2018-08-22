@@ -6,7 +6,7 @@
 
         @if(Auth::check() && Auth::user()->role == 'admin')
 
-            <h4 class="form-heading">Add a new event</h4>
+            <h4 class="form-heading">Edit event</h4>
 
             <form class="form-body" method="post" action="/api/events/{{$data['event']->id}}">
                 @csrf
