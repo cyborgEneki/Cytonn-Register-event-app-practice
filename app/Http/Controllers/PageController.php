@@ -37,7 +37,7 @@ class PageController extends Controller
 
     public function activities_index()
     {
-        $activities = Activity::all();
+        $activities = Activity::orderBy('name', 'desc')->paginate(15);
 
         return view('activities.index')->with('activities', $activities);
     }

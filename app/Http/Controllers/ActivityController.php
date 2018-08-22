@@ -22,7 +22,7 @@ class ActivityController extends Controller
         return response()->json($activities);
     }
 
-    public function store($request)
+    public function store(Request $request)
     {
         $this->validate($request, [
             'name' => 'required',

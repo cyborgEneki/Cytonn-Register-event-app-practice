@@ -19,7 +19,7 @@ Route::resource('events', 'EventController')->only([
     'create', 'edit'
 ]);
 
-Route::resource('events', 'EventController')->only([
+Route::resource('activities', 'ActivityController')->only([
     'create', 'edit'
 ]);
 
