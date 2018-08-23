@@ -21,9 +21,8 @@ class PasswordCreated extends Mailable
      *
      * @return void
      */
-    public function __construct($user,$password)
+    public function __construct($user, $password)
     {
-        //
         $this->user = $user;
         $this->password = $password;
     }
@@ -35,11 +34,7 @@ class PasswordCreated extends Mailable
      */
     public function build()
     {
-
-
-
         return $this->view('emails.password')
-
             ->with([
                 'user'=>$this->user,
                 'password'=> $this->password

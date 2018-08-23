@@ -87,6 +87,15 @@ class RegisterController extends Controller
             'role' => $request['role'],
         ]);
 
-        return redirect("login_blade");
+        return redirect("/dashboard");
+    }
+
+    public function logout(Request $request)
+    {
+        $request->session()->flush();
+
+        $request->session()->regenerate();
+
+        return redirect('login_blade');
     }
 }

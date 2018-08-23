@@ -35,11 +35,12 @@ class EventsRepository
     {
         $event = Event::create($request->except("activity_id"));
 
-        foreach ($request["activity_id"] as $activity) {
-
-            $event->activities()->attach($activity);
-
-        };
+        $event->activities()->sync($request["activity_id"]);
+//        foreach ($request["activity_id"] as $activity) {
+//
+//            $event->activities()->attach($activity);
+//
+//        };
 
         return $event;
     }

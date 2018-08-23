@@ -43,6 +43,11 @@ class RolesRepository
 
     }
 
+    /**
+     * @param Role $role
+     * @return bool|null
+     * @throws \Exception
+     */
     public function deleteRole(Role $role)
     {
         $role->users()->detach();

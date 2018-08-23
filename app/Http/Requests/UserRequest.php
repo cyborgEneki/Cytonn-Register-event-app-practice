@@ -13,6 +13,7 @@ class UserRequest extends FormRequest
      */
     public function authorize()
     {
+//        return auth()->user()->roles->where("name","admin")->exists();
         return true;
     }
 

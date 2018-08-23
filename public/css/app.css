@@ -9942,6 +9942,7 @@ body .sidebar_admin a.active {
 
 body .sidebar_admin .main_admin {
   font-family: 'Quicksand';
+  width: 100%;
 }
 
 @media screen and (max-height: 450px) {
