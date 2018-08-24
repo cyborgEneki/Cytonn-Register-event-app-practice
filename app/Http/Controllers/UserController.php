@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
-use \App\User;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\UsersRepository;
@@ -14,6 +14,7 @@ class UserController extends Controller
 
     /**
      * UserController constructor.
+     * @param UsersRepository $usersRepository
      */
     public function __construct(UsersRepository $usersRepository)
     {
@@ -32,6 +33,11 @@ class UserController extends Controller
         return response()->json($users);
     }
 
+    /**
+     * @param UserRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
+     */
     public function store(UserRequest $request)
     {
         $this->usersRepository->postNewUser($request);
@@ -65,6 +71,11 @@ class UserController extends Controller
         return redirect('/users_blade')->with('success', 'User updated successfully');
     }
 
+    /**
+     * @param User $user
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
+     */
     public function destroy(User $user)
     {
         $this->usersRepository->deleteUser($user);

@@ -10,11 +10,11 @@
             </thead>
             <tbody>
 
-            <tr>
-                <td>{{ ($activities ->currentpage()-1) * $activities ->perpage() + $loop->index + 1 }}</td>
-                <td><a href="/api/activities/{{$activity->id}}">{{$activity->name}}</a></td>
-                <td>{{$activity->description}}</td>
-            </tr>
+            <!--<tr>-->
+                <!--<td>{{ ($activities ->currentpage()-1) * $activities ->perpage() + $loop->index + 1 }}</td>-->
+                <!--<td><a href="/api/activities/{{$activity->id}}">{{$activity->name}}</a></td>-->
+                <!--<td>{{$activity->description}}</td>-->
+            <!--</tr>-->
 
             </tbody>
         </table>

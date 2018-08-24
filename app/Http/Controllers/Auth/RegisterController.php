@@ -87,7 +87,7 @@ class RegisterController extends Controller
             'role' => $request['role'],
         ]);
 
-        return redirect("/dashboard");
+        return redirect("/home");
     }
 
     public function logout(Request $request)
@@ -96,6 +96,6 @@ class RegisterController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect('login_blade');
+        return redirect('login');
     }
 }
