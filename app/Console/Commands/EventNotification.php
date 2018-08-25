@@ -78,22 +78,22 @@ class EventNotification extends Command
 
     private function updateEventLeadDate($event)
     {
-        if ($event->frequency == 'yearly') {
+        if ($event->frequency == 'Yearly') {
             $nextLeadStartDate = Carbon::createFromFormat('Y-m-d', $event->lead_start_date)->addYear();
             $event->update(["lead_start_date" => $nextLeadStartDate]);
         }
 
-        if ($event->frequency == 'monthly') {
+        if ($event->frequency == 'Monthly') {
             $nextLeadStartDate = Carbon::createFromFormat('Y-m-d', $event->lead_start_date)->addMonth();
 
             $event->update(["lead_start_date" => $nextLeadStartDate]);
         }
-        if ($event->frequency == 'daily') {
+        if ($event->frequency == 'Daily') {
             $nextLeadStartDate = Carbon::createFromFormat('Y-m-d', $event->lead_start_date)->addDay();
 
             $event->update(["lead_start_date" => $nextLeadStartDate]);
         }
-        if ($event->frequency == 'weekly') {
+        if ($event->frequency == 'Weekly') {
             $nextLeadStartDate = Carbon::createFromFormat('Y-m-d', $event->lead_start_date)->addWeek();
 
             $event->update(["lead_start_date" => $nextLeadStartDate]);

@@ -4,7 +4,7 @@
 
     <div class="form_table_arrangement">
 
-        @if(Auth::check() && Auth::user()->role == 'admin')
+        @if(Auth::check() && Auth::user()->isAdmin)
             <a href="/users/create" class="button">Add User</a>
         @endif
 
@@ -25,7 +25,11 @@
                         <td>{{ ($users ->currentpage()-1) * $users ->perpage() + $loop->index + 1 }}</td>
                         <td><a href="/api/users/{{$user->id}}">{{$user->name}}</a></td>
                         <td>{{$user->email}}</td>
-                        <td>{{$user->role}}</td>
+                        <td>
+                            @foreach($data['roles'] as $role)
+                                {{$role->name}}<br/>
+                            @endforeach
+                        </td>
                     </tr>
                 @endforeach
 

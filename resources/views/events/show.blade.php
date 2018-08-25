@@ -12,7 +12,7 @@
             {{$activity->name}}<br/>
         @endforeach
 
-        @if(Auth::check() && Auth::user()->role == 'admin')
+        @if(Auth::check() && Auth::user()->isAdmin)
             <a href="/events/{{$data['event']->id}}/edit" class="button edit-button">Edit</a>
         @endif
 

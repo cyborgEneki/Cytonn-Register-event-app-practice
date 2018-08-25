@@ -21,7 +21,7 @@ class UsersRepository
 
     public function getUsers()
     {
-        $users = User::all();
+        $users = User::with('roles');
 
         return $users;
     }
@@ -38,22 +38,38 @@ class UsersRepository
      * @return mixed
      * @throws \Exception
      */
-    public function postNewUser(Request $request)
+    public function createUser(Request $request)
     {
         $userDetails=$request->all();
 
         $userDetails["password"]=base64_encode(random_bytes(10));
 
+
         $user = User::create($userDetails);
+
+        $user->roles()->sync($request["role_id"]);
 
         Mail::to($user)->queue( new PasswordCreated($user,$userDetails["password"]));
 
         return $user;
     }
 
-    public function updateUser($request, User $user)
+//    public function postNewUserToRoleUser(Request $request)
+//    {
+//        $user = User::create($request->except("role_id"));
+//
+//        $user->roles()->sync($request["role_id"]);
+//
+//        return $user;
+//    }
+
+    public function updateUser(Request $request, User $user)
     {
-        return $user->update($request->all());
+        $user->update($request->except('role_id'));
+
+        $user->roles()->sync($request["role_id"]);
+
+        return $user;
     }
 
     /**

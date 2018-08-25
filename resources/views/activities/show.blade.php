@@ -5,7 +5,7 @@
         <h2>{{$activity->name}}</h2>
         <p>{{$activity->description}}</p>
 
-        @if(Auth::check() && Auth::user()->role == 'admin')
+        @if(Auth::check() && Auth::user()->isAdmin)
             <a href="/activities/{{$activity->id}}/edit" class="button edit-button">Edit</a>
         @endif
 

@@ -4,7 +4,7 @@
 
     <div class="form_table_arrangement">
 
-        @if(Auth::check() && Auth::user()->role == 'admin')
+        @if(Auth::check() && Auth::user()->isAdmin)
             <a href="/roles/create" class="button">Add Role</a>
         @endif
 

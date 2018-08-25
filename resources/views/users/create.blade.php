@@ -4,7 +4,7 @@
 
     <div class="form_table_arrangement">
 
-        @if(Auth::check() && Auth::user()->role == 'admin')
+        @if(Auth::check() && Auth::user()->isAdmin)
 
             <h4 class="form-heading">Add a new user</h4>
 
@@ -16,9 +16,15 @@
                 Email:<br>
                 <input type="text" name="email">
                 <br>
-                Role:<br>
-                <input type="text" name="role">
-                <br>
+                <label>Roles
+                    <select multiple id="role_id" name="role_id[]">
+                        <option value>Select Role</option>
+                        @foreach($roles as $role)
+                            <option value="{{ $role->id }}">{{ $role->name }}</option>
+                        @endforeach
+                    </select>
+                </label>
+
 
                 <input class="form-button" type="submit" value="Submit">
 

@@ -5,7 +5,7 @@
     <h2>{{$role->name}}</h2>
     <p>{{$role->description}}</p>
 
-    @if(Auth::check() && Auth::user()->role == 'admin')
+    @if(Auth::check() && Auth::user()->isAdmin)
         <a href="/roles/{{$role->id}}/edit" class="button edit-button">Edit</a>
     @endif
 

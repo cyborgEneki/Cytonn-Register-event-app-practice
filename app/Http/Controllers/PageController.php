@@ -6,19 +6,24 @@ use App\Activity;
 use App\Event;
 use App\Role;
 use App\User;
+use App\Repositories\RolesRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class PageController extends Controller
 {
+    protected $rolesRepository;
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(RolesRepository $rolesRepository)
     {
         $this->middleware('auth');
+
+        $this->rolesRepository = $rolesRepository;
     }
 
     /**
@@ -52,11 +57,18 @@ class PageController extends Controller
         return view('roles.index')->with('roles', $roles);
     }
 
-    public function users_index()
+    public function users_index(RolesRepository $rolesRepository)
     {
         $users = User::orderBy('name', 'asc')->paginate(15);
 
-        return view('users.index')->with('users', $users);
+        $roles = $this->rolesRepository->getRoles();
+
+        $data = [
+            'users' => $users,
+            'roles' => $roles
+        ];
+
+        return view('users.index')->with('data', $data);
     }
 
     public function login_index()

@@ -4,7 +4,7 @@
 
     <div class="form_table_arrangement">
 
-        @if(Auth::check() && Auth::user()->role == 'admin')
+        @if(Auth::check() && Auth::user()->isAdmin)
 
             <h4 class="form-heading">Add a new event</h4>
 
@@ -14,7 +14,14 @@
                 <input type="text" name="name">
                 <br>
                 Frequency:<br>
-                <input type="text" name="frequency">
+                <select name="frequency">
+                    <option value="">How often does this recur?</option>
+                    <option value="Yearly">Yearly</option>
+                    <option value="Monthly">Monthly</option>
+                    <option value="Weekly">Weekly</option>
+                    <option value="Daily">Daily</option>
+                    <option value="Once">Once</option>
+                </select>
                 Start Date:<br>
                 <input type="date" name="start_date">
                 Start Time:<br>

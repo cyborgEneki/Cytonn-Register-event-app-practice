@@ -4,7 +4,7 @@
 
     <div class="form_table_arrangement">
 
-        @if(Auth::check() && Auth::user()->role == 'admin')
+        @if(Auth::check() && Auth::user()->isAdmin)
 
             <h4 class="form-heading">Edit event</h4>
 
@@ -15,7 +15,14 @@
                 <input type="text" name="name" value="{{$data['event']->name}}">
                 <br>
                 Frequency:<br>
-                <input type="text" name="frequency" value="{{$data['event']->frequency}}">
+                <select name="frequency">
+                    <option value="">How often does this recur?</option>
+                    <option value="Yearly">Yearly</option>
+                    <option value="Monthly">Monthly</option>
+                    <option value="Weekly">Weekly</option>
+                    <option value="Daily">Daily</option>
+                    <option value="Once">Once</option>
+                </select>
                 Start Date:<br>
                 <input type="date" name="start_date" value="{{$data['event']->start_date}}">
                 Start Time:<br>

@@ -71,7 +71,6 @@ class EventController extends Controller
 
     public function update(EventRequest $request, Event $event)
     {
-
         $this->eventsRepository->updateEvent($request, $event);
 
         return redirect('/events_blade')->with('success', 'Event updated successfully');
