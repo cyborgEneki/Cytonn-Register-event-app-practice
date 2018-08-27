@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Activity;
 use App\Event;
 use App\Http\Requests\EventRequest;
 use App\Repositories\EventsRepository;
@@ -34,18 +35,9 @@ class EventController extends Controller
         return redirect('/events_blade')->with('success', 'Event added successfully');
     }
 
-    public function show($id)
+    public function show(Event $event)
     {
-        $event = $this->eventsRepository->getEvent($id);
-
-        $activities = $this->activitiesRepository->getActivities();
-
-        $data = [
-            'event' => $event,
-            'activities' => $activities
-        ];
-
-        return view('events.show')->with('data', $data);
+        return view('events.show',compact("event"));
     }
 
     public function create()
@@ -55,18 +47,12 @@ class EventController extends Controller
         return view ('events.create')->with('activities', $activities);
     }
 
-    public function edit($id)
+    public function edit(Event $event)
     {
-        $event = $this->eventsRepository->getEvent($id);
 
         $activities = $this->activitiesRepository->getActivities();
 
-        $data = [
-            'event' => $event,
-            'activities' => $activities
-        ];
-
-        return view('events.edit')->with('data', $data);
+        return view('events.edit')->with(['event'=>$event,'activities'=>$activities]);
     }
 
     public function update(EventRequest $request, Event $event)
@@ -87,4 +73,12 @@ class EventController extends Controller
 
         return redirect('/events_blade')->with('success', 'Event deleted successfully');
     }
+
+public  function updateActivityStatus(Event  $event, Activity $activity){
+
+    $event->activities()->updateExistingPivot($activity->id,["status"=>request('status')]);
+
+    return redirect()->back();
+
+}
 }

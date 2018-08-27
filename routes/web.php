@@ -24,9 +24,9 @@ Route::get('/register', 'LoginController@index');
 
 //Route::get('/logout', 'Auth\RegisterController@logout');
 
-Route::resource('events', 'EventController')->only([
-    'create', 'edit','index'
-]);
+Route::resource('events', 'EventController');
+Route::post('/events/{event}/{activity}', 'EventController@updateActivityStatus');
+
 
 Route::resource('activities', 'ActivityController')->only([
     'create', 'edit','index'
@@ -46,5 +46,5 @@ Route::get('/', 'PageController@index')
 Route::get('/home', 'PageController@index')
     ->middleware('auth');
 
-Route::get('/{any}', 'LoginController@index')->where('any', '.*'); //AppController@getApp
+Route::get('/{any}', 'PageController@login_index')->where('any', '.*'); //AppController@getApp
 

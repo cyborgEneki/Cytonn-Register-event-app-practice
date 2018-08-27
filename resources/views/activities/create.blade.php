@@ -16,7 +16,9 @@
                 Description:<br>
                 <input type="text" name="description">
                 <br>
-
+                Timeline:<br>
+                <input type="date" name="lead_end_date">
+                <br>
                 <input class="form-button" type="submit" value="Submit">
 
             </form>

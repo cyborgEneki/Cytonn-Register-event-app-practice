@@ -4,6 +4,7 @@
 
         <h2>{{$activity->name}}</h2>
         <p>{{$activity->description}}</p>
+        <p>{{$activity->lead_end_date}}</p>
 
         @if(Auth::check() && Auth::user()->isAdmin)
             <a href="/activities/{{$activity->id}}/edit" class="button edit-button">Edit</a>

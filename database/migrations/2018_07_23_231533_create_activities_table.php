@@ -17,8 +17,8 @@ class CreateActivitiesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('description');
+            $table->date('lead_end_date');
             $table->tinyInteger('checked')->default(0);
-            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

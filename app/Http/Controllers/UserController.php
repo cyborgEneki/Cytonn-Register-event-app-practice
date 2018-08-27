@@ -55,14 +55,7 @@ class UserController extends Controller
     {
         $user = $this->usersRepository->getUser($id);
 
-        $roles = $this->rolesRepository->getRoles();
-
-        $data = [
-            'user' => $user,
-            'roles' => $roles
-        ];
-
-        return view('users.show')->with('data', $data);
+        return view('users.show')->with('user', $user);
     }
 
     public function create()
@@ -76,14 +69,7 @@ class UserController extends Controller
     {
         $user = $this->usersRepository->getUser($id);
 
-        $roles = $this->rolesRepository->getRoles();
-
-        $data = [
-            'user' => $user,
-            'roles' => $roles
-        ];
-
-        return view('users.edit')->with('data', $data);
+        return view('users.edit')->with('user', $user);
     }
 
     public function update(UserRequest $request, User $user)

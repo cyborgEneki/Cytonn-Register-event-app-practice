@@ -30,10 +30,8 @@ class ActivityController extends Controller
         return redirect('/activities_blade')->with('success', 'Activity added successfully');
     }
 
-    public function show($id)
+    public function show(Activity $activity)
     {
-        $activity = $this->activitiesRepository->getActivity($id);
-
         return view('activities.show')->with('activity', $activity);
 
     }

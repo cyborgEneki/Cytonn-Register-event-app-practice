@@ -28,4 +28,8 @@ class PageController extends Controller
         return view('home');
     }
 
+    public function login_index()
+    {
+        return view('auth.login');
+    }
 }

@@ -22,8 +22,7 @@ class UsersRepository
 
     public function getUsers()
     {
-        $users = User::with('roles')
-            ->orderBy('name', 'asc')
+        $users = User::orderBy('name', 'asc')
             ->paginate(15);
 
         return $users;

@@ -19,27 +19,24 @@ class ActivitiesRepository
 
     public function getActivities()
     {
-        $activities = Activity::orderBy('name', 'desc')->paginate(15);
+        $activities = Activity::orderBy('name', 'desc')
+            ->paginate(15);
+
+//        $activities = Activity::all();
 
         return $activities;
     }
 
-    public function getActivity($id)
+    public function getActivity(Activity $activity)
     {
-        $activity = Activity::find($id);
+        $activity = Activity::findO($activity);
 
         return $activity;
     }
 
     public function postNewActivity(Request $request)
     {
-        $activity = new Activity;
-
-        $activity->name = $request->get('name');
-
-        $activity->description = $request->get('description');
-
-        $activity->save();
+        $activity = Activity::create($request->all());
 
         return $activity;
     }
