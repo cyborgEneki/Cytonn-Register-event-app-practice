@@ -19,7 +19,9 @@ class EventsRepository
 
     public function getEvents()
     {
-        $events = Event::with('activities')->get();
+        $events = Event::with('activities')
+            ->orderBy('start_date', 'desc')
+            ->paginate(15);
 
         return $events;
     }

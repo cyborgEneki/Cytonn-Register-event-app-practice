@@ -25,7 +25,7 @@ class RoleController extends Controller
     {
         $roles = $this->rolesRepository->getRoles();
 
-        return response()->json($roles);
+        return view('roles.index')->with('roles', $roles);
     }
 
     /**

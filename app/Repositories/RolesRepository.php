@@ -17,7 +17,8 @@ class RolesRepository
     {
     }
 
-    public function getRoles(){
+    public function getRoles()
+    {
         $roles = Role::all();
 
         return $roles;
@@ -40,7 +41,6 @@ class RolesRepository
     public function updateRole($request, Role $role)
     {
        return $role->update($request->all());
-
     }
 
     /**
@@ -53,6 +53,5 @@ class RolesRepository
         $role->users()->detach();
 
         return $role->delete();
-
     }
 }

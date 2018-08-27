@@ -20,7 +20,7 @@ class ActivityController extends Controller
     {
         $activities = $this->activitiesRepository->getActivities();
 
-        return response()->json($activities);
+        return view('activities.index')->with('activities', $activities);
     }
 
     public function store(ActivityRequest $request)

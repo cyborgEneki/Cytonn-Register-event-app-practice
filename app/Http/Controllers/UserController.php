@@ -36,7 +36,7 @@ class UserController extends Controller
     {
         $users = $this->usersRepository->getUsers();
 
-        return response()->json($users);
+        return view('users.index')->with('users', $users);
     }
 
     /**

@@ -22,7 +22,9 @@ class UsersRepository
 
     public function getUsers()
     {
-        $users = User::with('roles');
+        $users = User::with('roles')
+            ->orderBy('name', 'asc')
+            ->paginate(15);
 
         return $users;
     }
@@ -43,9 +45,9 @@ class UsersRepository
     {
         $userDetails=$request->all();
 
-//        $userDetails["password"]=base64_encode(random_bytes(10));
+        $userDetails["password"]=base64_encode(random_bytes(10));
 
-        $userDetails["password"] = Hash::make(str_random(8));
+//        $userDetails["password"] = Hash::make(str_random(8));
 
         $user = User::create($userDetails);
 

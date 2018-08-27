@@ -12,15 +12,15 @@
 
 Auth::routes();
 
-Route::get('/events_blade', 'PageController@events_index');
+Route::get('/events_blade', 'EventController@index');
 
-Route::get('/activities_blade', 'PageController@activities_index');
+Route::get('/activities_blade', 'ActivityController@index');
 
-Route::get('/roles_blade', 'PageController@roles_index');
+Route::get('/roles_blade', 'RoleController@index');
 
-Route::get('/users_blade', 'PageController@users_index');
+Route::get('/users_blade', 'UserController@index');
 
-Route::get('/register', 'PageController@login_index');
+Route::get('/register', 'LoginController@index');
 
 //Route::get('/logout', 'Auth\RegisterController@logout');
 
@@ -46,5 +46,5 @@ Route::get('/', 'PageController@index')
 Route::get('/home', 'PageController@index')
     ->middleware('auth');
 
-Route::get('/{any}', 'PageController@login_index')->where('any', '.*'); //AppController@getApp
+Route::get('/{any}', 'LoginController@index')->where('any', '.*'); //AppController@getApp
 

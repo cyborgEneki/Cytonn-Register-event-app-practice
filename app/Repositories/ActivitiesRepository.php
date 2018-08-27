@@ -19,7 +19,7 @@ class ActivitiesRepository
 
     public function getActivities()
     {
-        $activities = Activity::all();
+        $activities = Activity::orderBy('name', 'desc')->paginate(15);
 
         return $activities;
     }

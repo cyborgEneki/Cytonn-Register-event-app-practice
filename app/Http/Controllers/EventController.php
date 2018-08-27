@@ -24,7 +24,7 @@ class EventController extends Controller
     {
         $events = $this->eventsRepository->getEvents();
 
-        return response()->json($events);
+        return view('events.index')->with('events', $events);
     }
 
     public function store(EventRequest $eventRequest)
