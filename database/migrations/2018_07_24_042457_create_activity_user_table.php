@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateActivityCategoryTable extends Migration
+class CreateActivityUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateActivityCategoryTable extends Migration
      */
     public function up()
     {
-        Schema::create('activity_category', function (Blueprint $table) {
+        Schema::create('activity_user', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('activity_id');
-            $table->unsignedInteger('category_id');
+            $table->foreign('activity_id')->references('id')->on('activities');
+            $table->unsignedInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreateActivityCategoryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('activity_category');
+        Schema::dropIfExists('activity_user');
     }
 }
