@@ -52,11 +52,7 @@ class EventNotification extends Command
             $this->sendNotification($event);
 
             $this->updateEventLeadDate($event);
-
-
         }
-
-
     }
 
     public function sendNotification($event)

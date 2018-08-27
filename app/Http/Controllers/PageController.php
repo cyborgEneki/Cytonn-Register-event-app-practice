@@ -61,11 +61,8 @@ class PageController extends Controller
     {
         $users = User::orderBy('name', 'asc')->paginate(15);
 
-        $roles = $this->rolesRepository->getRoles();
-
         $data = [
             'users' => $users,
-            'roles' => $roles
         ];
 
         return view('users.index')->with('data', $data);

@@ -19,21 +19,21 @@
             </thead>
             <tbody>
 
-            @if (count($users)>0)
-                @foreach($users as $user)
+            @if (count($data['users'])>0)
+                @foreach($data['users'] as $user)
                     <tr>
-                        <td>{{ ($users ->currentpage()-1) * $users ->perpage() + $loop->index + 1 }}</td>
+                        <td>{{ ($data['users'] ->currentpage()-1) * $data['users'] ->perpage() + $loop->index + 1 }}</td>
                         <td><a href="/api/users/{{$user->id}}">{{$user->name}}</a></td>
                         <td>{{$user->email}}</td>
                         <td>
-                            @foreach($data['roles'] as $role)
+                            @foreach($user->roles as $role)
                                 {{$role->name}}<br/>
                             @endforeach
                         </td>
                     </tr>
                 @endforeach
 
-                {{$users->links()}}
+                {{$data['users']->links()}}
 
             @else
                 <p>No users found</p>

@@ -33,9 +33,8 @@ class User extends Authenticatable
             'user_id', 'role_id');
     }
 
-    public  function getIsAdminAttribute(){
-
+    public  function getIsAdminAttribute()
+    {
         return $this->roles()->get()->where("name","admin")->count()==1;
-
     }
 }

@@ -17,9 +17,6 @@
                 Email:<br>
                 <input type="text" name="email" value="{{$data['user']->email}}">
                 <br>
-                {{--Role:<br>--}}
-                {{--<input type="text" name="role" value="{{$user->role}}">--}}
-                {{--<br>--}}
                 <label>Roles
                     <select multiple id="role_id" name="role_id[]">
                         <option value="">Select Role</option>

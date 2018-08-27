@@ -12,6 +12,7 @@ use App\Mail\PasswordCreated;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Hash;
 
 class UsersRepository
 {
@@ -42,8 +43,9 @@ class UsersRepository
     {
         $userDetails=$request->all();
 
-        $userDetails["password"]=base64_encode(random_bytes(10));
+//        $userDetails["password"]=base64_encode(random_bytes(10));
 
+        $userDetails["password"] = Hash::make(str_random(8));
 
         $user = User::create($userDetails);
 
