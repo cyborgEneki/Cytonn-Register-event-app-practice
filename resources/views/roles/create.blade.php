@@ -8,7 +8,7 @@
 
             <h4 class="form-heading">Add a new role</h4>
 
-            <form class="form-body" method="post" action="/api/roles">
+            <form class="form-body" method="post" action="roles">
                 @csrf
                 Role name:<br>
                 <input type="text" name="name">

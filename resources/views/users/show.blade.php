@@ -12,7 +12,7 @@
     @endforeach
 
     @if(Auth::check() && Auth::user()->isAdmin)
-        <a href="/users/{{$user->id}}/edit" class="button edit-button">Edit</a>
+        <a href="users/{{$user->id}}/edit" class="button edit-button">Edit</a>
     @endif
 
     @if(Auth::check() && Auth::user()->isAdmin)

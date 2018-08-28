@@ -6,7 +6,7 @@
     <p>{{$role->description}}</p>
 
     @if(Auth::check() && Auth::user()->isAdmin)
-        <a href="/roles/{{$role->id}}/edit" class="button edit-button">Edit</a>
+        <a href="roles/{{$role->id}}/edit" class="button edit-button">Edit</a>
     @endif
 
     {!! Form::open(['action' => ['RoleController@destroy', $role->id, 'method' => 'POST' ]]) !!}

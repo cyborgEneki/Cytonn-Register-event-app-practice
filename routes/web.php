@@ -12,40 +12,37 @@
 
 Auth::routes();
 
-Route::get('/events_blade', 'EventController@index');
+Route::middleware('auth')->get('user', function (Request $request) {
+    return $request->user();
+});
 
-Route::get('/activities_blade', 'ActivityController@index');
+Route::get('events_blade', 'EventController@index');
 
-Route::get('/roles_blade', 'RoleController@index');
+Route::get('activities_blade', 'ActivityController@index');
 
-Route::get('/users_blade', 'UserController@index');
+Route::get('roles_blade', 'RoleController@index');
 
-Route::get('/register', 'LoginController@index');
+Route::get('users_blade', 'UserController@index');
+
+Route::get('register', 'LoginController@index');
 
 //Route::get('/logout', 'Auth\RegisterController@logout');
 
 Route::resource('events', 'EventController');
 
-Route::post('/events/{event}/{activity}', 'EventController@updateActivityStatus');
+Route::post('events/{event}/{activity}', 'EventController@updateActivityStatus');
 
+Route::resource('activities', 'ActivityController');
 
-Route::resource('activities', 'ActivityController')->only([
-    'create', 'edit'
-]);
+Route::resource('roles', 'RoleController');
 
-Route::resource('roles', 'RoleController')->only([
-    'create', 'edit'
-]);
-
-Route::resource('users', 'UserController')->only([
-    'create', 'edit'
-]);
+Route::resource('users', 'UserController');
 
 Route::get('/', 'PageController@index')
     ->middleware('auth');
 
-Route::get('/home', 'PageController@index')
+Route::get('home', 'PageController@index')
     ->middleware('auth');
 
-Route::get('/{any}', 'PageController@login_index')->where('any', '.*'); //AppController@getApp
+Route::get('/{any}', 'PageController@login_index')->where('any', '.*');
 

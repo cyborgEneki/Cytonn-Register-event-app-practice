@@ -32,7 +32,8 @@
                     <td>
                         <div class="grid-x">
                             <div class="medium-6">
-                                <a href="/events/{{$event->id}}/edit"><i class="fas fa-edit" style="color: dodgerblue;margin-right: 15px"></i></a>
+                                <a href="/events/{{$event->id}}/edit"><i class="fas fa-edit"
+                                                                         style="color: dodgerblue;margin-right: 15px"></i></a>
 
                             </div>
                             <div class="medium-6">
@@ -42,13 +43,6 @@
                                 {!! Form::close() !!}
                             </div>
                         </div>
-
-
-
-                        {{--<i class="fas fa-trash-alt" style="color: red;"></i>--}}
-
-                        {{--{!! Form::submit('Delete', ['class' => 'alert button delete-button']) !!}--}}
-
                     </td>
                 @endif
 
@@ -95,22 +89,15 @@
 
                     @if(Auth::check() && Auth::user()->isAdmin)
                         <td>
-                            {{--{{$activity->checked}}<br/>--}}
-                            {{--<input type="checkbox"> --}}
                             <activity-active id="{{$activity->id}}" checked="{{$activity->checked}}"></activity-active>
                         </td>
                     @endif
-                    {{--@if($activity->getStatus($event) == 'ontime')--}}
                     <td>
-
                         <div class="grid-x">
                             <div class="medium-6" style="padding-top: 10px;">
                                 @if($activity->pivot->status==0)
-
                                     {!! $activity->getStatus($event) !!}
-
                                 @endif
-
                             </div>
                             <div class="medium-6">
 
@@ -146,21 +133,12 @@
                     <td>
                         <a href="#"><i class="fas fa-eye"></i></a>
                     </td>
-                    {{--@endif--}}
                 </tr>
             @endforeach
 
             </tbody>
 
         </table>
-
-        {{--@if(Auth::check() && Auth::user()->isAdmin)--}}
-            {{--<a href="/events/{{$event->id}}/edit" class="button edit-button">Edit</a>--}}
-        {{--@endif--}}
-
-        {{--@if(Auth::check() && Auth::user()->isAdmin)--}}
-
-        {{--@endif--}}
     </div>
 
 @endsection

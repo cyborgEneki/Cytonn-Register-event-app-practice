@@ -5,7 +5,7 @@
     <div class="form_table_arrangement">
 
         @if(Auth::check() && Auth::user()->isAdmin)
-            <a href="/users/create" class="button">Add User</a>
+            <a href="users/create" class="button">Add User</a>
         @endif
 
         <table class="table-font">
@@ -23,7 +23,7 @@
                 @foreach($users as $user)
                     <tr>
                         <td>{{ ($users->currentpage()-1) * $users->perpage() + $loop->index + 1 }}</td>
-                        <td><a href="/api/users/{{$user->id}}">{{$user->name}}</a></td>
+                        <td><a href="users/{{$user->id}}">{{$user->name}}</a></td>
                         <td>{{$user->email}}</td>
                         <td>
                             @foreach($user->roles as $role)

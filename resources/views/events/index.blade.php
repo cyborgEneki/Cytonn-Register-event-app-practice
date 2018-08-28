@@ -6,7 +6,7 @@
     <div class="form_table_arrangement">
 
         @if(Auth::check() && Auth::user()->isAdmin)
-            <a href="/events/create" class="button">Add Event</a>
+            <a href="events/create" class="button">Add Event</a>
         @endif
         <table class="table-font">
             <thead>

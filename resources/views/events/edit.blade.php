@@ -8,7 +8,7 @@
 
             <h4 class="form-heading">Edit event</h4>
 
-            <form class="form-body" method="post" action="/api/events/{{$event->id}}">
+            <form class="form-body" method="post" action="events/{{$event->id}}">
                 @csrf
                 {{method_field("PATCH")}}
                 Event name:<br>

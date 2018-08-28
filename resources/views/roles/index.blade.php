@@ -23,7 +23,7 @@
                 @foreach($roles as $role)
                     <tr>
                         <td>{{ $loop -> iteration }}</td>
-                        <td><a href="/api/roles/{{$role->id}}">{{$role->name}}</a></td>
+                        <td><a href="roles/{{$role->id}}">{{$role->name}}</a></td>
                         <td>{{$role->display_name}}</td>
                         <td>{{$role->description}}</td>
                     </tr>

@@ -8,7 +8,7 @@
 
             <h4 class="form-heading">Add a new event</h4>
 
-            <form class="form-body" method="post" action="/api/events">
+            <form class="form-body" method="post" action="events">
                 @csrf
                 Event name:<br>
                 <input type="text" name="name">

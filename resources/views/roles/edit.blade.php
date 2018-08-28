@@ -8,7 +8,7 @@
 
             <h4 class="form-heading">Add a new role</h4>
 
-            <form class="form-body" method="post" action="/api/roles/{{$role->id}}">
+            <form class="form-body" method="post" action="roles/{{$role->id}}">
                 @csrf
                 {{method_field("PATCH")}}
                 Role name:<br>

@@ -8,7 +8,7 @@
 
             <h4 class="form-heading">Add a new activity</h4>
 
-            <form class="form-body" method="post" action="/api/activities">
+            <form class="form-body" method="post" action="activities">
                 @csrf
                 Activity name:<br>
                 <input type="text" name="name">
