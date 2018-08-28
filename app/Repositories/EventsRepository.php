@@ -32,11 +32,12 @@ class EventsRepository
         return $event;
     }
 
-    public function postNewEvent(Request $request)
+    public function postNewEvent($request)
     {
         $event = Event::create($request->except("activity_id"));
 
         $event->activities()->sync($request["activity_id"]);
+
 
         return $event;
     }

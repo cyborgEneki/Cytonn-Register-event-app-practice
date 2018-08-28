@@ -25,11 +25,12 @@ Route::get('/register', 'LoginController@index');
 //Route::get('/logout', 'Auth\RegisterController@logout');
 
 Route::resource('events', 'EventController');
+
 Route::post('/events/{event}/{activity}', 'EventController@updateActivityStatus');
 
 
 Route::resource('activities', 'ActivityController')->only([
-    'create', 'edit','index'
+    'create', 'edit'
 ]);
 
 Route::resource('roles', 'RoleController')->only([

@@ -31,6 +31,9 @@
                 Lead Start Date:<br>
                 <input type="date" name="lead_start_date">
                 <br>
+                Timeline:<br>
+                <input type="date" name="lead_end_date">
+                <br>
                 <label>Activities
                     <select multiple id="activity_id" name="activity_id[]">
                         <option value>Select Activity</option>

@@ -41,9 +41,9 @@ class ActivityController extends Controller
         return view ('activities.create');
     }
 
-    public function edit($id)
+    public function edit(Activity $activity)
     {
-        $activity = $this->activitiesRepository->getActivity($id);
+
 
         return view('activities.edit')->with('activity', $activity);
     }

@@ -30,6 +30,7 @@ class EventController extends Controller
 
     public function store(EventRequest $eventRequest)
     {
+
         $this->eventsRepository->postNewEvent($eventRequest);
 
         return redirect('/events_blade')->with('success', 'Event added successfully');
@@ -37,14 +38,14 @@ class EventController extends Controller
 
     public function show(Event $event)
     {
-        return view('events.show',compact("event"));
+        return view('events.show', compact("event"));
     }
 
     public function create()
     {
         $activities = $this->activitiesRepository->getActivities();
 
-        return view ('events.create')->with('activities', $activities);
+        return view('events.create')->with('activities', $activities);
     }
 
     public function edit(Event $event)
@@ -52,7 +53,7 @@ class EventController extends Controller
 
         $activities = $this->activitiesRepository->getActivities();
 
-        return view('events.edit')->with(['event'=>$event,'activities'=>$activities]);
+        return view('events.edit')->with(['event' => $event, 'activities' => $activities]);
     }
 
     public function update(EventRequest $request, Event $event)
@@ -74,11 +75,10 @@ class EventController extends Controller
         return redirect('/events_blade')->with('success', 'Event deleted successfully');
     }
 
-public  function updateActivityStatus(Event  $event, Activity $activity){
+    public function updateActivityStatus(Event $event, Activity $activity)
+    {
+        $event->activities()->updateExistingPivot($activity->id, ['status' => request('status')]);
 
-    $event->activities()->updateExistingPivot($activity->id,["status"=>request('status')]);
-
-    return redirect()->back();
-
-}
+        return redirect()->back();
+    }
 }
