@@ -50,7 +50,6 @@ class EventController extends Controller
 
     public function edit(Event $event)
     {
-
         $activities = $this->activitiesRepository->getActivities();
 
         return view('events.edit')->with(['event' => $event, 'activities' => $activities]);

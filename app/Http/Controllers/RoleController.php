@@ -70,11 +70,10 @@ class RoleController extends Controller
      * @param $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Role $role)
     {
-        $role = $this->rolesRepository->getRole($id);
 
-        return view('roles.edit')->with('role', $role);
+        return view('roles.edit')->with(['role', $role]);
     }
 
     /**

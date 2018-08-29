@@ -65,11 +65,11 @@ class UserController extends Controller
         return view ('users.create')->with('roles', $roles);
     }
 
-    public function edit($id)
+    public function edit(User $user)
     {
-        $user = $this->usersRepository->getUser($id);
+        $roles = $this->rolesRepository->getRoles();
 
-        return view('users.edit')->with('user', $user);
+        return view('users.edit')->with(['user'=> $user,'roles'=>$roles]);
     }
 
     public function update(UserRequest $request, User $user)

@@ -20,7 +20,7 @@
                 <label>Roles
                     <select multiple id="role_id" name="role_id[]">
                         <option value="">Select Role</option>
-                        @foreach($user->roles as $role)
+                        @foreach($roles as $role)
                             <option value="{{ $role->id }}">{{ $role->name }}</option>
                         @endforeach
                     </select>
