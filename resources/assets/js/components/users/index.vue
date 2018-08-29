@@ -17,7 +17,7 @@
             getUsers() {
                 let vm = this;
                 axios.get('/api/users').then(response => {
-                    vm.users = response.data.data;
+                    vm.users = response.data;
                 })
             }
         },

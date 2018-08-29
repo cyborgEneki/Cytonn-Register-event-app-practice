@@ -35,7 +35,6 @@ class Activity extends Model
 
     public function getStatus(Event $event)
     {
-
         if ($event->start_date > Carbon::now()) {
 
             if (Carbon::now() > $event->lead_start_date) {
@@ -52,11 +51,6 @@ class Activity extends Model
         } else {
 
             return "<i class=\"fas fa-circle fa-happening\"></i>&nbsp;Not happening";
-//            return "<div class='callout alert'> <p>Not happening</p></div>";
         }
     }
-
-//    public function getCheckedAttribute($value){
-//        return $value== 1?true:false;
-//    }
 }

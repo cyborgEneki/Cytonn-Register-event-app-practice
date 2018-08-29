@@ -50,48 +50,34 @@
             </tbody>
         </table>
 
+        <h5 class="help-text">Activities Related to the Event</h5>
         <table class="table striped">
             <thead class="text-center">
             <tr>
+                <th>Admin Status</th>
                 <th>Activity</th>
-                <th>User Assigned</th>
-                <th>User Status</th>
-                @if(Auth::check() && Auth::user()->isAdmin)
-                    <th>Admin Status</th>
-                @endif
-                <th>Edit Status</th>
-                <th>Actions</th>
+                <th>Activity Status</th>
+                <th>Assignment Status</th>
+                <th>Assignee</th>
+                <th>Edit Activity</th>
 
             </tr>
             </thead>
             <tbody>
             @foreach($event->activities as $activity)
                 <tr>
-                    <td>
-                        {{$activity->name}}
-                    </td>
-                    <td>
-                        @foreach($activity->users as $user)
-                            {{$user->name}}<br/>
-                        @endforeach
-                    </td>
-                    <td>
-                        {{$activity->pivot->status==1?"Complete":"Pending"}}<br/>
-                        {{--@if($activity->pivot->status==0)--}}
-                        {{--'done'--}}
-                        {{--@elseif($activity->pivot->status==1)--}}
-                        {{--'fghhh'--}}
-                        {{--@elseif($activity->pivot->status==2)--}}
-
-                        {{--@elseif($activity->pivot->status==3)--}}
-                        {{--@endif--}}
-                    </td>
 
                     @if(Auth::check() && Auth::user()->isAdmin)
                         <td>
-                            <activity-active :id="{{$activity->id}}" :ischecked="{{$activity->checked}}"></activity-active>
+                            <activity-active :id="{{$activity->id}}"
+                                             :ischecked="{{$activity->checked}}"></activity-active>
                         </td>
                     @endif
+
+                    <td>
+                        {{$activity->name}}
+                    </td>
+
                     <td>
                         <div class="grid-x">
                             <div class="medium-6" style="padding-top: 10px;">
@@ -130,9 +116,21 @@
                             </div>
                         </div>
                     </td>
+
                     <td>
-                        <a href="#"><i class="fas fa-eye"></i></a>
+                        {{$activity->pivot->status==1?"Complete":"Pending"}}<br/>
                     </td>
+
+                    <td>
+                        @foreach($activity->users as $user)
+                            {{$user->name}}<br/>
+                        @endforeach
+                    </td>
+
+                    <td>
+                        <a href="/activities/{{$activity->id}}"><i class="fas fa-edit"></i></a>
+                    </td>
+
                 </tr>
             @endforeach
 

@@ -15,7 +15,7 @@
             getEvents(){
                 let vm = this;
                 axios.get("/api/events").then(response=>{
-                    vm.events = response.data.data;
+                    vm.events = response.data;
                 })
             }
         },

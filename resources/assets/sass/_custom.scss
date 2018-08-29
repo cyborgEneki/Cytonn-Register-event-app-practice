@@ -129,12 +129,8 @@ body {
     }
 
     .main_admin {
-
       font-family: 'Quicksand';
       width: 100%;
-
-      //margin-left: 160px; /* Same as the width of the sidebar */
-      //padding: 0px 10px;
     }
 
     /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
@@ -172,7 +168,7 @@ body {
     }
   }
 
-  .event_create{
+  .event_create {
 
     .form-body {
       font-family: 'Quicksand';
@@ -242,10 +238,15 @@ body {
     font-family: 'Quicksand';
   }
 
-
   .form_table_arrangement {
     margin: 0 auto;
     width: 90%;
+    padding: 30px;
+  }
+
+  .form_table_arrangement_2 {
+    margin: 100px auto;
+    width: 900px;
   }
 
   .show_event {
@@ -274,9 +275,8 @@ body {
         color: #f0ad4e;
       }
 
-
-      .trash-button{
-       color: #d9534f;
+      .trash-button {
+        color: #d9534f;
       }
     }
   }

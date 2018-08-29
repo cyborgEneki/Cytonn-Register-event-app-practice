@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="form_table_arrangement event_create" style="padding: 30px;">
+    <div class="form_table_arrangement event_create">
 
         @if(Auth::check() && Auth::user()->isAdmin)
 
@@ -13,7 +13,7 @@
 
                 <div class="grid-x">
                     <div class="medium-6">
-                        Event name:<br>
+                        Event Name:<br>
                         <input type="text" name="name">
                     </div>
                     <div class="medium-6">
@@ -28,7 +28,6 @@
                         </select>
                     </div>
                 </div>
-
 
                 <div class="grid-x">
                     <div class="medium-6">
@@ -65,8 +64,6 @@
                                     <option value="{{ $activity->id }}">{{ $activity->name }}</option>
                                 @endforeach
                             </select>
-
-
                         </label>
                     </div>
                 </div>

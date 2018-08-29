@@ -34,23 +34,9 @@
 
         computed:{
             activityMessage(){
-                return   this.activity_checked==1?"Complete":"Incomplete";
+                return this.activity_checked==1?"Approved":"Rejected";
             }
         }
-
-        // created() {
-        //     this.getChecked();
-        // }
-        // watch: {
-        //     activity_checked: {
-        //         handler: function () {
-        //             let form = {
-        //                 id: this.id,
-        //                 checked: this.activity_checked
-        //             };
-        //         }
-        //     }
-        // }
     }
 </script>
 

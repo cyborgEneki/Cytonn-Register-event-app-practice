@@ -16,6 +16,16 @@
                 Description:<br>
                 <input type="text" name="description">
                 <br>
+                <label>User(s) Assigned
+                    <select multiple id="user_id" name="user_id[]">
+                        <option value>Select User</option>
+                        @foreach($users as $user)
+                            <option value="{{ $user->id }}">{{ $user->name }}</option>
+                        @endforeach
+                    </select>
+
+
+                </label>
 
                 <input class="button expanded el-button--success" style="font-weight: 600;border-radius: 12px;" type="submit" value="Submit">
 

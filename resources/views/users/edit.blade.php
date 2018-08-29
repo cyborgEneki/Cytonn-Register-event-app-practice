@@ -12,26 +12,22 @@
                 <h4 class="form-heading" style="margin-left: 400px;">Edit User Details</h4>
             </div>
 
-            <form class="form-body" method="post" action="/users/{{$user->id}}">
-                @csrf
-                {{method_field("PATCH")}}
-                User name:<br>
-                <input type="text" name="name" value="{{$user->name}}">
-                <br>
-                Email:<br>
-                <input type="text" name="email" value="{{$user->email}}">
-                <br>
-                <label>Roles
-                    <select multiple id="role_id" name="role_id[]">
-                        <option value="">Select Role</option>
-                        @foreach($roles as $role)
-                            <option value="{{ $role->id }}">{{ $role->name }}</option>
-                        @endforeach
-                    </select>
-                </label>
+            {!!  Form::open(['url' => "/users/$user->id", 'class'=>'form-body', 'method' => 'post']) !!}
+            @csrf
+            {{method_field("PATCH")}}
+            User name:<br>
+            <input type="text" name="name" value="{{$user->name}}">
+            <br>
+            Email:<br>
+            <input type="text" name="email" value="{{$user->email}}">
+            <br>
 
-                <input class="button el-button--success expanded" style="border-radius: 12px;box-shadow: 2px 5px lightgray;"
-                       type="submit" value="Edit Activity">
+            <label>Roles
+                {!!  Form::select('role_id[]', $roles->pluck('name', 'id'), $user->roles->pluck("id"), ['multiple' => true, 'id'=>'role_id']) !!}
+            </label>
+
+            <input class="button el-button--success expanded" style="border-radius: 12px;box-shadow: 2px 5px lightgray;"
+                   type="submit" value="Edit Activity">
 
             </form>
 

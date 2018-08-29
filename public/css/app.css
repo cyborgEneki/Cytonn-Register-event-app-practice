@@ -10088,6 +10088,12 @@ body .delete-button {
 body .form_table_arrangement {
   margin: 0 auto;
   width: 90%;
+  padding: 30px;
+}
+
+body .form_table_arrangement_2 {
+  margin: 100px auto;
+  width: 900px;
 }
 
 body .show_event {

@@ -7,24 +7,28 @@
         @if(Auth::check() && Auth::user()->isAdmin)
 
             <div class="level">
-                <a class="button el-button--info" style="border-radius: 5px;" href="/activities/{{$activity->id}}">Back</a>
+                <a class="button el-button--info" style="border-radius: 5px;"
+                   href="/activities/{{$activity->id}}">Back</a>
 
                 <h4 class="form-heading" style="margin-left: 400px;">Edit Activity</h4>
             </div>
 
-            <form class="form-body" method="post" action="/activities/{{$activity->id}}">
-                @csrf
-                {{method_field("PATCH")}}
-                Activity name:<br>
-                <input type="text" name="name" value="{{$activity->name}}">
-                <br>
-                Description:<br>
-                <input type="text" name="description" value="{{$activity->description}}">
-                <br>
+            {!!  Form::open(['url' => "/activities/$activity->id", 'class'=>'form-body', 'method' => 'post']) !!}
+            @csrf
+            {{method_field("PATCH")}}
+            Activity name:<br>
+            <input type="text" name="name" value="{{$activity->name}}">
+            <br>
+            Description:<br>
+            <input type="text" name="description" value="{{$activity->description}}">
+            <br>
+            <label>User(s) Assigned
+                {!!  Form::select('user_id[]', $users->pluck('name', 'id'), $activity->users->pluck("id"), ['multiple' => true, 'id'=>'user_id']) !!}
+            </label>
 
-                <input class="button el-button--success expanded" style="border-radius: 12px;box-shadow: 2px 5px lightgray;"
-                       type="submit" value="Edit Activity">
-            </form>
+            <input class="button el-button--success expanded" style="border-radius: 12px;box-shadow: 2px 5px lightgray;"
+                   type="submit" value="Edit Activity">
+            {!! Form::close() !!}
 
         @endif
 

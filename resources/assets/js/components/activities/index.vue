@@ -15,7 +15,7 @@
             getActivities() {
                 let vm = this;
                 axios.get("/api/activities").then(response => {
-                    vm.activities = response.data.data;
+                    vm.activities = response.data;
                 })
             }
         },

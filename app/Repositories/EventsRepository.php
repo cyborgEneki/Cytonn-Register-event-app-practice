@@ -19,8 +19,7 @@ class EventsRepository
 
     public function getEvents()
     {
-        $events = Event::orderBy('start_date', 'desc')
-            ->paginate(15);
+        $events = Event::all();
 
         return $events;
     }

@@ -106991,7 +106991,7 @@ exports = module.exports = __webpack_require__(5)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -107037,23 +107037,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     computed: {
         activityMessage: function activityMessage() {
-            return this.activity_checked == 1 ? "Complete" : "Incomplete";
+            return this.activity_checked == 1 ? "Approved" : "Rejected";
         }
     }
-
-    // created() {
-    //     this.getChecked();
-    // }
-    // watch: {
-    //     activity_checked: {
-    //         handler: function () {
-    //             let form = {
-    //                 id: this.id,
-    //                 checked: this.activity_checked
-    //             };
-    //         }
-    //     }
-    // }
 });
 
 /***/ }),
@@ -107217,7 +107203,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getEvents: function getEvents() {
             var vm = this;
             axios.get("/api/events").then(function (response) {
-                vm.events = response.data.data;
+                vm.events = response.data;
             });
         }
     },
@@ -107496,7 +107482,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getActivities: function getActivities() {
             var vm = this;
             axios.get("/api/activities").then(function (response) {
-                vm.activities = response.data.data;
+                vm.activities = response.data;
             });
         }
     },
@@ -108064,7 +108050,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getUsers: function getUsers() {
             var vm = this;
             axios.get('/api/users').then(function (response) {
-                vm.users = response.data.data;
+                vm.users = response.data;
             });
         }
     },

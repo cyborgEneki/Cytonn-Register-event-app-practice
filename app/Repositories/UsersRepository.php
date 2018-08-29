@@ -22,8 +22,7 @@ class UsersRepository
 
     public function getUsers()
     {
-        $users = User::orderBy('name', 'asc')
-            ->paginate(15);
+        $users = User::all();
 
         return $users;
     }
