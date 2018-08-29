@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Activity;
-use App\Event;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PageController extends Controller
 {
+    protected $rolesRepository;
+
     /**
      * Create a new controller instance.
      *
@@ -28,22 +28,8 @@ class PageController extends Controller
         return view('home');
     }
 
-    public function events_index()
+    public function login_index()
     {
-        $events = Event::orderBy('start_date', 'desc')->paginate(15);
-
-        return view('events.index')->with('events', $events);
+        return view('auth.login');
     }
-
-    public function activities_index()
-    {
-        $activities = Activity::all();
-
-        return view('activities.index')->with('activities', $activities);
-    }
-
-//    public function login_index()
-//    {
-//        return view('auth.login');
-//    }
 }

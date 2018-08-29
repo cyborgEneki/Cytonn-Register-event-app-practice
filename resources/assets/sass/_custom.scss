@@ -1,9 +1,25 @@
 body {
 
+  .level {
+    display: flex;
+    align-items: center;
+  }
+  .flex {
+    flex: 1;
+  }
+
+  table {
+    thead {
+      background-color: #2294f2;
+      color: white;
+      font-weight: 500;
+    }
+  }
+
   background-color: #ffffff;
   h1 {
     font-size: 100px;
-    font-family: 'Caveat+Brush';
+    font-family: 'Quicksand';
 
   }
   .auth_back {
@@ -54,7 +70,7 @@ body {
             color: white;
           }
 
-          .navbar_logout:hover{
+          .navbar_logout:hover {
             background-color: #5cb85c;
           }
         }
@@ -67,14 +83,14 @@ body {
     }
   }
 
-  .sidebar_admin{
+  .sidebar_admin {
     height: 100%; /* Full-height: remove this if you want "auto" height */
     position: fixed; /* Fixed Sidebar (stay in place on scroll) */
     background-color: #111; /* Black */
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 20px;
     width: 15%;
-    font-family: 'Caveat+Brush';
+    font-family: 'Quicksand';
 
     a {
       padding: 6px 8px 6px 16px;
@@ -88,12 +104,13 @@ body {
       }
 
     }
-    a.active{
+    a.active {
       color: #f1f1f1;
     }
 
     .main_admin {
-      font-family: 'Caveat+Brush';
+      font-family: 'Quicksand';
+      width: 100%;
 
       //margin-left: 160px; /* Same as the width of the sidebar */
       //padding: 0px 10px;
@@ -101,8 +118,12 @@ body {
 
     /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
     @media screen and (max-height: 450px) {
-      .sidebar_admin {padding-top: 15px;}
-      .sidebar_admin a {font-size: 18px;}
+      .sidebar_admin {
+        padding-top: 15px;
+      }
+      .sidebar_admin a {
+        font-size: 18px;
+      }
     }
 
   }
@@ -112,7 +133,7 @@ body {
   }
 
   .form-body {
-    font-family: 'Caveat+Brush';
+    font-family: 'Quicksand';
     margin: 0 auto;
     width: 500px;
 
@@ -127,7 +148,7 @@ body {
       font-size: 16px;
       margin: 4px 2px;
       border-radius: 12px;
-      font-family: 'Caveat+Brush';
+      font-family: 'Quicksand';
       width: 100%;
     }
   }
@@ -143,12 +164,12 @@ body {
     font-size: 16px;
     margin: 4px 2px;
     border-radius: 12px;
-    font-family: 'Caveat+Brush';
+    font-family: 'Quicksand';
     width: 100%;
   }
 
-  .table-font{
-    font-family: 'Caveat+Brush';
+  .table-font {
+    font-family: 'Quicksand';
   }
 
   .edit-button {
@@ -162,7 +183,7 @@ body {
     font-size: 16px;
     margin: 4px 2px;
     border-radius: 12px;
-    font-family: 'Caveat+Brush';
+    font-family: 'Quicksand';
   }
 
   .delete-button {
@@ -176,11 +197,45 @@ body {
     font-size: 16px;
     margin: 4px 2px;
     border-radius: 12px;
-    font-family: 'Caveat+Brush';
+    font-family: 'Quicksand';
   }
+
 
   .form_table_arrangement {
     margin: 0 auto;
     width: 900px;
+  }
+
+  .show_event {
+    padding: 20px;
+
+    table {
+      thead {
+        background-color: #2294f2;
+        color: white;
+        font-weight: 500;
+      }
+
+      .tr_detail {
+        height: 70px;
+      }
+
+      .fa-happening {
+        color: #d9534f;
+      }
+
+      .fa-on-time {
+        color: #5cb85c;
+      }
+
+      .fa-late {
+        color: #f0ad4e;
+      }
+
+
+      .trash-button{
+       color: #d9534f;
+      }
+    }
   }
 }

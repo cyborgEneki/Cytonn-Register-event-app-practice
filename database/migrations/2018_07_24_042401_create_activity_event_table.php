@@ -18,6 +18,7 @@ class CreateActivityEventTable extends Migration
             $table->foreign('activity_id')->references('id')->on('activities');
             $table->unsignedInteger('event_id');
             $table->foreign('event_id')->references('id')->on('events');
+            $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });
     }

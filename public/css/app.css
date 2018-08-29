@@ -9844,9 +9844,30 @@ body {
   background-color: #ffffff;
 }
 
+body .level {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body .flex {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+body table thead {
+  background-color: #2294f2;
+  color: white;
+  font-weight: 500;
+}
+
 body h1 {
   font-size: 100px;
-  font-family: 'Caveat+Brush';
+  font-family: 'Quicksand';
 }
 
 body .auth_back {
@@ -9920,7 +9941,7 @@ body .sidebar_admin {
   /* Disable horizontal scroll */
   padding-top: 20px;
   width: 15%;
-  font-family: 'Caveat+Brush';
+  font-family: 'Quicksand';
   /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
 }
 
@@ -9941,7 +9962,8 @@ body .sidebar_admin a.active {
 }
 
 body .sidebar_admin .main_admin {
-  font-family: 'Caveat+Brush';
+  font-family: 'Quicksand';
+  width: 100%;
 }
 
 @media screen and (max-height: 450px) {
@@ -9959,7 +9981,7 @@ body .form-heading {
 }
 
 body .form-body {
-  font-family: 'Caveat+Brush';
+  font-family: 'Quicksand';
   margin: 0 auto;
   width: 500px;
 }
@@ -9975,7 +9997,7 @@ body .form-body .form-button {
   font-size: 16px;
   margin: 4px 2px;
   border-radius: 12px;
-  font-family: 'Caveat+Brush';
+  font-family: 'Quicksand';
   width: 100%;
 }
 
@@ -9990,12 +10012,12 @@ body .add-button {
   font-size: 16px;
   margin: 4px 2px;
   border-radius: 12px;
-  font-family: 'Caveat+Brush';
+  font-family: 'Quicksand';
   width: 100%;
 }
 
 body .table-font {
-  font-family: 'Caveat+Brush';
+  font-family: 'Quicksand';
 }
 
 body .edit-button {
@@ -10009,7 +10031,7 @@ body .edit-button {
   font-size: 16px;
   margin: 4px 2px;
   border-radius: 12px;
-  font-family: 'Caveat+Brush';
+  font-family: 'Quicksand';
 }
 
 body .delete-button {
@@ -10023,11 +10045,41 @@ body .delete-button {
   font-size: 16px;
   margin: 4px 2px;
   border-radius: 12px;
-  font-family: 'Caveat+Brush';
+  font-family: 'Quicksand';
 }
 
 body .form_table_arrangement {
   margin: 0 auto;
   width: 900px;
+}
+
+body .show_event {
+  padding: 20px;
+}
+
+body .show_event table thead {
+  background-color: #2294f2;
+  color: white;
+  font-weight: 500;
+}
+
+body .show_event table .tr_detail {
+  height: 70px;
+}
+
+body .show_event table .fa-happening {
+  color: #d9534f;
+}
+
+body .show_event table .fa-on-time {
+  color: #5cb85c;
+}
+
+body .show_event table .fa-late {
+  color: #f0ad4e;
+}
+
+body .show_event table .trash-button {
+  color: #d9534f;
 }
 

@@ -9,8 +9,7 @@
 namespace App\Repositories;
 
 use App\Activity;
-use App\ActivityEvent;
-use http\Env\Request;
+use Illuminate\Http\Request;
 
 class ActivitiesRepository
 {
@@ -20,47 +19,37 @@ class ActivitiesRepository
 
     public function getActivities()
     {
-        $activities = Activity::all();
+        $activities = Activity::orderBy('name', 'desc')
+            ->paginate(15);
+
+//        $activities = Activity::all();
 
         return $activities;
     }
 
-    public function getActivity($id)
+    public function getActivity(Activity $activity)
     {
-        $activity = Activity::find($id);
+        $activity = Activity::findO($activity);
 
         return $activity;
     }
 
     public function postNewActivity(Request $request)
     {
-        $activity = Activity::create([
-            'name' => $request['name'],
-            'user_id' => auth()->id(),
-        ]);
-
-        ActivityEvent::create([
-            'event_id' => $request['event_id'],
-            'activity_id' => $activity->id,
-        ]);
+        $activity = Activity::create($request->all());
 
         return $activity;
+    }
+
+    public function updateActivity($request, $activity)
+    {
+        return $activity->update($request->all());
 
     }
 
-    public function updateActivity($request, $id)
+    public function deleteActivity($activity)
     {
-        $activity = $this->getActivity($id);
-
-        $activity->name = $request->get('name');
-        $activity->description = $request->get('description');
-
-        return $activity->save();
-    }
-
-    public function deleteActivity($id)
-    {
-        $activity = $this->getActivity($id);
+        $activity->events()->detach();
 
         $activity->delete();
 

@@ -20,8 +20,6 @@ class Admin
             return $next($request);
         }
         else {
-
-
             return response()->json("You do not have sufficient privilages to carry out this operatiion",403);
         }
     }

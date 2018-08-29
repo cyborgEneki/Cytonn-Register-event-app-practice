@@ -27,9 +27,26 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-//    public function roles()
-//    {
-//        return $this->belongsToMany('App\Role', 'role_user',
-//            'user_id', 'role_id');
-//    }
+    public function roles()
+    {
+        return $this->belongsToMany('App\Role', 'role_user',
+            'user_id', 'role_id');
+    }
+
+    public function activities()
+    {
+        return $this->belongsToMany(Activity::class, 'activity_user',
+            'user_id', 'activity_id');
+    }
+
+    public  function getIsAdminAttribute()
+    {
+        return $this->roles()->get()->where("name","admin")->count()==1;
+    }
+
+
+
+
+
+
 }

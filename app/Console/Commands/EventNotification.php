@@ -48,22 +48,51 @@ class EventNotification extends Command
         $events = Event::where('lead_start_date', $today)->get();
 
 
-        foreach($events as $event) {
+        foreach ($events as $event) {
             $this->sendNotification($event);
-        }
 
+            $this->updateEventLeadDate($event);
+        }
+    }
+
+    public function sendNotification($event)
+    {
+
+        $users = User::with("roles")->get();
+
+        foreach ($users as $user) {
+            foreach ($user->roles as $role) {
+                if ($role->name == "admin") {
+                    Mail::to($user->email)
+                        ->send(new \App\Mail\EventNotification($event));
+                    $this->info('The event notification has been sent successfully');
+                }
+            }
+        }
 
     }
 
-    public function sendNotification ($event) {
-        $users = User::where('role', 'admin')->get();
+    private function updateEventLeadDate($event)
+    {
+        if ($event->frequency == 'Yearly') {
+            $nextLeadStartDate = Carbon::createFromFormat('Y-m-d', $event->lead_start_date)->addYear();
+            $event->update(["lead_start_date" => $nextLeadStartDate]);
+        }
 
-        foreach ($users as $user) {
+        if ($event->frequency == 'Monthly') {
+            $nextLeadStartDate = Carbon::createFromFormat('Y-m-d', $event->lead_start_date)->addMonth();
 
-            Mail::to($user->email)
-                ->send(new \App\Mail\EventNotification($event));
+            $event->update(["lead_start_date" => $nextLeadStartDate]);
+        }
+        if ($event->frequency == 'Daily') {
+            $nextLeadStartDate = Carbon::createFromFormat('Y-m-d', $event->lead_start_date)->addDay();
 
-            $this->info('The event notification has been sent successfully');
+            $event->update(["lead_start_date" => $nextLeadStartDate]);
+        }
+        if ($event->frequency == 'Weekly') {
+            $nextLeadStartDate = Carbon::createFromFormat('Y-m-d', $event->lead_start_date)->addWeek();
+
+            $event->update(["lead_start_date" => $nextLeadStartDate]);
         }
     }
 }

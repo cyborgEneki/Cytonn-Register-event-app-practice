@@ -19,27 +19,25 @@ class EventsRepository
 
     public function getEvents()
     {
-        $events = Event::with('activities')->get();
+        $events = Event::orderBy('start_date', 'desc')
+            ->paginate(15);
 
         return $events;
     }
 
-    public function getEvent($id)
+    public function getEvent(Event $event)
     {
-        $event = Event::find($id);
+        $event = Event::find($event);
 
         return $event;
     }
 
-    public function postNewEvent(Request $request)
+    public function postNewEvent($request)
     {
         $event = Event::create($request->except("activity_id"));
 
-        foreach ($request["activity_id"] as $activity){
+        $event->activities()->sync($request["activity_id"]);
 
-            $event->activities()->attach($activity);
-
-        };
 
         return $event;
     }
@@ -47,18 +45,23 @@ class EventsRepository
     public function updateEvent(Request $request, Event $event)
     {
         $event->update($request->except("activity_id"));
-//      dd( $request->all());
-      $event->activities()->sync($request["activity_id"]);
+
+        $event->activities()->sync($request["activity_id"]);
 
         return $event;
     }
 
-    public function deleteEvent($id)
+    /**
+     * @param Event $event
+     * @return Event
+     * @throws \Exception
+     */
+    public function deleteEvent(Event $event)
     {
-        $event = $this->getEvent($id);
         $event->activities()->detach();
+
         $event->delete();
-        
+
         return $event;
     }
 }

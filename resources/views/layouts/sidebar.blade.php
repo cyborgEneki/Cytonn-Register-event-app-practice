@@ -9,20 +9,19 @@
     <br>
     <a href="/activities_blade">Activities</a>
     <br><br>
-    <a href="{{ route('logout') }}"
-       onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+
+    <a href="{{ route('logout') }}">
         Logout
     </a>
-
 
 
     <ul class="dropdown menu" data-dropdown-menu>
         <li>
             <a href="#">User Management</a>
             <ul class="menu">
-                <li><a href="#">Users</a></li>
+                <li><a href="/users_blade">Users</a></li>
 
-                <li><a href="#">Roles</a></li>
+                <li><a href="/roles_blade">Roles</a></li>
                 <!-- ... -->
             </ul>
         </li>

@@ -4,31 +4,41 @@
 
     <div class="form_table_arrangement">
 
-        @if(Auth::check() && Auth::user()->role == 'admin')
+        @if(Auth::check() && Auth::user()->isAdmin)
 
-            <h4 class="form-heading">Add a new event</h4>
+            <h4 class="form-heading">Edit event</h4>
 
-            <form class="form-body" method="post" action="/api/events/{{$data['event']->id}}">
+            <form class="form-body" method="post" action="events/{{$event->id}}">
                 @csrf
                 {{method_field("PATCH")}}
                 Event name:<br>
-                <input type="text" name="name" value="{{$data['event']->name}}">
+                <input type="text" name="name" value="{{$event->name}}">
                 <br>
                 Frequency:<br>
-                <input type="text" name="frequency" value="{{$data['event']->frequency}}">
+                <select name="frequency">
+                    <option value="">How often does this recur?</option>
+                    <option value="Yearly">Yearly</option>
+                    <option value="Monthly">Monthly</option>
+                    <option value="Weekly">Weekly</option>
+                    <option value="Daily">Daily</option>
+                    <option value="Once">Once</option>
+                </select>
                 Start Date:<br>
-                <input type="date" name="start_date" value="{{$data['event']->start_date}}">
+                <input type="date" name="start_date" value="{{$event->start_date}}">
                 Start Time:<br>
-                <input type="time" name="start_time" value="{{$data['event']->start_time}}">
+                <input type="time" name="start_time" value="{{$event->start_time}}">
                 Location:<br>
-                <input type="text" name="location" value="{{$data['event']->location}}">
+                <input type="text" name="location" value="{{$event->location}}">
                 Lead Start Date:<br>
-                <input type="date" name="lead_start_date" value="{{$data['event']->lead_start_date}}">
+                <input type="date" name="lead_start_date" value="{{$event->lead_start_date}}">
+                <br>
+                Timeline:<br>
+                <input type="date" name="lead_end_date" value="{{$event->lead_end_date}}">
                 <br>
                 <label>Activities
                     <select multiple id="activity_id" name="activity_id[]">
                         <option value="">Select Activity</option>
-                        @foreach($data['activities'] as $activity)
+                        @foreach($activities as $activity)
                             <option value="{{ $activity->id }}">{{ $activity->name }}</option>
                         @endforeach
                     </select>

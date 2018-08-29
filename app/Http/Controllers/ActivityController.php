@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Activity;
+use App\Http\Requests\ActivityRequest;
 use App\Repositories\ActivitiesRepository;
 use Illuminate\Http\Request;
 
@@ -19,56 +20,44 @@ class ActivityController extends Controller
     {
         $activities = $this->activitiesRepository->getActivities();
 
-        return response()->json($activities);
+        return view('activities.index')->with('activities', $activities);
     }
 
-    public function store($request)
+    public function store(ActivityRequest $request)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'description' => 'required',
-        ]);
-
         $this->activitiesRepository->postNewActivity($request);
 
         return redirect('/activities_blade')->with('success', 'Activity added successfully');
     }
 
-    public function show($id)
+    public function show(Activity $activity)
     {
-        $activity = $this->activitiesRepository->getActivity($id);
-
         return view('activities.show')->with('activity', $activity);
 
     }
 
-    public function create(Request $request)
+    public function create()
     {
         return view ('activities.create');
     }
 
-    public function edit($id)
+    public function edit(Activity $activity)
     {
-        $activity = $this->activitiesRepository->getActivity($id);
+
 
         return view('activities.edit')->with('activity', $activity);
     }
 
-    public function update(Request $request, $id)
+    public function update(ActivityRequest $request, Activity $activity)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'description' => 'required',
-        ]);
-
-        $this->activitiesRepository->updateActivity($request, $id);
+        $this->activitiesRepository->updateActivity($request, $activity);
 
         return redirect('/activities_blade')->with('success', 'Activity updated successfully');
     }
 
-    public function destroy($id)
+    public function destroy(Activity $activity)
     {
-        $this->activitiesRepository->deleteActivity($id);
+        $this->activitiesRepository->deleteActivity($activity);
 
         return redirect('/activities_blade')->with('success', 'Activity deleted successfully');
     }
