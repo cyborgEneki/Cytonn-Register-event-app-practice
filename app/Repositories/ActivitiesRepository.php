@@ -9,6 +9,7 @@
 namespace App\Repositories;
 
 use App\Activity;
+use App\Event;
 use Illuminate\Http\Request;
 
 class ActivitiesRepository
@@ -30,6 +31,10 @@ class ActivitiesRepository
     public function getActivity(Activity $activity)
     {
         return $activity;
+    }
+
+    public function getEventActivity(Event $event)
+    {
     }
 
     public function postNewActivity(Request $request)

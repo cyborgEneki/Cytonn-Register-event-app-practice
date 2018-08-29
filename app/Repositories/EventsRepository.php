@@ -46,7 +46,7 @@ class EventsRepository
     {
         $event->update($request->except("activity_id"));
 
-        $event->activities()->sync($request["activity_id"]);
+       $event->activities()->sync($request["activity_id"]);
 
         return $event;
     }
