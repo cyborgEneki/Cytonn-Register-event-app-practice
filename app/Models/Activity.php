@@ -14,6 +14,8 @@ class Activity extends Model
 
     protected $guarded = [];
 
+    protected $fillable=['name','description','checked'];
+
     public function events()
     {
         return $this->belongsToMany('App\Event', 'activity_event',
@@ -53,4 +55,8 @@ class Activity extends Model
 //            return "<div class='callout alert'> <p>Not happening</p></div>";
         }
     }
+
+//    public function getCheckedAttribute($value){
+//        return $value== 1?true:false;
+//    }
 }

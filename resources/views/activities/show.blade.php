@@ -7,7 +7,7 @@
         <p>{{$activity->lead_end_date}}</p>
 
         @if(Auth::check() && Auth::user()->isAdmin)
-            <a href="activities/{{$activity->id}}/edit" class="button edit-button">Edit</a>
+            <a href="/activities/{{$activity->id}}/edit" class="button edit-button">Edit</a>
         @endif
 
         {!! Form::open(['action' => ['ActivityController@destroy', $activity->id, 'method' => 'POST' ]]) !!}

@@ -89,7 +89,7 @@
 
                     @if(Auth::check() && Auth::user()->isAdmin)
                         <td>
-                            <activity-active id="{{$activity->id}}" checked="{{$activity->checked}}"></activity-active>
+                            <activity-active :id="{{$activity->id}}" :ischecked="{{$activity->checked}}"></activity-active>
                         </td>
                     @endif
                     <td>

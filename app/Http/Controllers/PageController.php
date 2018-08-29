@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Auth;
 
 class PageController extends Controller
 {
-    protected $rolesRepository;
+    private $rolesRepository;
 
     /**
      * Create a new controller instance.

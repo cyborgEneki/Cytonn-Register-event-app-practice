@@ -8,7 +8,7 @@
 
             <h4 class="form-heading">Add a new user</h4>
 
-            <form class="form-body" method="post" action="users">
+            <form class="form-body" method="post" action="/users">
                 @csrf
                 Name:<br>
                 <input type="text" name="name">

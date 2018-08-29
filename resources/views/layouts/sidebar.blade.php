@@ -10,9 +10,13 @@
     <a href="/activities_blade">Activities</a>
     <br><br>
 
-    <a href="{{ route('logout') }}">
+    <a  href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit()">
         Logout
     </a>
+
+    <form id ="logout-form" action="{{ route('logout') }}" method="post" style="display: none">
+        {{csrf_field()}}
+    </form>
 
 
     <ul class="dropdown menu" data-dropdown-menu>

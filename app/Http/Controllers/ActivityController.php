@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class ActivityController extends Controller
 {
-    protected $activitiesRepository;
+    private $activitiesRepository;
 
     public function __construct(ActivitiesRepository $activitiesRepository)
     {

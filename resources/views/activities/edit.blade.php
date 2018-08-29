@@ -8,7 +8,7 @@
 
             <h4 class="form-heading">Add a new activity</h4>
 
-            <form class="form-body" method="post" action="activities/{{$activity->id}}">
+            <form class="form-body" method="post" action="/activities/{{$activity->id}}">
                 @csrf
                 {{method_field("PATCH")}}
                 Activity name:<br>

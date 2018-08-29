@@ -12,9 +12,9 @@ use App\Repositories\RolesRepository;
 
 class UserController extends Controller
 {
-    protected $usersRepository;
+    private $usersRepository;
 
-    protected $rolesRepository;
+    private $rolesRepository;
 
     /**
      * UserController constructor.

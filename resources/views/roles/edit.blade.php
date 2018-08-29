@@ -8,14 +8,14 @@
 
             <h4 class="form-heading">Add a new role</h4>
 
-            <form class="form-body" method="post" action="roles/{{$role->id}}">
+            <form class="form-body" method="post" action="/roles/{{$role->id}}">
                 @csrf
                 {{method_field("PATCH")}}
                 Role name:<br>
                 <input type="text" name="name" value="{{$role->name}}">
                 <br>
                 Display name:<br>
-                <input type="text" name="display_name">
+                <input type="text" name="display_name" value="{{$role->display_name}}">
                 <br>
                 Description:<br>
                 <input type="text" name="description" value="{{$role->description}}">

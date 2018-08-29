@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class RoleController extends Controller
 {
-    protected $rolesRepository;
+    private $rolesRepository;
 
     public function __construct(RolesRepository $rolesRepository)
     {

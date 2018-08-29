@@ -42,7 +42,7 @@ class EventsRepository
         return $event;
     }
 
-    public function updateEvent(Request $request, Event $event)
+    public function updateEvent($request, Event $event)
     {
         $event->update($request->except("activity_id"));
 

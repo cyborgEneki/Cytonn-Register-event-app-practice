@@ -29,8 +29,6 @@ class ActivitiesRepository
 
     public function getActivity(Activity $activity)
     {
-        $activity = Activity::findO($activity);
-
         return $activity;
     }
 

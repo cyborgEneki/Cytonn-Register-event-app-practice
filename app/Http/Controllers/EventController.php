@@ -12,8 +12,9 @@ use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
 {
-    protected $eventsRepository;
-    protected $activitiesRepository;
+    public $eventsRepository;
+
+    public $activitiesRepository;
 
     public function __construct(EventsRepository $eventsRepository, ActivitiesRepository $activitiesRepository)
     {
@@ -30,7 +31,6 @@ class EventController extends Controller
 
     public function store(EventRequest $eventRequest)
     {
-
         $this->eventsRepository->postNewEvent($eventRequest);
 
         return redirect('/events_blade')->with('success', 'Event added successfully');

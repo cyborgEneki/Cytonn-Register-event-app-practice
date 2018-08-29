@@ -8,7 +8,7 @@
 
             <h4 class="form-heading">Edit user details</h4>
 
-            <form class="form-body" method="post" action="users/{{$user->id}}">
+            <form class="form-body" method="post" action="/users/{{$user->id}}">
                 @csrf
                 {{method_field("PATCH")}}
                 User name:<br>
