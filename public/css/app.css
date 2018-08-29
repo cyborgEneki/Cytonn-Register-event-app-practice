@@ -9844,6 +9844,26 @@ body {
   background-color: #ffffff;
 }
 
+body .dropdown.menu > li.is-dropdown-submenu-parent > a::after {
+  display: block;
+  width: 0;
+  height: 0;
+  border: inset 6px;
+  border-top-color: currentcolor;
+  border-top-style: inset;
+  border-right-color: currentcolor;
+  border-bottom-color: currentcolor;
+  border-bottom-width: 6px;
+  border-left-color: currentcolor;
+  content: '';
+  border-bottom-width: 0;
+  border-top-style: solid;
+  border-color: white transparent transparent;
+  right: 5px;
+  left: auto;
+  margin-top: -3px;
+}
+
 body .level {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -9982,11 +10002,28 @@ body .form-heading {
 
 body .form-body {
   font-family: 'Quicksand';
-  margin: 0 auto;
-  width: 500px;
 }
 
 body .form-body .form-button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  border-radius: 12px;
+  font-family: 'Quicksand';
+  width: 100%;
+}
+
+body .event_create .form-body {
+  font-family: 'Quicksand';
+}
+
+body .event_create .form-body .form-button {
   background-color: #4CAF50;
   border: none;
   color: white;
@@ -10050,7 +10087,7 @@ body .delete-button {
 
 body .form_table_arrangement {
   margin: 0 auto;
-  width: 900px;
+  width: 90%;
 }
 
 body .show_event {

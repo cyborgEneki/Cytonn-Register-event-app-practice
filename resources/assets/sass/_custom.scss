@@ -1,5 +1,25 @@
 body {
 
+  .dropdown.menu > li.is-dropdown-submenu-parent > a::after {
+    display: block;
+    width: 0;
+    height: 0;
+    border: inset 6px;
+    border-top-color: currentcolor;
+    border-top-style: inset;
+    border-right-color: currentcolor;
+    border-bottom-color: currentcolor;
+    border-bottom-width: 6px;
+    border-left-color: currentcolor;
+    content: '';
+    border-bottom-width: 0;
+    border-top-style: solid;
+    border-color: white transparent transparent;
+    right: 5px;
+    left: auto;
+    margin-top: -3px;
+  }
+
   .level {
     display: flex;
     align-items: center;
@@ -109,6 +129,7 @@ body {
     }
 
     .main_admin {
+
       font-family: 'Quicksand';
       width: 100%;
 
@@ -134,8 +155,6 @@ body {
 
   .form-body {
     font-family: 'Quicksand';
-    margin: 0 auto;
-    width: 500px;
 
     .form-button {
       background-color: #4CAF50;
@@ -151,6 +170,29 @@ body {
       font-family: 'Quicksand';
       width: 100%;
     }
+  }
+
+  .event_create{
+
+    .form-body {
+      font-family: 'Quicksand';
+
+      .form-button {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        border-radius: 12px;
+        font-family: 'Quicksand';
+        width: 100%;
+      }
+    }
+
   }
 
   .add-button {
@@ -203,7 +245,7 @@ body {
 
   .form_table_arrangement {
     margin: 0 auto;
-    width: 900px;
+    width: 90%;
   }
 
   .show_event {

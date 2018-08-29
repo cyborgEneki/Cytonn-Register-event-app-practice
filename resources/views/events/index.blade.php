@@ -5,11 +5,16 @@
     <index-events inline-template>
         <div class="form_table_arrangement">
 
-            @if(Auth::check() && Auth::user()->isAdmin)
-                <a href="events/create" class="button">Add Event</a>
-            @endif
+           <div class="level" style="margin-top: 40px;">
+               <h3 class="flex">Events</h3>
 
-            <table class="table-font">
+               @if(Auth::check() && Auth::user()->isAdmin)
+                   <a href="events/create" class="button round end" style="background-color: #5cb85c;border-radius: 12px;">Add Event</a>
+               @endif
+           </div>
+
+
+            <table class="table-font" style="margin-top: 40px;">
                 <thead>
                 <tr>
                     <th>#</th>
