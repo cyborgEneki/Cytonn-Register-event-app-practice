@@ -9,15 +9,13 @@
 <script>
 
     export default {
-        props: ['data','row'],
+        props: ['data', 'row'],
         data() {
             return {
                 url: "/activities/" + this.data.id,
 
                 activityRow: Number(this.row) + 1
             }
-
-
         }
     }
 </script>

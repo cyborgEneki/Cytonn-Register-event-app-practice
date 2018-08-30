@@ -6,17 +6,19 @@
     </div>
     <div class="top-bar-right">
         <ul class="menu" style="background-color: #d77801;color: white;font-weight: 600;">
-            <li><a class="disabled" href="#" style="color: white;"><i class="fas fa-user"></i>&nbsp;{{ Auth::user()->name }}</a></li>
+            <li><a class="disabled" href="#" style="color: white;"><i
+                            class="fas fa-user"></i>&nbsp;{{ Auth::user()->name }}</a></li>
             <li>
 
-            <form id ="logout-form" action="{{ route('logout') }}" method="post" style="display: none">
-                {{csrf_field()}}
-            </form>
+                <form id="logout-form" action="{{ route('logout') }}" method="post" style="display: none">
+                    {{csrf_field()}}
+                </form>
 
             </li>
 
 
-            <ul class="dropdown menu" data-dropdown-menu style="background-color: #d77801;color: white;font-weight: 600;">
+            <ul class="dropdown menu" data-dropdown-menu
+                style="background-color: #d77801;color: white;font-weight: 600;">
                 <li>
                     <a href="#" style="color: white;"><i class="fas fa-users-cog"></i>&nbsp;User Management</a>
                     <ul class="menu" style="background-color: #ee4f2f;color: white;font-weight: 600;">

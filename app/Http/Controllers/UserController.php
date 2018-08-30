@@ -51,10 +51,8 @@ class UserController extends Controller
         return redirect('/users_blade')->with('success', 'User added successfully');
     }
 
-    public function show($id)
+    public function show(User $user)
     {
-        $user = $this->usersRepository->getUser($id);
-
         return view('users.show')->with('user', $user);
     }
 
@@ -62,14 +60,14 @@ class UserController extends Controller
     {
         $roles = $this->rolesRepository->getRoles();
 
-        return view ('users.create')->with('roles', $roles);
+        return view('users.create')->with('roles', $roles);
     }
 
     public function edit(User $user)
     {
         $roles = $this->rolesRepository->getRoles();
 
-        return view('users.edit')->with(['user'=> $user,'roles'=>$roles]);
+        return view('users.edit')->with(['user' => $user, 'roles' => $roles]);
     }
 
     public function update(UserRequest $request, User $user)

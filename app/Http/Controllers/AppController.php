@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 
 class AppController extends Controller
 {
-    public function getApp(){
+    public function getApp()
+    {
         return view('vueApp');
     }
-
 }

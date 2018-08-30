@@ -6,6 +6,7 @@
         <td>{{data.start_date}}</td>
     </tr>
 </template>
+
 <script>
 
     export default {

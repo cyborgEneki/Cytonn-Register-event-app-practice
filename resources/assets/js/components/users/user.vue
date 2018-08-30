@@ -4,7 +4,7 @@
         <td><a :href="url" v-text="data.name"></a></td>
         <td>{{data.email}}</td>
         <td>
-           <p v-for="role in data.roles">{{role.name}}</p>
+            <p v-for="role in data.roles">{{role.name}}</p>
         </td>
     </tr>
 </template>

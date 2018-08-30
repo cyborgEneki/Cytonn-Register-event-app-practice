@@ -3,24 +3,49 @@
 @section('content')
 
     <div style="margin-top: 30px;">
-        <h2 class="text-center">Name: {{$activity->name}}</h2>
-        <p class="text-center">Description:{{$activity->description}}</p>
+        <h5 class="help-text">Activity Details</h5>
 
+        <table class="table striped" style="margin-bottom: 50px;">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Assignee(s)</th>
+                <th>Actions</th>
+            </tr>
 
-        <div class="grid-x">
-            <div class="medium-offset-2 medium-4">
-                @if(Auth::check() && Auth::user()->isAdmin)
-                    <a href="/activities/{{$activity->id}}/edit" class="button el-button--primary expanded">Edit</a>
+            <tbody>
+            <td>{{$activity->name}}</td>
+            <td>{{$activity->description}}</td>
+            <td>
+                @if (count($activity->users)>0)
+                    @foreach($activity->users as $user)
+                        {{$user->name}}
+                    @endforeach
+                @else
+                    <p style="padding-top: 20px">No one has been assigned.</p>
                 @endif
-            </div>
-            <div class="medium-5">
-                {!! Form::open(['action' => ['ActivityController@destroy', $activity->id, 'method' => 'POST' ]]) !!}
-                {!! Form::hidden('_method', 'DELETE') !!}
-                {!! Form::submit('Delete', ['class' => 'button alert expanded']) !!}
-                {!! Form::close() !!}
+            </td>
 
-            </div>
-        </div>
+
+            @if(Auth::check() && Auth::user()->isAdmin)
+                <td>
+                    <div class="grid-x">
+                        <div class="medium-6">
+                            <a href="/activities/{{$activity->id}}/edit"><i class="fas fa-edit"
+                                                                            style="color: dodgerblue;margin-right: 15px"></i></a>
+                        </div>
+                        <div class="medium-6">
+                            {!! Form::open(['action' => ['ActivityController@destroy', $activity->id, 'method' => 'POST' ]]) !!}
+                            {!! Form::hidden('_method', 'DELETE') !!}
+                            {!! Form::button('<i class="fa fa-trash-alt"></i>', ['type' => 'submit', 'class' => 'trash-button'] )  !!}
+                            {!! Form::close() !!}
+                        </div>
+                    </div>
+                </td>
+            @endif
+            </tbody>
+        </table>
 
     </div>
 

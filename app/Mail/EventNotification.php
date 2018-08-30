@@ -31,11 +31,9 @@ class EventNotification extends Mailable
      */
     public function build()
     {
-
         $subject = $this->event->name;
 
         return $this->view('emails.event-notification')
-
             ->subject($subject);
     }
 }

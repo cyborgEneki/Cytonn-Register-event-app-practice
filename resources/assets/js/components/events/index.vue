@@ -2,26 +2,27 @@
     import EventView from "./event"
 
     export default {
-        components:{EventView},
-        // name: "index",
+        components: {EventView},
 
-        data(){
-            return{
-                events:[],
+        name: "index",
+
+        data() {
+            return {
+                events: [],
             }
         },
 
-        methods:{
-            getEvents(){
+        methods: {
+            getEvents() {
                 let vm = this;
-                axios.get("/api/events").then(response=>{
+                axios.get("/api/events").then(response => {
                     vm.events = response.data;
                 })
             }
         },
 
-        created(){
-           this.getEvents();
+        created() {
+            this.getEvents();
         }
     }
 </script>

@@ -22,13 +22,13 @@
 <body>
 <div id="app">
     <div class="auth_back">
-      <div class="grid-x">
-          <div class="medium-offset-3"></div>
-          <div class="medium-9">
-              <h1>Cytonn Register</h1>
-              <p>We Register Cytonn Events</p>
-          </div>
-      </div>
+        <div class="grid-x">
+            <div class="medium-offset-3"></div>
+            <div class="medium-9">
+                <h1>Cytonn Register</h1>
+                <p>We Register Cytonn Events</p>
+            </div>
+        </div>
     </div>
 
     @yield('content')

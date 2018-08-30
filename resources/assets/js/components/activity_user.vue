@@ -12,7 +12,7 @@
     export default {
         name: "activity_user",
 
-        props: ['ischecked', 'id'],
+        props: ['ischecked', 'id', 'event_id'],
 
         data() {
           return{
@@ -25,8 +25,7 @@
             setChecked() {
                 let newStatus = (!this.activity_checked)==true?1:0;
                 console.log(newStatus);
-
-                axios.patch('/api/activities/'+this.id+'/check/'+newStatus).then(response => {
+                axios.patch('/api/activities/'+this.event_id+'/'+this.id+'/check/'+newStatus).then(response => {
                     
                 })
             }
@@ -34,7 +33,7 @@
 
         computed:{
             activityMessage(){
-                return this.activity_checked==1?"Approved":"Rejected";
+                return this.activity_checked==1?"Approved":"Pending";
             }
         }
     }

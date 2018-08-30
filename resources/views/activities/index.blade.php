@@ -11,7 +11,8 @@
                     <h3 class="flex">Activities</h3>
 
                     @if(Auth::check() && Auth::user()->isAdmin)
-                        <a href="/activities/create" class="button" style="background-color: #5cb85c;border-radius: 12px;">Add Activity</a>
+                        <a href="/activities/create" class="button round end"
+                           style="background-color: #5cb85c;border-radius: 12px;">Add Activity</a>
                     @endif
 
                 </div>

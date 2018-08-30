@@ -34,7 +34,7 @@
             <input type="text" name="location" value="{{$event->location}}">
             Lead Start Date<br>
             <input type="date" name="lead_start_date" value="{{$event->lead_start_date}}">
-            Timeline<br>
+            Lead End Date<br>
             <input type="date" name="lead_end_date" value="{{$event->lead_end_date}}">
             <label>Activities
                 {!!  Form::select('activity_id[]', $activities->pluck('name', 'id'), $event->activities->pluck("id"), ['multiple' => true, 'id'=>'activity_id']) !!}

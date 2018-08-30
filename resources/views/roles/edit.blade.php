@@ -25,7 +25,8 @@
                 <input type="text" name="description" value="{{$role->description}}">
                 <br>
 
-                <input class="button el-button--success expanded" style="border-radius: 12px;box-shadow: 2px 5px lightgray;"
+                <input class="button el-button--success expanded"
+                       style="border-radius: 12px;box-shadow: 2px 5px lightgray;"
                        type="submit" value="Edit Activity">
 
             </form>

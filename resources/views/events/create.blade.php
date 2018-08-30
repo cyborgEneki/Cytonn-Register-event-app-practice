@@ -8,16 +8,16 @@
 
             <h4 class="form-heading">Add a new event</h4>
 
-            <form class="form-body" method="post" action="events">
+            <form class="form-body" method="post" action="/events">
                 @csrf
 
                 <div class="grid-x">
                     <div class="medium-6">
-                        Event Name:<br>
+                        Event Name<br>
                         <input type="text" name="name">
                     </div>
                     <div class="medium-6">
-                        Frequency:<br>
+                        Frequency<br>
                         <select name="frequency">
                             <option value="">How often does this recur?</option>
                             <option value="Yearly">Yearly</option>
@@ -31,29 +31,29 @@
 
                 <div class="grid-x">
                     <div class="medium-6">
-                        Start Date:<br>
+                        Start Date<br>
                         <input type="date" name="start_date">
                     </div>
                     <div class="medium-6">
-                        Start Time:<br>
+                        Start Time<br>
                         <input type="time" name="start_time">
                     </div>
                 </div>
 
                 <div class="grid-x">
                     <div class="medium-6">
-                        Location:<br>
+                        Location<br>
                         <input type="text" name="location">
                     </div>
                     <div class="medium-6">
-                        Lead Start Date:<br>
+                        Lead Start Date<br>
                         <input type="date" name="lead_start_date">
                     </div>
                 </div>
 
                 <div class="grid-x">
                     <div class="medium-6">
-                        Timeline:<br>
+                        Lead End Date<br>
                         <input type="date" name="lead_end_date">
                     </div>
                     <div class="medium-6">
@@ -68,7 +68,8 @@
                     </div>
                 </div>
 
-                <input class="button el-button--success expanded" style="font-weight: 600;border-radius: 12px;" type="submit" value="Submit">
+                <input class="button el-button--success expanded" style="font-weight: 600;border-radius: 12px;"
+                       type="submit" value="Submit">
 
             </form>
 

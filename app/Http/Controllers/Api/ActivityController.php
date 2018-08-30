@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Activity;
+use App\Event;
 use App\Repositories\ActivitiesRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -25,8 +26,11 @@ class ActivityController extends Controller
         return response()->json($activities);
     }
 
-    public function check(Activity $activity,$status){
-        $activity->update(["checked"=>$status]);
+    public function check (Event $event,Activity $activity,$status)
+    {
+//        $activity->update(["checked"=>$status]);
+        $event->activities()->updateExistingPivot($activity->id, ["confirmed"=>$status]);
+
     }
 }
 

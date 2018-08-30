@@ -12,13 +12,14 @@ use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
 {
-    public $eventsRepository;
+    private $eventsRepository;
 
-    public $activitiesRepository;
+    private $activitiesRepository;
 
     public function __construct(EventsRepository $eventsRepository, ActivitiesRepository $activitiesRepository)
     {
         $this->eventsRepository = $eventsRepository;
+
         $this->activitiesRepository = $activitiesRepository;
     }
 
@@ -31,14 +32,19 @@ class EventController extends Controller
 
     public function store(EventRequest $eventRequest)
     {
-        $this->eventsRepository->postNewEvent($eventRequest);
+
+        $event = $eventRequest->all();
+
+
+
+        $this->eventsRepository->postNewEvent($event);
 
         return redirect('/events_blade')->with('success', 'Event added successfully');
     }
 
     public function show(Event $event)
     {
-        return view('events.show', compact("event"));
+        return view('events.show')->with("event", $event);
     }
 
     public function create()
@@ -76,7 +82,7 @@ class EventController extends Controller
 
     public function updateActivityStatus(Event $event, Activity $activity)
     {
-        $event->activities()->updateExistingPivot($activity->id, ['status' => request('status')]);
+        $this->eventsRepository->changeActivityStatus($event, $activity);
 
         return redirect()->back();
     }

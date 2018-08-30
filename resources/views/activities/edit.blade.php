@@ -16,10 +16,10 @@
             {!!  Form::open(['url' => "/activities/$activity->id", 'class'=>'form-body', 'method' => 'post']) !!}
             @csrf
             {{method_field("PATCH")}}
-            Activity name:<br>
+            Activity name<br>
             <input type="text" name="name" value="{{$activity->name}}">
             <br>
-            Description:<br>
+            Description<br>
             <input type="text" name="description" value="{{$activity->description}}">
             <br>
             <label>User(s) Assigned

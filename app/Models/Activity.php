@@ -19,7 +19,7 @@ class Activity extends Model
     public function events()
     {
         return $this->belongsToMany('App\Event', 'activity_event',
-            'activity_id', 'event_id')->withPivot('status');
+            'activity_id', 'event_id')->withPivot(['status','confirmed']);
     }
 
     public function users()

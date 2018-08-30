@@ -6,22 +6,47 @@ use Tests\TestCase;
 use RefreshDatabase;
 use App\Repositories\EventsRepository;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class EventsTest extends TestCase
 {
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
+    use DatabaseMigrations;
 
     /** @test */
-
-    public function can_get_all_the_events()
+    public function a_signed_in_user_can_view_all_events()
     {
-        $events = factory('App\Event', 3)->create();
+        $this->signIn();
 
-        $this->get('/events')
-            ->assertStatus(200);
+        create('App\Event');
+
+        $response = $this->get('/events_blade');
+
+        $response->assertSee("Events");
+    }
+
+    /** @test */
+    public function a_signed_in_user_can_view_a_single_event()
+    {
+        $this->signIn();
+
+        $event = create('App\Event');
+
+        $response = $this->get('/events/'. $event->id);
+
+        $response->assertSee($event->name);
+    }
+
+    /** @test */
+    public function admins_can_add_events()
+    {
+        $this->signInAdmin();
+
+        $event = make('App\Event');
+
+        $response = $this->post('/events',$event->toArray());
+
+        $response->assertRedirect('events_blade');
+
+        $this->assertDatabaseHas('events',["name"=>$event->name]);
     }
 }

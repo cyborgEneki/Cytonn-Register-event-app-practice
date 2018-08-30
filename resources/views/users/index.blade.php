@@ -5,12 +5,13 @@
     <index-users inline-template>
         <div class="form_table_arrangement" style="margin-top:30px;">
 
-                <div class="level">
-                    <h3 class="flex">Users</h3>
-                    @if(Auth::check() && Auth::user()->isAdmin)
-                        <a href="/users/create" class="button end">Add User</a>
-                    @endif
-                </div>
+            <div class="level">
+                <h3 class="flex">Users</h3>
+                @if(Auth::check() && Auth::user()->isAdmin)
+                    <a href="/users/create" class="button round end"
+                       style="background-color: #5cb85c;border-radius: 12px;">Add User</a>
+                @endif
+            </div>
 
             <table class="table-font" style="margin-top: 20px;">
                 <thead>

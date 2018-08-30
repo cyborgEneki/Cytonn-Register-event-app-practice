@@ -5,7 +5,7 @@
     export default {
         components: {ActivityView},
 
-        data () {
+        data() {
             return {
                 activities: [],
             }

@@ -22,18 +22,7 @@ class ActivitiesRepository
     {
         $activities = Activity::all();
 
-//        $activities = Activity::all();
-
         return $activities;
-    }
-
-    public function getActivity(Activity $activity)
-    {
-        return $activity;
-    }
-
-    public function getEventActivity(Event $event)
-    {
     }
 
     public function postNewActivity(Request $request)

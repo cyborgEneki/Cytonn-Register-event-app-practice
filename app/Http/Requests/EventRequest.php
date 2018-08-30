@@ -30,7 +30,7 @@ class EventRequest extends FormRequest
             'start_time' => 'required',
             'location' => 'required',
             'lead_start_date' => 'required',
-            'lead_end_date' =>'required',
+            'lead_end_date' => 'required',
         ];
     }
 }

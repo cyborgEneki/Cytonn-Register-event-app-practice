@@ -38,14 +38,13 @@ class ActivityController extends Controller
     public function show(Activity $activity)
     {
         return view('activities.show')->with('activity', $activity);
-
     }
 
     public function create()
     {
         $users = $this->usersRepository->getUsers();
 
-        return view ('activities.create')->with('users', $users);
+        return view('activities.create')->with('users', $users);
     }
 
     public function edit(Activity $activity)

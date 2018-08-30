@@ -9,7 +9,7 @@
     <br><br>
     <br><br>
 
-    <a  href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit()">
+    <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit()">
         <i class="fas fa-sign-out-alt"></i>&nbsp;Logout
     </a>
 </div>

@@ -63,14 +63,16 @@
 
             </tr>
             </thead>
+
             <tbody>
             @foreach($event->activities as $activity)
                 <tr>
 
+
                     @if(Auth::check() && Auth::user()->isAdmin)
                         <td>
-                            <activity-active :id="{{$activity->id}}"
-                                             :ischecked="{{$activity->checked}}"></activity-active>
+
+                            <activity-active :event_id="{{$event->id}}" :id="{{$activity->id}}" :ischecked="{{$activity->pivot->confirmed}}"></activity-active>
                         </td>
                     @endif
 

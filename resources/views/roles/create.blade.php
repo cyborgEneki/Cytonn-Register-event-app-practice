@@ -23,7 +23,8 @@
                 <input type="text" name="description">
                 <br>
 
-                <input class="button expanded el-button--success" style="border-radius: 5px;" type="submit" value="Submit">
+                <input class="button expanded el-button--success" style="border-radius: 5px;" type="submit"
+                       value="Submit">
 
             </form>
 

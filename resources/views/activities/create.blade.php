@@ -27,7 +27,8 @@
 
                 </label>
 
-                <input class="button expanded el-button--success" style="font-weight: 600;border-radius: 12px;" type="submit" value="Submit">
+                <input class="button expanded el-button--success" style="font-weight: 600;border-radius: 12px;"
+                       type="submit" value="Submit">
 
             </form>
 
