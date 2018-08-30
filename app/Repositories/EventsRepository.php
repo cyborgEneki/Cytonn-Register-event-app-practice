@@ -9,6 +9,7 @@
 namespace App\Repositories;
 
 use App\Event;
+use App\Activity;
 use Illuminate\Http\Request;
 
 class EventsRepository
@@ -19,30 +20,23 @@ class EventsRepository
 
     public function getEvents()
     {
-        $events = Event::orderBy('start_date', 'desc')
-            ->paginate(15);
+        $events = Event::all();
 
         return $events;
     }
 
-    public function getEvent(Event $event)
+    public function postNewEvent(array $request )
     {
-        $event = Event::find($event);
+
+//        dd($request);
+        $event = Event::create($request);
+
+        $event->activities()->sync($request["activity_id"]??[]);
 
         return $event;
     }
 
-    public function postNewEvent($request)
-    {
-        $event = Event::create($request->except("activity_id"));
-
-        $event->activities()->sync($request["activity_id"]);
-
-
-        return $event;
-    }
-
-    public function updateEvent(Request $request, Event $event)
+    public function updateEvent($request, Event $event)
     {
         $event->update($request->except("activity_id"));
 
@@ -61,6 +55,13 @@ class EventsRepository
         $event->activities()->detach();
 
         $event->delete();
+
+        return $event;
+    }
+
+    public function changeActivityStatus(Event $event, Activity $activity)
+    {
+        $event->activities()->updateExistingPivot($activity->id, ['status' => request('status')]);
 
         return $event;
     }

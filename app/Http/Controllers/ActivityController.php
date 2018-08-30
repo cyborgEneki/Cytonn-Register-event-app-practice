@@ -5,15 +5,20 @@ namespace App\Http\Controllers;
 use App\Activity;
 use App\Http\Requests\ActivityRequest;
 use App\Repositories\ActivitiesRepository;
+use App\Repositories\UsersRepository;
 use Illuminate\Http\Request;
 
 class ActivityController extends Controller
 {
-    protected $activitiesRepository;
+    private $activitiesRepository;
 
-    public function __construct(ActivitiesRepository $activitiesRepository)
+    private $usersRepository;
+
+    public function __construct(ActivitiesRepository $activitiesRepository, UsersRepository $usersRepository)
     {
         $this->activitiesRepository = $activitiesRepository;
+
+        $this->usersRepository = $usersRepository;
     }
 
     public function index()
@@ -33,19 +38,20 @@ class ActivityController extends Controller
     public function show(Activity $activity)
     {
         return view('activities.show')->with('activity', $activity);
-
     }
 
     public function create()
     {
-        return view ('activities.create');
+        $users = $this->usersRepository->getUsers();
+
+        return view('activities.create')->with('users', $users);
     }
 
     public function edit(Activity $activity)
     {
+        $users = $this->usersRepository->getUsers();
 
-
-        return view('activities.edit')->with('activity', $activity);
+        return view('activities.edit')->with(['activity' => $activity, 'users' => $users]);
     }
 
     public function update(ActivityRequest $request, Activity $activity)

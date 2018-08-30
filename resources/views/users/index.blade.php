@@ -2,46 +2,34 @@
 
 @section('content')
 
-    <div class="form_table_arrangement">
+    <index-users inline-template>
+        <div class="form_table_arrangement index_user" style="margin-top:30px;">
 
-        @if(Auth::check() && Auth::user()->isAdmin)
-            <a href="users/create" class="button">Add User</a>
-        @endif
+            <div class="level">
+                <h3 class="flex">Users</h3>
+                @if(Auth::check() && Auth::user()->isAdmin)
+                    <a href="/users/create" class="button round add_user end">Add User</a>
+                @endif
+            </div>
 
-        <table class="table-font">
-            <thead>
-            <tr>
-                <th>#</th>
-                <th>User Name</th>
-                <th>Email</th>
-                <th>Role</th>
-            </tr>
-            </thead>
-            <tbody>
+            <table class="table-font" style="margin-top: 20px;">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>User Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                </tr>
+                </thead>
 
-            @if (count($users)>0)
-                @foreach($users as $user)
-                    <tr>
-                        <td>{{ ($users->currentpage()-1) * $users->perpage() + $loop->index + 1 }}</td>
-                        <td><a href="users/{{$user->id}}">{{$user->name}}</a></td>
-                        <td>{{$user->email}}</td>
-                        <td>
-                            @foreach($user->roles as $role)
-                                {{$role->name}}<br/>
-                            @endforeach
-                        </td>
-                    </tr>
-                @endforeach
+                <tbody>
 
-                {{$users->links()}}
+                <tr is="user-view" v-for="(user, index) in users" :data="user" :row="index"></tr>
 
-            @else
-                <p>No users found</p>
-            @endif
+                </tbody>
+            </table>
 
-            </tbody>
-        </table>
+        </div>
 
-    </div>
-
+    </index-users>
 @endsection

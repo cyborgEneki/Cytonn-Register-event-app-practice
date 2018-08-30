@@ -9,6 +9,7 @@
 namespace App\Repositories;
 
 use App\Activity;
+use App\Event;
 use Illuminate\Http\Request;
 
 class ActivitiesRepository
@@ -19,31 +20,27 @@ class ActivitiesRepository
 
     public function getActivities()
     {
-        $activities = Activity::orderBy('name', 'desc')
-            ->paginate(15);
-
-//        $activities = Activity::all();
+        $activities = Activity::all();
 
         return $activities;
     }
 
-    public function getActivity(Activity $activity)
-    {
-        $activity = Activity::findO($activity);
-
-        return $activity;
-    }
-
     public function postNewActivity(Request $request)
     {
-        $activity = Activity::create($request->all());
+        $activity = Activity::create($request->except("user_id"));
+
+        $activity->users()->sync($request["user_id"]);
 
         return $activity;
     }
 
     public function updateActivity($request, $activity)
     {
-        return $activity->update($request->all());
+        $activity->update($request->except("user_id"));
+
+        $activity->users()->sync($request["user_id"]);
+
+        return $activity;
 
     }
 

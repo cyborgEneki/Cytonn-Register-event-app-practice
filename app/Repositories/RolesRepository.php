@@ -24,23 +24,16 @@ class RolesRepository
         return $roles;
     }
 
-    public function getRole($id)
-    {
-        $role = Role::find($id);
-
-        return $role;
-    }
-
     public function postNewRole(Request $request)
     {
-        $role =  Role::create($request->all());
+        $role = Role::create($request->all());
 
         return $role;
     }
 
     public function updateRole($request, Role $role)
     {
-       return $role->update($request->all());
+        return $role->update($request->all());
     }
 
     /**

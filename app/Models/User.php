@@ -18,6 +18,7 @@ class User extends Authenticatable
         'name', 'email', 'password', 'role',
     ];
 
+    protected $with = ["roles"];
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -39,14 +40,10 @@ class User extends Authenticatable
             'user_id', 'activity_id');
     }
 
-    public  function getIsAdminAttribute()
+    public function getIsAdminAttribute()
     {
-        return $this->roles()->get()->where("name","admin")->count()==1;
+        return $this->roles()->get()->where("name", "admin")->count() == 1;
     }
-
-
-
-
 
 
 }

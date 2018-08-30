@@ -9844,6 +9844,88 @@ body {
   background-color: #ffffff;
 }
 
+body .show_event {
+  margin-bottom: 50px;
+}
+
+body .show_event .fa-dodger {
+  color: dodgerblue;
+  margin-right: 15px;
+}
+
+body .show_event .fa-red {
+  color: #fb2531;
+}
+
+body .user_create {
+  margin: 100px auto;
+  width: 800px;
+}
+
+body .user_create .add_header {
+  margin-left: 340px;
+}
+
+body .index_user a {
+  color: #5cb85c;
+  border-radius: 12px;
+}
+
+body .el-button--info {
+  border-radius: 5px;
+}
+
+body .edit_user {
+  margin: 0 auto;
+  width: 900px;
+  padding-top: 30px;
+}
+
+body .button {
+  font-weight: 600;
+  border-radius: 12px;
+  -webkit-box-shadow: 2px 5px lightgray;
+          box-shadow: 2px 5px lightgray;
+}
+
+body .show_activities {
+  margin-top: 30px;
+}
+
+body .show_activities table {
+  margin-bottom: 50px;
+}
+
+body .events_edit {
+  margin: 0 auto;
+  width: 1000px;
+  padding-top: 30px;
+}
+
+body .events_edit .form-heading {
+  margin-left: 350px;
+}
+
+body .dropdown.menu > li.is-dropdown-submenu-parent > a::after {
+  display: block;
+  width: 0;
+  height: 0;
+  border: inset 6px;
+  border-top-color: currentcolor;
+  border-top-style: inset;
+  border-right-color: currentcolor;
+  border-bottom-color: currentcolor;
+  border-bottom-width: 6px;
+  border-left-color: currentcolor;
+  content: '';
+  border-bottom-width: 0;
+  border-top-style: solid;
+  border-color: white transparent transparent;
+  right: 5px;
+  left: auto;
+  margin-top: -3px;
+}
+
 body .level {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -9982,11 +10064,28 @@ body .form-heading {
 
 body .form-body {
   font-family: 'Quicksand';
-  margin: 0 auto;
-  width: 500px;
 }
 
 body .form-body .form-button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  border-radius: 12px;
+  font-family: 'Quicksand';
+  width: 100%;
+}
+
+body .event_create .form-body {
+  font-family: 'Quicksand';
+}
+
+body .event_create .form-body .form-button {
   background-color: #4CAF50;
   border: none;
   color: white;
@@ -10050,6 +10149,17 @@ body .delete-button {
 
 body .form_table_arrangement {
   margin: 0 auto;
+  width: 90%;
+  padding: 20px;
+}
+
+body .form_table_arrangement_2 {
+  margin: 100px auto;
+  width: 900px;
+}
+
+body .roles_create {
+  margin: 100px auto;
   width: 900px;
 }
 

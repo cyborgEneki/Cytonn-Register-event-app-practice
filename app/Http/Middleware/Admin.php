@@ -16,11 +16,16 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::check() && Auth::user()->role == 'admin') {
+        if (Auth::check() && Auth::user()->isAdmin) {
             return $next($request);
         }
         else {
-            return response()->json("You do not have sufficient privilages to carry out this operatiion",403);
+            if($request->expectsJson()){
+                return response()->json("You do not have sufficient privilages to carry out this operatiion",403);
+            }
+                return response()->redirectTo("login");
+
+
         }
     }
 }

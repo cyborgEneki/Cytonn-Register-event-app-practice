@@ -2,40 +2,35 @@
 
 @section('content')
 
-    <div class="form_table_arrangement">
+    <index-activities inline-template>
 
-        @if(Auth::check() && Auth::user()->isAdmin)
-            <a href="activities/create" class="button">Add Activity</a>
-        @endif
+        <div class="form_table_arrangement">
 
-        <table class="table-font">
-            <thead>
-            <tr>
-                <th>#</th>
-                <th>Activity Name</th>
-                <th>Description</th>
-            </tr>
-            </thead>
-            <tbody>
 
-            @if (count($activities)>0)
-                @foreach($activities as $activity)
-                    <tr>
-                        <td>{{ ($activities ->currentpage()-1) * $activities ->perpage() + $loop->index + 1 }}</td>
-                        <td><a href="activities/{{$activity->id}}">{{$activity->name}}</a></td>
-                        <td>{{$activity->description}}</td>
-                    </tr>
-                @endforeach
+                <div class="level" style="margin-top: 20px;">
+                    <h3 class="flex">Activities</h3>
 
-                {{$activities->links()}}
+                    @if(Auth::check() && Auth::user()->isAdmin)
+                        <a href="/activities/create" class="button round end"
+                           style="background-color: #5cb85c;border-radius: 12px;">Add Activity</a>
+                    @endif
 
-            @else
-                <p>No activities found</p>
-            @endif
+                </div>
 
-            </tbody>
-        </table>
+            <table class="table-font">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Activity Name</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
 
-    </div>
+                <tr is="activity-view" v-for="(activity, index) in activities" :data="activity" :row="index"></tr>
 
+            </table>
+
+        </div>
+
+    </index-activities>
 @endsection

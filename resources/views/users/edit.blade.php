@@ -2,30 +2,32 @@
 
 @section('content')
 
-    <div class="form_table_arrangement">
+    <div class="form_table_arrangement edit_user">
 
         @if(Auth::check() && Auth::user()->isAdmin)
 
-            <h4 class="form-heading">Edit user details</h4>
+            <div class="level">
+                <a class="button el-button--info" href="/users/{{$user->id}}">Back</a>
 
-            <form class="form-body" method="post" action="users/{{$user->id}}">
-                @csrf
-                {{method_field("PATCH")}}
-                User name:<br>
-                <input type="text" name="name" value="{{$user->name}}">
-                <br>
-                Email:<br>
-                <input type="text" name="email" value="{{$user->email}}">
-                <br>
-                <label>Roles
-                    <select multiple id="role_id" name="role_id[]">
-                        <option value="">Select Role</option>
-                        @foreach($user->roles as $role)
-                            <option value="{{ $role->id }}">{{ $role->name }}</option>
-                        @endforeach
-                    </select>
-                </label>
-                <input class="form-button" type="submit" value="Submit">
+                <h4 class="form-heading" style="margin-left: 400px;">Edit User Details</h4>
+            </div>
+
+            {!!  Form::open(['url' => "/users/$user->id", 'class'=>'form-body', 'method' => 'post']) !!}
+            @csrf
+            {{method_field("PATCH")}}
+            User name:<br>
+            <input type="text" name="name" value="{{$user->name}}">
+            <br>
+            Email:<br>
+            <input type="text" name="email" value="{{$user->email}}">
+            <br>
+
+            <label>Roles
+                {!!  Form::select('role_id[]', $roles->pluck('name', 'id'), $user->roles->pluck("id"), ['multiple' => true, 'id'=>'role_id']) !!}
+            </label>
+
+            <input class="button el-button--success expanded"
+                   type="submit" value="Edit Activity">
 
             </form>
 

@@ -6,10 +6,11 @@ use App\Repositories\EventsRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class EventsController extends Controller
+class EventController extends Controller
 {
     //
     private $eventsRepository;
+
     public function __construct(EventsRepository $eventsRepository)
     {
         $this->eventsRepository=$eventsRepository;

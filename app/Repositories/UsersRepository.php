@@ -22,17 +22,9 @@ class UsersRepository
 
     public function getUsers()
     {
-        $users = User::orderBy('name', 'asc')
-            ->paginate(15);
+        $users = User::all();
 
         return $users;
-    }
-
-    public function getUser($id)
-    {
-        $user = User::find($id);
-
-        return $user;
     }
 
     /**
@@ -42,29 +34,20 @@ class UsersRepository
      */
     public function createUser(Request $request)
     {
-        $userDetails=$request->all();
+        $userDetails = $request->all();
 
-        $userDetails["password"]=base64_encode(random_bytes(10));
+        $userpassword = base64_encode(random_bytes(10));
 
-//        $userDetails["password"] = Hash::make(str_random(8));
+        $userDetails["password"] = Hash::make($userpassword);
 
         $user = User::create($userDetails);
 
         $user->roles()->sync($request["role_id"]);
 
-        Mail::to($user)->queue( new PasswordCreated($user,$userDetails["password"]));
+        Mail::to($user)->queue(new PasswordCreated($user, $userpassword));
 
         return $user;
     }
-
-//    public function postNewUserToRoleUser(Request $request)
-//    {
-//        $user = User::create($request->except("role_id"));
-//
-//        $user->roles()->sync($request["role_id"]);
-//
-//        return $user;
-//    }
 
     public function updateUser(Request $request, User $user)
     {

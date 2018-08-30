@@ -13,6 +13,12 @@ use Illuminate\Http\Request;
 |
 */
 
+Route::resource('events', 'Api\EventController');
 
+Route::resource('activities', 'Api\ActivityController');
 
-Route::resource('events', 'Api\EventsController');
+Route::resource('roles', 'Api\RoleController');
+
+Route::resource('users', 'Api\UserController');
+
+Route::patch('/activities/{event}/{activity}/check/{status}', 'Api\ActivityController@check');

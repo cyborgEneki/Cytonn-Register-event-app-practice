@@ -2,40 +2,32 @@
 
 @section('content')
 
-    <div class="form_table_arrangement">
+    <index-roles inline-template>
+        <div class="form_table_arrangement" style="margin-top:30px;">
 
-        @if(Auth::check() && Auth::user()->isAdmin)
-            <a href="/roles/create" class="button">Add Role</a>
-        @endif
+            <div class="level">
+                <h3 class="flex">Roles</h3>
+                @if(Auth::check() && Auth::user()->isAdmin)
+                    <a href="/roles/create" class="button round add_user end">Add Role</a>
+                @endif
+            </div>
 
-        <table class="table-font">
-            <thead>
-            <tr>
-                <th>#</th>
-                <th>Role Name</th>
-                <th>Display Name</th>
-                <th>Description</th>
-            </tr>
-            </thead>
-            <tbody>
+            <table class="table-font" style="margin-top: 20px;">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Role Name</th>
+                    <th>Display Name</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
 
-            @if (count($roles)>0)
-                @foreach($roles as $role)
-                    <tr>
-                        <td>{{ $loop -> iteration }}</td>
-                        <td><a href="roles/{{$role->id}}">{{$role->name}}</a></td>
-                        <td>{{$role->display_name}}</td>
-                        <td>{{$role->description}}</td>
-                    </tr>
-                @endforeach
+                <tbody>
+                <tr is="role-view" v-for="(role, index) in roles" :data="role" :row="index"></tr>
+                </tbody>
 
-            @else
-                <p>No roles found</p>
-            @endif
+            </table>
 
-            </tbody>
-        </table>
-
-    </div>
-
+        </div>
+    </index-roles>
 @endsection

@@ -6,7 +6,7 @@
         <h4>{{$event->name}}</h4>
         <br>
         <h5 class="help-text">Event Details</h5>
-        <table class="table striped" style="margin-bottom: 50px;">
+        <table class="table striped">
             <thead>
             <tr>
                 <th>Frequency</th>
@@ -32,8 +32,7 @@
                     <td>
                         <div class="grid-x">
                             <div class="medium-6">
-                                <a href="/events/{{$event->id}}/edit"><i class="fas fa-edit"
-                                                                         style="color: dodgerblue;margin-right: 15px"></i></a>
+                                <a href="/events/{{$event->id}}/edit"><i class="fas fa-edit fa-dodger"></i></a>
 
                             </div>
                             <div class="medium-6">
@@ -50,48 +49,36 @@
             </tbody>
         </table>
 
+        <h5 class="help-text">Activities Related to the Event</h5>
         <table class="table striped">
             <thead class="text-center">
             <tr>
+                <th>Admin Status</th>
                 <th>Activity</th>
-                <th>User Assigned</th>
-                <th>User Status</th>
-                @if(Auth::check() && Auth::user()->isAdmin)
-                    <th>Admin Status</th>
-                @endif
-                <th>Edit Status</th>
-                <th>Actions</th>
+                <th>Activity Status</th>
+                <th>Assignment Status</th>
+                <th>Assignee</th>
+                <th>Edit Activity</th>
 
             </tr>
             </thead>
+
             <tbody>
             @foreach($event->activities as $activity)
                 <tr>
-                    <td>
-                        {{$activity->name}}
-                    </td>
-                    <td>
-                        @foreach($activity->users as $user)
-                            {{$user->name}}<br/>
-                        @endforeach
-                    </td>
-                    <td>
-                        {{$activity->pivot->status==1?"Complete":"Pending"}}<br/>
-                        {{--@if($activity->pivot->status==0)--}}
-                        {{--'done'--}}
-                        {{--@elseif($activity->pivot->status==1)--}}
-                        {{--'fghhh'--}}
-                        {{--@elseif($activity->pivot->status==2)--}}
 
-                        {{--@elseif($activity->pivot->status==3)--}}
-                        {{--@endif--}}
-                    </td>
 
                     @if(Auth::check() && Auth::user()->isAdmin)
                         <td>
-                            <activity-active id="{{$activity->id}}" checked="{{$activity->checked}}"></activity-active>
+
+                            <activity-active :eventid="{{$event->id}}" :id="{{$activity->id}}" :ischecked="{{$activity->pivot->confirmed}}"></activity-active>
                         </td>
                     @endif
+
+                    <td>
+                        {{$activity->name}}
+                    </td>
+
                     <td>
                         <div class="grid-x">
                             <div class="medium-6" style="padding-top: 10px;">
@@ -116,8 +103,7 @@
                                                 </div>
                                                 <div class="medium-4  columns">
                                                     <button type="submit" style="background: transparent;"
-                                                            class="button"><i
-                                                                style="color: #fb2531;" class="fas fa-edit"></i>
+                                                            class="button"><i class="fas fa-red fa-edit"></i>
                                                     </button>
 
                                                 </div>
@@ -130,9 +116,21 @@
                             </div>
                         </div>
                     </td>
+
                     <td>
-                        <a href="#"><i class="fas fa-eye"></i></a>
+                        {{$activity->pivot->status==1?"Complete":"Pending"}}<br/>
                     </td>
+
+                    <td>
+                        @foreach($activity->users as $user)
+                            {{$user->name}}<br/>
+                        @endforeach
+                    </td>
+
+                    <td>
+                        <a href="/activities/{{$activity->id}}"><i class="fas fa-edit"></i></a>
+                    </td>
+
                 </tr>
             @endforeach
 

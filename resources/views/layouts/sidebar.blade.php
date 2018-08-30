@@ -1,29 +1,15 @@
-<div class="sidebar_admin">
+<div class="sidebar_admin position-fixed">
 
-
-    <a class="disabled" href="#">{{ Auth::user()->name }}</a>
-    <br><br>
-    <a class="active" href="/home">Dashboard</a>
+    <a href="/home"><i class="fas fa-list"></i>&nbsp;Dashboard</a>
     <br>
-    <a href="/events_blade">Events</a>
+    <a href="/events_blade"><i class="far fa-calendar-alt"></i>&nbsp;Events</a>
     <br>
-    <a href="/activities_blade">Activities</a>
+    <a href="/activities_blade"><i class="fas fa-chart-line"></i>&nbsp;Activities</a>
+    <br><br>
+    <br><br>
     <br><br>
 
-    <a href="{{ route('logout') }}">
-        Logout
+    <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit()">
+        <i class="fas fa-sign-out-alt"></i>&nbsp;Logout
     </a>
-
-
-    <ul class="dropdown menu" data-dropdown-menu>
-        <li>
-            <a href="#">User Management</a>
-            <ul class="menu">
-                <li><a href="/users_blade">Users</a></li>
-
-                <li><a href="/roles_blade">Roles</a></li>
-                <!-- ... -->
-            </ul>
-        </li>
-    </ul>
 </div>

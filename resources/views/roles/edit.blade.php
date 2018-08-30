@@ -2,26 +2,32 @@
 
 @section('content')
 
-    <div class="form_table_arrangement">
+    <div class="form_table_arrangement events_edit">
 
         @if(Auth::check() && Auth::user()->isAdmin)
 
-            <h4 class="form-heading">Add a new role</h4>
+            <div class="level">
+                <a class="button el-button--info" style="border-radius: 5px;" href="/roles/{{$role->id}}">Back</a>
 
-            <form class="form-body" method="post" action="roles/{{$role->id}}">
+                <h4 class="form-heading">Edit Role</h4>
+            </div>
+
+            <form class="form-body" method="post" action="/roles/{{$role->id}}">
                 @csrf
                 {{method_field("PATCH")}}
                 Role name:<br>
                 <input type="text" name="name" value="{{$role->name}}">
                 <br>
                 Display name:<br>
-                <input type="text" name="display_name">
+                <input type="text" name="display_name" value="{{$role->display_name}}">
                 <br>
                 Description:<br>
                 <input type="text" name="description" value="{{$role->description}}">
                 <br>
 
-                <input class="form-button" type="submit" value="Submit">
+                <input class="button el-button--success expanded"
+                       style="border-radius: 12px;box-shadow: 2px 5px lightgray;"
+                       type="submit" value="Edit Activity">
 
             </form>
 

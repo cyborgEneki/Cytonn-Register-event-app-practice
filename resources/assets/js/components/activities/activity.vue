@@ -1,9 +1,8 @@
 <template>
     <tr>
-        <td>{{eventRow}}</td>
+        <td>{{activityRow}}</td>
         <td><a :href="url" v-text="data.name"></a></td>
-        <td>{{data.frequency}}</td>
-        <td>{{data.start_date}}</td>
+        <td>{{data.description}}</td>
     </tr>
 </template>
 
@@ -11,18 +10,17 @@
 
     export default {
         props: ['data', 'row'],
-
         data() {
             return {
-                url: "/events/" + this.data.id,
+                url: "/activities/" + this.data.id,
 
-                eventRow: Number(this.row) + 1,
+                activityRow: Number(this.row) + 1
             }
         }
     }
-
 </script>
-<style>
 
+<style scoped>
 
 </style>
+

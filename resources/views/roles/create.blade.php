@@ -2,13 +2,16 @@
 
 @section('content')
 
-    <div class="form_table_arrangement">
+    <div class="form_table_arrangement roles_create">
 
         @if(Auth::check() && Auth::user()->isAdmin)
 
-            <h4 class="form-heading">Add a new role</h4>
+            <div class="level">
+                <a href="/roles_blade" class="button el-button--info">Back</a>
+                <h4 class="form-heading" style="margin-left: 300px;">Add a new role</h4>
+            </div>
 
-            <form class="form-body" method="post" action="roles">
+            <form class="form-body" method="post" action="/roles">
                 @csrf
                 Role name:<br>
                 <input type="text" name="name">
@@ -20,7 +23,8 @@
                 <input type="text" name="description">
                 <br>
 
-                <input class="form-button" type="submit" value="Submit">
+                <input class="button expanded el-button--success" type="submit"
+                       value="Submit">
 
             </form>
 

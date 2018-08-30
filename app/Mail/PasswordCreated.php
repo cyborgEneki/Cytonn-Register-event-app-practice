@@ -14,6 +14,7 @@ class PasswordCreated extends Mailable
     public $event;
 
     protected $user;
+
     protected $password;
 
     /**
@@ -24,6 +25,7 @@ class PasswordCreated extends Mailable
     public function __construct($user, $password)
     {
         $this->user = $user;
+
         $this->password = $password;
     }
 
@@ -36,8 +38,8 @@ class PasswordCreated extends Mailable
     {
         return $this->view('emails.password')
             ->with([
-                'user'=>$this->user,
-                'password'=> $this->password
+                'user' => $this->user,
+                'password' => $this->password
             ]);
     }
 }

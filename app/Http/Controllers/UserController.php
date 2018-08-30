@@ -12,9 +12,9 @@ use App\Repositories\RolesRepository;
 
 class UserController extends Controller
 {
-    protected $usersRepository;
+    private $usersRepository;
 
-    protected $rolesRepository;
+    private $rolesRepository;
 
     /**
      * UserController constructor.
@@ -51,10 +51,8 @@ class UserController extends Controller
         return redirect('/users_blade')->with('success', 'User added successfully');
     }
 
-    public function show($id)
+    public function show(User $user)
     {
-        $user = $this->usersRepository->getUser($id);
-
         return view('users.show')->with('user', $user);
     }
 
@@ -62,14 +60,14 @@ class UserController extends Controller
     {
         $roles = $this->rolesRepository->getRoles();
 
-        return view ('users.create')->with('roles', $roles);
+        return view('users.create')->with('roles', $roles);
     }
 
-    public function edit($id)
+    public function edit(User $user)
     {
-        $user = $this->usersRepository->getUser($id);
+        $roles = $this->rolesRepository->getRoles();
 
-        return view('users.edit')->with('user', $user);
+        return view('users.edit')->with(['user' => $user, 'roles' => $roles]);
     }
 
     public function update(UserRequest $request, User $user)

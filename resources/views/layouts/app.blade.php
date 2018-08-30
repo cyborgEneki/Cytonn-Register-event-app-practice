@@ -15,19 +15,23 @@
 
     <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+          integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
 </head>
-<body>
+<body style="background-color: #f1f1f1;">
+
 <div id="app">
+    @include ("layouts.navbar")
 
     <div class="grid-x">
+
         <div class="small-2 medium-2">
             @include ("layouts.sidebar")
+
         </div>
 
         <div class="small-10 medium-10">
-
             @include ('layouts.messages')
             @yield('content')
 

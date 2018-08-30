@@ -1,5 +1,80 @@
 body {
 
+
+  .show_event{
+    margin-bottom: 50px;
+
+    .fa-dodger{
+      color: dodgerblue;margin-right: 15px
+    }
+
+    .fa-red{
+      color: #fb2531;
+    }
+  }
+
+  .user_create{
+    margin: 100px auto; width: 800px;
+
+    .add_header{
+      margin-left: 340px;
+    }
+  }
+
+  .index_user{
+
+    a{
+      color: #5cb85c;border-radius: 12px;
+    }
+  }
+  .el-button--info{
+    border-radius: 5px;
+  }
+
+  .edit_user{
+    margin: 0 auto; width: 900px;padding-top: 30px;
+
+
+  }
+  .button{
+    font-weight: 600;border-radius: 12px;
+    box-shadow: 2px 5px lightgray;
+  }
+  .show_activities{
+    margin-top: 30px;
+
+    table{
+      margin-bottom: 50px;
+    }
+  }
+
+  .events_edit{
+    margin: 0 auto; width: 1000px;padding-top: 30px;
+
+    .form-heading{
+      margin-left:350px;
+    }
+  }
+  .dropdown.menu > li.is-dropdown-submenu-parent > a::after {
+    display: block;
+    width: 0;
+    height: 0;
+    border: inset 6px;
+    border-top-color: currentcolor;
+    border-top-style: inset;
+    border-right-color: currentcolor;
+    border-bottom-color: currentcolor;
+    border-bottom-width: 6px;
+    border-left-color: currentcolor;
+    content: '';
+    border-bottom-width: 0;
+    border-top-style: solid;
+    border-color: white transparent transparent;
+    right: 5px;
+    left: auto;
+    margin-top: -3px;
+  }
+
   .level {
     display: flex;
     align-items: center;
@@ -111,9 +186,6 @@ body {
     .main_admin {
       font-family: 'Quicksand';
       width: 100%;
-
-      //margin-left: 160px; /* Same as the width of the sidebar */
-      //padding: 0px 10px;
     }
 
     /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
@@ -134,8 +206,6 @@ body {
 
   .form-body {
     font-family: 'Quicksand';
-    margin: 0 auto;
-    width: 500px;
 
     .form-button {
       background-color: #4CAF50;
@@ -151,6 +221,29 @@ body {
       font-family: 'Quicksand';
       width: 100%;
     }
+  }
+
+  .event_create {
+
+    .form-body {
+      font-family: 'Quicksand';
+
+      .form-button {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        border-radius: 12px;
+        font-family: 'Quicksand';
+        width: 100%;
+      }
+    }
+
   }
 
   .add-button {
@@ -200,12 +293,20 @@ body {
     font-family: 'Quicksand';
   }
 
-
   .form_table_arrangement {
     margin: 0 auto;
+    width: 90%;
+    padding: 20px;
+  }
+
+  .form_table_arrangement_2 {
+    margin: 100px auto;
     width: 900px;
   }
 
+  .roles_create{
+    margin: 100px auto; width: 900px;
+  }
   .show_event {
     padding: 20px;
 
@@ -232,9 +333,8 @@ body {
         color: #f0ad4e;
       }
 
-
-      .trash-button{
-       color: #d9534f;
+      .trash-button {
+        color: #d9534f;
       }
     }
   }
