@@ -2,14 +2,14 @@
 
 @section('content')
 
-    <div class="form_table_arrangement" style="margin: 0 auto; width: 1000px;padding-top: 30px;">
+    <div class="form_table_arrangement events_edit">
 
         @if(Auth::check() && Auth::user()->isAdmin)
 
             <div class="level">
                 <a class="button el-button--info" style="border-radius: 5px;" href="/roles/{{$role->id}}">Back</a>
 
-                <h4 class="form-heading" style="margin-left: 400px;">Edit Role</h4>
+                <h4 class="form-heading">Edit Role</h4>
             </div>
 
             <form class="form-body" method="post" action="/roles/{{$role->id}}">

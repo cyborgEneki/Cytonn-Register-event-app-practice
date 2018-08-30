@@ -24,7 +24,6 @@
         methods: {
             setChecked() {
                 let newStatus = (!this.activity_checked)==true?1:0;
-                console.log(newStatus);
                 axios.patch('/api/activities/'+this.eventid+'/'+this.id+'/check/'+newStatus).then(response => {
                     
                 })
@@ -33,7 +32,7 @@
 
         computed:{
             activityMessage(){
-                return this.activity_checked==1?"Approved":"Pending";
+                return this.activity_checked==true?"Approved":"Pending";
             }
         }
     }

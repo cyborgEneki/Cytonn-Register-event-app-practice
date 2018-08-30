@@ -68,7 +68,7 @@
                     </div>
                 </div>
 
-                <input class="button el-button--success expanded" style="font-weight: 600;border-radius: 12px;"
+                <input class="button el-button--success expanded"
                        type="submit" value="Submit">
 
             </form>

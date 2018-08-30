@@ -2,12 +2,12 @@
 
 @section('content')
 
-    <div class="form_table_arrangement" style="margin: 0 auto; width: 1000px;padding-top: 30px;">
+    <div class="form_table_arrangement edit_user">
 
         @if(Auth::check() && Auth::user()->isAdmin)
 
             <div class="level">
-                <a class="button el-button--info" style="border-radius: 5px;" href="/users/{{$user->id}}">Back</a>
+                <a class="button el-button--info" href="/users/{{$user->id}}">Back</a>
 
                 <h4 class="form-heading" style="margin-left: 400px;">Edit User Details</h4>
             </div>
@@ -26,7 +26,7 @@
                 {!!  Form::select('role_id[]', $roles->pluck('name', 'id'), $user->roles->pluck("id"), ['multiple' => true, 'id'=>'role_id']) !!}
             </label>
 
-            <input class="button el-button--success expanded" style="border-radius: 12px;box-shadow: 2px 5px lightgray;"
+            <input class="button el-button--success expanded"
                    type="submit" value="Edit Activity">
 
             </form>

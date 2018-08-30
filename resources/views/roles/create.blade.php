@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="form_table_arrangement" style="margin: 100px auto; width: 900px;">
+    <div class="form_table_arrangement roles_create">
 
         @if(Auth::check() && Auth::user()->isAdmin)
 
@@ -23,7 +23,7 @@
                 <input type="text" name="description">
                 <br>
 
-                <input class="button expanded el-button--success" style="border-radius: 5px;" type="submit"
+                <input class="button expanded el-button--success" type="submit"
                        value="Submit">
 
             </form>

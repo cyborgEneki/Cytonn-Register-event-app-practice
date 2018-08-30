@@ -9844,6 +9844,68 @@ body {
   background-color: #ffffff;
 }
 
+body .show_event {
+  margin-bottom: 50px;
+}
+
+body .show_event .fa-dodger {
+  color: dodgerblue;
+  margin-right: 15px;
+}
+
+body .show_event .fa-red {
+  color: #fb2531;
+}
+
+body .user_create {
+  margin: 100px auto;
+  width: 800px;
+}
+
+body .user_create .add_header {
+  margin-left: 340px;
+}
+
+body .index_user a {
+  color: #5cb85c;
+  border-radius: 12px;
+}
+
+body .el-button--info {
+  border-radius: 5px;
+}
+
+body .edit_user {
+  margin: 0 auto;
+  width: 900px;
+  padding-top: 30px;
+}
+
+body .button {
+  font-weight: 600;
+  border-radius: 12px;
+  -webkit-box-shadow: 2px 5px lightgray;
+          box-shadow: 2px 5px lightgray;
+}
+
+body .show_activities {
+  margin-top: 30px;
+}
+
+body .show_activities table {
+  margin-bottom: 50px;
+}
+
+body .events_edit {
+  margin: 0 auto;
+  width: 1000px;
+  padding-top: 30px;
+}
+
+body .events_edit .form-heading {
+  margin-left: 350px;
+}
+
 body .dropdown.menu > li.is-dropdown-submenu-parent > a::after {
   display: block;
   width: 0;
@@ -10088,10 +10150,15 @@ body .delete-button {
 body .form_table_arrangement {
   margin: 0 auto;
   width: 90%;
-  padding: 30px;
+  padding: 20px;
 }
 
 body .form_table_arrangement_2 {
+  margin: 100px auto;
+  width: 900px;
+}
+
+body .roles_create {
   margin: 100px auto;
   width: 900px;
 }

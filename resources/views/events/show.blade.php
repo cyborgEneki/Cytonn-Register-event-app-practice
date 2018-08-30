@@ -6,7 +6,7 @@
         <h4>{{$event->name}}</h4>
         <br>
         <h5 class="help-text">Event Details</h5>
-        <table class="table striped" style="margin-bottom: 50px;">
+        <table class="table striped">
             <thead>
             <tr>
                 <th>Frequency</th>
@@ -32,8 +32,7 @@
                     <td>
                         <div class="grid-x">
                             <div class="medium-6">
-                                <a href="/events/{{$event->id}}/edit"><i class="fas fa-edit"
-                                                                         style="color: dodgerblue;margin-right: 15px"></i></a>
+                                <a href="/events/{{$event->id}}/edit"><i class="fas fa-edit fa-dodger"></i></a>
 
                             </div>
                             <div class="medium-6">
@@ -104,8 +103,7 @@
                                                 </div>
                                                 <div class="medium-4  columns">
                                                     <button type="submit" style="background: transparent;"
-                                                            class="button"><i
-                                                                style="color: #fb2531;" class="fas fa-edit"></i>
+                                                            class="button"><i class="fas fa-red fa-edit"></i>
                                                     </button>
 
                                                 </div>

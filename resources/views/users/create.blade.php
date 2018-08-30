@@ -2,14 +2,14 @@
 
 @section('content')
 
-    <div class="form_table_arrangement" style="margin: 100px auto; width: 900px;">
+    <div class="form_table_arrangement user_create">
 
         @if(Auth::check() && Auth::user()->isAdmin)
 
             <div class="level">
                 <a href="/users_blade" class="button el-button--info">Back</a>
 
-                <h4 class="form-heading" style="margin-left: 300px;">Add a User</h4>
+                <h4 class="form-heading add_header">Add a User</h4>
             </div>
 
 
@@ -31,7 +31,7 @@
                 </label>
 
 
-                <input class="button expanded el-button--success" style="border-radius: 5px;" type="submit"
+                <input class="button expanded el-button--success" type="submit"
                        value="Submit">
 
             </form>

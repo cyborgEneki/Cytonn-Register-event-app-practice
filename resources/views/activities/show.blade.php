@@ -2,10 +2,10 @@
 
 @section('content')
 
-    <div style="margin-top: 30px;">
+    <div class="show_activities">
         <h5 class="help-text">Activity Details</h5>
 
-        <table class="table striped" style="margin-bottom: 50px;">
+        <table class="table striped">
             <thead>
             <tr>
                 <th>Name</th>
@@ -32,8 +32,7 @@
                 <td>
                     <div class="grid-x">
                         <div class="medium-6">
-                            <a href="/activities/{{$activity->id}}/edit"><i class="fas fa-edit"
-                                                                            style="color: dodgerblue;margin-right: 15px"></i></a>
+                            <a href="/activities/{{$activity->id}}/edit"><i class="fas fa-edit" style="color: dodgerblue;margin-right: 15px"></i></a>
                         </div>
                         <div class="medium-6">
                             {!! Form::open(['action' => ['ActivityController@destroy', $activity->id, 'method' => 'POST' ]]) !!}

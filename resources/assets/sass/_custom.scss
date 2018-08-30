@@ -1,5 +1,60 @@
 body {
 
+
+  .show_event{
+    margin-bottom: 50px;
+
+    .fa-dodger{
+      color: dodgerblue;margin-right: 15px
+    }
+
+    .fa-red{
+      color: #fb2531;
+    }
+  }
+
+  .user_create{
+    margin: 100px auto; width: 800px;
+
+    .add_header{
+      margin-left: 340px;
+    }
+  }
+
+  .index_user{
+
+    a{
+      color: #5cb85c;border-radius: 12px;
+    }
+  }
+  .el-button--info{
+    border-radius: 5px;
+  }
+
+  .edit_user{
+    margin: 0 auto; width: 900px;padding-top: 30px;
+
+
+  }
+  .button{
+    font-weight: 600;border-radius: 12px;
+    box-shadow: 2px 5px lightgray;
+  }
+  .show_activities{
+    margin-top: 30px;
+
+    table{
+      margin-bottom: 50px;
+    }
+  }
+
+  .events_edit{
+    margin: 0 auto; width: 1000px;padding-top: 30px;
+
+    .form-heading{
+      margin-left:350px;
+    }
+  }
   .dropdown.menu > li.is-dropdown-submenu-parent > a::after {
     display: block;
     width: 0;
@@ -241,7 +296,7 @@ body {
   .form_table_arrangement {
     margin: 0 auto;
     width: 90%;
-    padding: 30px;
+    padding: 20px;
   }
 
   .form_table_arrangement_2 {
@@ -249,6 +304,9 @@ body {
     width: 900px;
   }
 
+  .roles_create{
+    margin: 100px auto; width: 900px;
+  }
   .show_event {
     padding: 20px;
 

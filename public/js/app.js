@@ -106988,7 +106988,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -107026,14 +107026,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         setChecked: function setChecked() {
             var newStatus = !this.activity_checked == true ? 1 : 0;
-            console.log(newStatus);
             axios.patch('/api/activities/' + this.eventid + '/' + this.id + '/check/' + newStatus).then(function (response) {});
         }
     },
 
     computed: {
         activityMessage: function activityMessage() {
-            return this.activity_checked == 1 ? "Approved" : "Pending";
+            return this.activity_checked == true ? "Approved" : "Pending";
         }
     }
 });

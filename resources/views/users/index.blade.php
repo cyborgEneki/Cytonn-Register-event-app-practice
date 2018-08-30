@@ -3,13 +3,12 @@
 @section('content')
 
     <index-users inline-template>
-        <div class="form_table_arrangement" style="margin-top:30px;">
+        <div class="form_table_arrangement index_user" style="margin-top:30px;">
 
             <div class="level">
                 <h3 class="flex">Users</h3>
                 @if(Auth::check() && Auth::user()->isAdmin)
-                    <a href="/users/create" class="button round end"
-                       style="background-color: #5cb85c;border-radius: 12px;">Add User</a>
+                    <a href="/users/create" class="button round add_user end">Add User</a>
                 @endif
             </div>
 

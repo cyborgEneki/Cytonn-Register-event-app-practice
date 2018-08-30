@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="form_table_arrangement" style="margin: 0 auto; width: 1000px;padding-top: 30px;">
+    <div class="form_table_arrangement events_edit">
 
         @if(Auth::check() && Auth::user()->isAdmin)
 
@@ -40,7 +40,7 @@
                 {!!  Form::select('activity_id[]', $activities->pluck('name', 'id'), $event->activities->pluck("id"), ['multiple' => true, 'id'=>'activity_id']) !!}
             </label>
 
-            <input class="button el-button--success expanded" style="border-radius: 12px;box-shadow: 2px 5px lightgray;"
+            <input class="button el-button--success expanded"
                    type="submit" value="Submit">
             {!! Form::close() !!}
 

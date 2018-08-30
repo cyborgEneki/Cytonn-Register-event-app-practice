@@ -8,8 +8,7 @@
             <div class="level">
                 <h3 class="flex">Roles</h3>
                 @if(Auth::check() && Auth::user()->isAdmin)
-                    <a href="/roles/create" class="button round end"
-                       style="background-color: #5cb85c;border-radius: 12px;">Add Role</a>
+                    <a href="/roles/create" class="button round add_user end">Add Role</a>
                 @endif
             </div>
 
