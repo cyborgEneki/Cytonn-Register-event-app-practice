@@ -45,8 +45,18 @@ class EventsTest extends TestCase
 
         $response = $this->post('/events',$event->toArray());
 
-        $response->assertRedirect('events_blade');
-
         $this->assertDatabaseHas('events',["name"=>$event->name]);
+    }
+
+    /** @test */
+    public function redirects_to_list_after_adding_an_event()
+    {
+        $this->signInAdmin();
+
+        $event = make('App\Event');
+
+        $response = $this->post('/events',$event->toArray());
+
+        $response->assertRedirect('events_blade');
     }
 }

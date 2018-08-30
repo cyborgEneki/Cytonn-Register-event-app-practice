@@ -21,6 +21,7 @@ class EventController extends Controller
         $this->eventsRepository = $eventsRepository;
 
         $this->activitiesRepository = $activitiesRepository;
+        $this->middleware('admin', ['only' => 'store']);
     }
 
     public function index()

@@ -12,7 +12,7 @@
     export default {
         name: "activity_user",
 
-        props: ['ischecked', 'id', 'event_id'],
+        props: ['ischecked', 'id', 'eventid'],
 
         data() {
           return{
@@ -25,7 +25,7 @@
             setChecked() {
                 let newStatus = (!this.activity_checked)==true?1:0;
                 console.log(newStatus);
-                axios.patch('/api/activities/'+this.event_id+'/'+this.id+'/check/'+newStatus).then(response => {
+                axios.patch('/api/activities/'+this.eventid+'/'+this.id+'/check/'+newStatus).then(response => {
                     
                 })
             }

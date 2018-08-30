@@ -28,9 +28,7 @@ class ActivityController extends Controller
 
     public function check (Event $event,Activity $activity,$status)
     {
-//        $activity->update(["checked"=>$status]);
         $event->activities()->updateExistingPivot($activity->id, ["confirmed"=>$status]);
-
     }
 }
 

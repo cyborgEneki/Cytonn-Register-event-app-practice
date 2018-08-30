@@ -26,7 +26,7 @@ Route::get('/users_blade', 'UserController@index');
 
 Route::get('/register', 'LoginController@index');
 
-Route::resource('/events', 'EventController')->middleware("admin",['store']);
+Route::resource('/events', 'EventController');
 
 Route::post('/events/{event}/{activity}', 'EventController@updateActivityStatus');
 

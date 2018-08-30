@@ -107013,7 +107013,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "activity_user",
 
-    props: ['ischecked', 'id', 'event_id'],
+    props: ['ischecked', 'id', 'eventid'],
 
     data: function data() {
         return {
@@ -107027,7 +107027,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         setChecked: function setChecked() {
             var newStatus = !this.activity_checked == true ? 1 : 0;
             console.log(newStatus);
-            axios.patch('/api/activities/' + this.event_id + '/' + this.id + '/check/' + newStatus).then(function (response) {});
+            axios.patch('/api/activities/' + this.eventid + '/' + this.id + '/check/' + newStatus).then(function (response) {});
         }
     },
 

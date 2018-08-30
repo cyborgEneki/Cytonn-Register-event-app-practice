@@ -72,7 +72,7 @@
                     @if(Auth::check() && Auth::user()->isAdmin)
                         <td>
 
-                            <activity-active :event_id="{{$event->id}}" :id="{{$activity->id}}" :ischecked="{{$activity->pivot->confirmed}}"></activity-active>
+                            <activity-active :eventid="{{$event->id}}" :id="{{$activity->id}}" :ischecked="{{$activity->pivot->confirmed}}"></activity-active>
                         </td>
                     @endif
 
