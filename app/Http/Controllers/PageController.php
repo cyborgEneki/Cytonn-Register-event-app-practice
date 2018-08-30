@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Activity;
+use App\Event;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 
 class PageController extends Controller
@@ -25,7 +28,16 @@ class PageController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $data = [
+        'event_count' => Event::all()->count(),
+
+        'activities_count' => Activity::all()->count(),
+
+        'users_count' => User::all()->count()
+        ];
+
+
+        return view('home', compact('data'));
     }
 
     public function login_index()

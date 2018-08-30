@@ -8,7 +8,7 @@
                     &nbsp;&nbsp;<div style="font-size: 30px;flex: 1;">
                         <a href="/events_blade" style="color: white;">Events</a>
                     </div>&nbsp;&nbsp;
-                    <div style="font-size: 30px;">20</div>
+                    <div style="font-size: 30px;">{{$data['event_count']}}</div>
                 </div>
             </div>
         </div>
@@ -19,7 +19,7 @@
                     &nbsp;&nbsp;<div style="font-size: 30px;flex: 1;">
                         <a href="/events_blade" style="color: white;">Activities</a>
                     </div>&nbsp;&nbsp;
-                    <div style="font-size: 30px;">5</div>
+                    <div style="font-size: 30px;">{{$data['activities_count']}}</div>
                 </div>
             </div>
         </div>
@@ -28,9 +28,9 @@
                 <div class="card-section" style="display: flex; align-items: center;">
                     <i class="fas fa-users" style="font-size: 100px;"></i>
                     &nbsp;&nbsp;<div style="font-size: 30px;flex: 1;">
-                        <a href="/events_blade" style="color: white;">Events</a>
+                        <a href="/events_blade" style="color: white;">Users</a>
                     </div>&nbsp;&nbsp;
-                    <div style="font-size: 30px;">20</div>
+                    <div style="font-size: 30px;">{{$data['users_count']}}</div>
                 </div>
             </div>
         </div>
