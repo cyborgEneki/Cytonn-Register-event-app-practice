@@ -84,7 +84,7 @@ class RoleController extends Controller
     {
         $this->rolesRepository->updateRole($request, $role);
 
-        return redirect('/roles_blade')->with('success', 'Role updated successfully');
+        return view('roles.show')->with(['success' => 'Role updated successfully', 'role' => $role]);
     }
 
     /**

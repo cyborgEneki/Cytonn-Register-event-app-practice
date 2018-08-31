@@ -58,7 +58,7 @@ class ActivityController extends Controller
     {
         $this->activitiesRepository->updateActivity($request, $activity);
 
-        return redirect('/activities_blade')->with('success', 'Activity updated successfully');
+        return view('activities.show')->with(['success' => 'Activity updated successfully', 'activity' => $activity]);
     }
 
     public function destroy(Activity $activity)

@@ -2,6 +2,11 @@
 
 @section('content')
 
+
+    <a class="button el-button--info" style="margin-top: 20px; border-radius: 5px;"
+       href="/events_blade">Back</a>
+
+
     <div class="show_event">
         <h4>{{$event->name}}</h4>
         <br>
@@ -53,12 +58,18 @@
         <table class="table striped">
             <thead class="text-center">
             <tr>
-                <th>Admin Status</th>
+                @if(Auth::check() && Auth::user()->isAdmin)
+                    <th>Admin Status</th>
+                @endif
+
                 <th>Activity</th>
                 <th>Activity Status</th>
                 <th>Assignment Status</th>
                 <th>Assignee</th>
-                <th>Edit Activity</th>
+
+                @if(Auth::check() && Auth::user()->isAdmin)
+                    <th>Edit Activity</th>
+                @endif
 
             </tr>
             </thead>
@@ -70,8 +81,8 @@
 
                     @if(Auth::check() && Auth::user()->isAdmin)
                         <td>
-
-                            <activity-active :eventid="{{$event->id}}" :id="{{$activity->id}}" :ischecked="{{$activity->pivot->confirmed}}"></activity-active>
+                            <activity-active :eventid="{{$event->id}}" :id="{{$activity->id}}"
+                                             :ischecked="{{$activity->pivot->confirmed}}"></activity-active>
                         </td>
                     @endif
 
@@ -126,10 +137,11 @@
                             {{$user->name}}<br/>
                         @endforeach
                     </td>
-
-                    <td>
-                        <a href="/activities/{{$activity->id}}"><i class="fas fa-edit"></i></a>
-                    </td>
+                    @if(Auth::check() && Auth::user()->isAdmin)
+                        <td>
+                            <a href="/activities/{{$activity->id}}"><i class="fas fa-eye"></i></a>
+                        </td>
+                    @endif
 
                 </tr>
             @endforeach

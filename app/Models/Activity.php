@@ -43,7 +43,7 @@ class Activity extends Model
                 }
             }
 
-            if (Carbon::now() < $event->lead_start_date) {
+            if (Carbon::now() > $event->lead_start_date) {
                 if (Carbon::now() > $event->lead_end_date) {
                     return "<i class=\"fas fa-circle fa-late\"></i>&nbsp;Late";
                 }

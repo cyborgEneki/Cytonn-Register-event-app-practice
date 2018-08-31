@@ -2,6 +2,9 @@
 
 @section('content')
 
+    <a class="button el-button--info" style="margin-top: 20px; border-radius: 5px;"
+       href="/activities_blade">Back</a>
+
     <div class="show_activities">
         <h5 class="help-text">Activity Details</h5>
 
@@ -11,10 +14,13 @@
                 <th>Name</th>
                 <th>Description</th>
                 <th>Assignee(s)</th>
-                <th>Actions</th>
+                @if(Auth::check() && Auth::user()->isAdmin)
+                    <th>Actions</th>
+                @endif
             </tr>
 
             <tbody>
+
             <td>{{$activity->name}}</td>
             <td>{{$activity->description}}</td>
             <td>
@@ -32,7 +38,8 @@
                 <td>
                     <div class="grid-x">
                         <div class="medium-6">
-                            <a href="/activities/{{$activity->id}}/edit"><i class="fas fa-edit" style="color: dodgerblue;margin-right: 15px"></i></a>
+                            <a href="/activities/{{$activity->id}}/edit"><i class="fas fa-edit"
+                                                                            style="color: dodgerblue;margin-right: 15px"></i></a>
                         </div>
                         <div class="medium-6">
                             {!! Form::open(['action' => ['ActivityController@destroy', $activity->id, 'method' => 'POST' ]]) !!}

@@ -1,3 +1,5 @@
 <p>
-    Hey user, you passswords is {{$password}}
+    Hey {{$user->name}},
+
+    Your passsword is {{$password}}.
 </p>

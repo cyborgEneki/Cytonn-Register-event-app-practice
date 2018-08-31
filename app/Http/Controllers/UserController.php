@@ -74,7 +74,7 @@ class UserController extends Controller
     {
         $this->usersRepository->updateUser($request, $user);
 
-        return redirect('/users_blade')->with('success', 'User updated successfully');
+        return view('users.show')->with(['success' => 'User updated successfully', 'user' => $user]);
     }
 
     /**

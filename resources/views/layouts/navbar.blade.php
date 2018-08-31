@@ -1,4 +1,4 @@
-<div class="top-bar" style="background-color: #d77801;color: white;font-weight: 600;height: 100px;">
+<div class="top-bar" style="font-family: 'Quicksand'; background-color: #d77801;color: white;font-weight: 600;height: 100px;">
     <div class="top-bar-left">
         <ul class="dropdown menu" data-dropdown-menu style="background-color: #d77801;color: white;font-weight: 600;">
             <li class="menu-text">Cytonn Register</li>
@@ -16,19 +16,22 @@
 
             </li>
 
+            @if(Auth::check() && Auth::user()->isAdmin)
 
-            <ul class="dropdown menu" data-dropdown-menu
-                style="background-color: #d77801;color: white;font-weight: 600;">
-                <li>
-                    <a href="#" style="color: white;"><i class="fas fa-users-cog"></i>&nbsp;User Management</a>
-                    <ul class="menu" style="background-color: #ee4f2f;color: white;font-weight: 600;">
-                        <li><a href="/users_blade" style="color: white;">Users</a></li>
+                <ul class="dropdown menu" data-dropdown-menu
+                    style="background-color: #d77801;color: white;font-weight: 600;">
+                    <li>
+                        <a href="#" style="color: white;"><i class="fas fa-users-cog"></i>&nbsp;User Management</a>
+                        <ul class="menu" style="background-color: #ee4f2f;color: white;font-weight: 600;">
+                            <li><a href="/users_blade" style="color: white;">Users</a></li>
 
-                        <li><a href="/roles_blade" style="color: white;">Roles</a></li>
-                        <!-- ... -->
-                    </ul>
-                </li>
-            </ul>
+                            <li><a href="/roles_blade" style="color: white;">Roles</a></li>
+                            <!-- ... -->
+                        </ul>
+                    </li>
+                </ul>
+            @endif
+
         </ul>
     </div>
 </div>

@@ -33,10 +33,7 @@ class EventController extends Controller
 
     public function store(EventRequest $eventRequest)
     {
-
         $event = $eventRequest->all();
-
-
 
         $this->eventsRepository->postNewEvent($event);
 
@@ -66,7 +63,7 @@ class EventController extends Controller
     {
         $this->eventsRepository->updateEvent($request, $event);
 
-        return redirect('/events_blade')->with('success', 'Event updated successfully');
+        return view('events.show')->with(['success' => 'Event updated successfully', 'event' => $event]);
     }
 
     /**

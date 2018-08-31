@@ -2,6 +2,9 @@
 
 @section('content')
 
+    <a class="button el-button--info" style="margin-top: 20px; border-radius: 5px;"
+       href="/roles_blade">Back</a>
+
     <h2 class="text-center">{{$role->name}}</h2>
     <p class="text-center">{{$role->description}}</p>
 
