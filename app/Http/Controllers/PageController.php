@@ -37,7 +37,7 @@ class PageController extends Controller
         ];
 
 
-        return view('home', compact('data'));
+        return view('home')->with('data', $data);
     }
 
     public function login_index()
