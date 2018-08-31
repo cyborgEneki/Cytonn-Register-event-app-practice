@@ -31,6 +31,7 @@ class EventRequest extends FormRequest
             'location' => 'required',
             'lead_start_date' => 'required',
             'lead_end_date' => 'required',
+            'activity_id[]' => 'required',
         ];
     }
 }

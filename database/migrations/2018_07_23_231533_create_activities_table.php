@@ -17,7 +17,6 @@ class CreateActivitiesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('description');
-            $table->tinyInteger('checked')->default(0);
             $table->timestamps();
         });
     }
