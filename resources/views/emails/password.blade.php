@@ -1,5 +1,7 @@
 <p>
     Hey {{$user->name}},
 
-    Your passsword is {{$password}}.
+    Your password is {{$password}}.
+
+    Enjoy using Cytonn Register.
 </p>
