@@ -59,7 +59,7 @@
             <thead class="text-center">
             <tr>
                 @if(Auth::check() && Auth::user()->isAdmin)
-                    <th>Admin Status</th>
+                    <th>Confirmed or Nah</th>
                 @endif
 
                 <th>Activity</th>
