@@ -47,7 +47,6 @@ class EventNotification extends Command
 
         $events = Event::where('lead_start_date', $today)->get();
 
-
         foreach ($events as $event) {
             $this->sendNotification($event);
 
@@ -57,7 +56,6 @@ class EventNotification extends Command
 
     public function sendNotification($event)
     {
-
         $users = User::with("roles")->get();
 
         foreach ($users as $user) {

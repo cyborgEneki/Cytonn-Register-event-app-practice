@@ -27,8 +27,6 @@ class EventsRepository
 
     public function postNewEvent(array $request )
     {
-
-//        dd($request);
         $event = Event::create($request);
 
         $event->activities()->sync($request["activity_id"]??[]);

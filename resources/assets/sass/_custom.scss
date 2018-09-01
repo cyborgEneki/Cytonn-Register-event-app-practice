@@ -1,58 +1,73 @@
+$background-color: #5cb85c;
+$font-family: 'Quicksand';
+$color: #4CAF50;
+
+@mixin border-radius($property) {
+  border-radius: $property px;
+}
+
 body {
 
-
-  .show_event{
+  .show_event {
     margin-bottom: 50px;
 
-    .fa-dodger{
-      color: dodgerblue;margin-right: 15px
+    .fa-dodger {
+      color: dodgerblue;
+      margin-right: 15px
     }
 
-    .fa-red{
+    .fa-red {
       color: #fb2531;
     }
   }
 
-  .user_create{
-    margin: 100px auto; width: 800px;
+  .user_create {
+    margin: 100px auto;
+    width: 800px;
 
-    .add_header{
+    .add_header {
       margin-left: 340px;
     }
   }
 
-  .index_user{
+  .index_user {
 
-    a{
-      color: #5cb85c;border-radius: 12px;
+    a {
+      color: $background-color;
+       @include border-radius(12);
     }
   }
-  .el-button--info{
-    border-radius: 5px;
-  }
-
-  .edit_user{
-    margin: 0 auto; width: 900px;padding-top: 30px;
-
+  .el-button--info {
+    @include border-radius(5);
 
   }
-  .button{
-    font-weight: 600;border-radius: 12px;
+
+  .edit_user {
+    margin: 0 auto;
+    width: 900px;
+    padding-top: 30px;
+
+  }
+  .button {
+    font-weight: 600;
+    @include border-radius(12);
     box-shadow: 2px 5px lightgray;
   }
-  .show_activities{
+  .show_activities {
     margin-top: 30px;
 
-    table{
+    table {
       margin-bottom: 50px;
     }
   }
 
-  .events_edit{
-    margin: 0 auto; width: 1000px;padding-top: 30px;
+  .events_edit {
+    margin: 0 auto;
+    width: 1000px;
+    padding-top: 30px;
 
-    .form-heading{
-      margin-left:350px;
+    .form-heading {
+      margin-left: 350px;
     }
   }
   .dropdown.menu > li.is-dropdown-submenu-parent > a::after {
@@ -94,12 +109,12 @@ body {
   background-color: #ffffff;
   h1 {
     font-size: 100px;
-    font-family: 'Quicksand';
+    font-family: $font-family;
 
   }
   .auth_back {
     height: 300px;
-    background-color: #5cb85c;
+    background-color: $background-color;
     padding-top: 100px;
     color: white;
   }
@@ -109,7 +124,7 @@ body {
 
     .button {
       margin-top: 30px;
-      background-color: #5cb85c;
+      background-color: $background-color;
       font-weight: 700;
     }
   }
@@ -117,11 +132,11 @@ body {
   .navbar_top {
     position: fixed; /* Fixed Sidebar (stay in place on scroll) */
     padding: 20px;
-    background-color: #5cb85c;
+    background-color: $background-color;
     color: white;
 
     .top-bar-left .top-bar-right {
-      background-color: #5cb85c;
+      background-color: $background-color;
     }
 
     .top-bar-left {
@@ -139,14 +154,14 @@ body {
         font-weight: bold;
         .navbar_button {
 
-          background: #5cb85c;
+          background: $background-color;
 
           a {
             color: white;
           }
 
           .navbar_logout:hover {
-            background-color: #5cb85c;
+            background-color: $background-color;
           }
         }
 
@@ -165,7 +180,7 @@ body {
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 20px;
     width: 15%;
-    font-family: 'Quicksand';
+    font-family: $font-family;
 
     a {
       padding: 6px 8px 6px 16px;
@@ -184,7 +199,7 @@ body {
     }
 
     .main_admin {
-      font-family: 'Quicksand';
+      font-family: $font-family;
       width: 100%;
     }
 
@@ -205,10 +220,10 @@ body {
   }
 
   .form-body {
-    font-family: 'Quicksand';
+    font-family: $font-family;
 
     .form-button {
-      background-color: #4CAF50;
+      background-color: $color;
       border: none;
       color: white;
       padding: 20px;
@@ -218,7 +233,7 @@ body {
       font-size: 16px;
       margin: 4px 2px;
       border-radius: 12px;
-      font-family: 'Quicksand';
+      font-family: $font-family;
       width: 100%;
     }
   }
@@ -226,10 +241,10 @@ body {
   .event_create {
 
     .form-body {
-      font-family: 'Quicksand';
+      font-family: $font-family;
 
       .form-button {
-        background-color: #4CAF50;
+        background-color: $color;
         border: none;
         color: white;
         padding: 20px;
@@ -238,8 +253,8 @@ body {
         display: inline-block;
         font-size: 16px;
         margin: 4px 2px;
-        border-radius: 12px;
-        font-family: 'Quicksand';
+        @include border-radius(12);
+        font-family: $font-family;
         width: 100%;
       }
     }
@@ -247,7 +262,7 @@ body {
   }
 
   .add-button {
-    background-color: #4CAF50;
+    background-color: $color;
     border: none;
     color: white;
     padding: 20px;
@@ -256,13 +271,13 @@ body {
     display: inline-block;
     font-size: 16px;
     margin: 4px 2px;
-    border-radius: 12px;
-    font-family: 'Quicksand';
+    @include border-radius(12);
+    font-family: $font-family;
     width: 100%;
   }
 
   .table-font {
-    font-family: 'Quicksand';
+    font-family: $font-family;
   }
 
   .edit-button {
@@ -275,8 +290,8 @@ body {
     display: inline-block;
     font-size: 16px;
     margin: 4px 2px;
-    border-radius: 12px;
-    font-family: 'Quicksand';
+    @include border-radius(12);
+    font-family: $font-family;
   }
 
   .delete-button {
@@ -289,8 +304,8 @@ body {
     display: inline-block;
     font-size: 16px;
     margin: 4px 2px;
-    border-radius: 12px;
-    font-family: 'Quicksand';
+    @include border-radius(12);
+    font-family: $font-family;
   }
 
   .form_table_arrangement {
@@ -304,8 +319,9 @@ body {
     width: 900px;
   }
 
-  .roles_create{
-    margin: 100px auto; width: 900px;
+  .roles_create {
+    margin: 100px auto;
+    width: 900px;
   }
   .show_event {
     padding: 20px;
@@ -326,7 +342,7 @@ body {
       }
 
       .fa-on-time {
-        color: #5cb85c;
+        color: $background-color;
       }
 
       .fa-late {

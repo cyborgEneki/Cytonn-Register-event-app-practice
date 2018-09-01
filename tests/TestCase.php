@@ -8,7 +8,6 @@ use App\Exceptions\Handler;
 
 abstract class TestCase extends BaseTestCase
 {
-
     use CreatesApplication;
     protected function setUp()
     {
@@ -24,8 +23,6 @@ abstract class TestCase extends BaseTestCase
 
     protected function signInAdmin($user = null)
     {
-
-
         $adminRole = create('App\Role',['name'=>'admin']);
 
         $user = $user ?? create('App\User');

@@ -24,7 +24,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('event:update')->daily()->at('08:00');
+        $schedule->command('event:update')->daily()->at('00:00');
 
     }
 
